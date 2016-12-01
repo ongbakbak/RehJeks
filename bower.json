@@ -1,0 +1,26 @@
+{
+  "name": "rehjeks",
+  "homepage": "https://github.com/BackAlleyHax/RehJeks",
+  "description": "RegEx Challenge App",
+  "main": "",
+  "authors": [
+    "Mike",
+    "Tenzin",
+    "Ryan",
+    "Nate"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.9",
+    "angular-route": "^1.5.9",
+    "angular-ui-router": "0.3.1"
+  }
+}
