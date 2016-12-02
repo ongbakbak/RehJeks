@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyparser = require('body-parser');
 // require in routes
-// requre in database ??? Or modulize elsewhere
+// requre in database ??? Or can modulize elsewhere
 
 var app = express();
 
