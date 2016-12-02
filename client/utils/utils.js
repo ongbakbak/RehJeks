@@ -4,7 +4,7 @@ var serverUrl = '127.0.0.1:8000' //Update me with Process.Env.Port?
 angular.module('rehjeks.utils',[])
 .factory('Auth', function($http) {
 
-  var signup = function({username, password}){
+  var signUp = function( {username, password} ){
 
     $http({
       method: 'POST',

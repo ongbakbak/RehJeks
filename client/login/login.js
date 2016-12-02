@@ -1,8 +1,8 @@
-angular.module('rehjeks.logIn', [])
-  .controller('LogInController', function($scope){
+angular.module('rehjeks.login', [])
+  .controller('LoginController', function($scope){
     $scope.user = {};
 
-    $scope.logIn = function () {
+    $scope.login = function () {
 
     };
   });
