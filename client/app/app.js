@@ -1,7 +1,7 @@
 angular.module('rehjeks', [
   // 'rehjeks.utils',
    'rehjeks.logIn',
-  // 'rehjeks.signUp',
+   'rehjeks.signUp',
   // 'rehjeks.challenges',
   // 'rehjeks.solve',
   'ui.router',
@@ -14,6 +14,7 @@ angular.module('rehjeks', [
       controller: 'logInController'
     })
     .when('/signUp', {
-        templateUrl: 'signup/'
-    })
+      templateUrl: 'signup/',
+      controller: 'signUpController'
+    });
 });
