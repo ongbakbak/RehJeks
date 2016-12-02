@@ -11,9 +11,10 @@ stub(db);
 
 var app = express();
 
+app.use(bodyparser.json());
+
 require('./utils/routes.js')(app, express);
 
-app.use(bodyparser.json());
 app.use(express.static(__dirname + './../client'));
 
 app.listen(8000);
