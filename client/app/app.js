@@ -22,7 +22,7 @@ angular.module('rehjeks', [
       controller: 'SolveController'
     })
     .when('/', {
-      templateUrl: 'signup/signup.html',
-      controller: 'SignupController'
+      templateUrl: 'solve/solve.html',
+      controller: 'SolveController'
     });
 });
