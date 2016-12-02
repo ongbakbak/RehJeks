@@ -6,7 +6,7 @@ module.exports.getSolvedChallenges = function() {
   
 };
 
-module.exports.signUp = function() {
+module.exports.signup = function() {
   console.log('signUp')
 
 };

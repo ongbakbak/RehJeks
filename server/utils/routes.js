@@ -20,7 +20,7 @@ module.exports = function (app, express) {
   // POST REQUESTS
   ////////////////
 
-  app.post('/signup', userController.signUp);
+  app.post('/signup', userController.signup);
 
   app.post('/login', userController.login);
 
