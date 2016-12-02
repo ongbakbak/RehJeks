@@ -1,31 +1,76 @@
-var serverUrl = '127.0.0.1:8000' //Update me with Process.Env.Port?
+window.GlobalUser = {}; 
+window.GlobalUser.username = "Guest";
+window.GlobalsolvedChallenges = ['X12X', 'Y14Y'];
 
+var serverUrl = 'http://localhost:8000' //Update me with Process.Env.Port?
 
 angular.module('rehjeks.utils',[])
 .factory('Auth', function($http) {
 
-  var signUp = function( {username, password} ){
-
+  var authorize = function( {username, password}, route){
     $http({
       method: 'POST',
-      url: serverUrl+'/signup',
+      url: serverUrl + route,
       data: JSON.stringify({username: username, password: password})
     })
     .then(
-      function(successResponse){ //first param = successCallback
-        console.log(successResponse);
+      function(successRes){ //first param = successCallback
+        console.log('server should give me response!');
       },
-      function(errorResponse){ //second param = errorCallback
-        console.log(successResponse);
-    });
-
-
-  }
-
+      function(errorRes){ //second param = errorCallback
+        console.log(errorRes);
+      }
+    );
+  };
 
   return {
-    signup: signup
+    authorize: authorize
   }
 
 
 })
+.factory('Solver', function($http){
+
+  var getRandom = function(){
+
+    username = window.GlobalUser.username;
+    solvedChallenges = window.GlobalUser.solvedChallenges;
+
+    $http({
+      method: 'GET',
+      url: serverUrl + '/challenge',
+      params: {username: username, solvedChallenges: solvedChallenges};
+    })
+    .then(
+      function(successRes){ //first param = successCallback
+        console.log('server should give me response!');
+      },
+      function(errorRes){ //second param = errorCallback
+        console.log(errorRes);
+      }
+    );
+
+  };
+
+
+  return {
+    getRandom: getRandom
+  }
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
