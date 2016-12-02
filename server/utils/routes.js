@@ -8,13 +8,6 @@ module.exports = function (app, express ){
   ////////////////
   // GET REQUESTS
   ////////////////
-
-  app.get('/', function(req, res) {
-    //is this a route?
-    res.send("Sorry");
-    //fix me
-  });
-
   app.get('/challenge', challengeController.getRandomChallenge );
 
   app.get('/solution', solutionController.getOtherSolutions );
