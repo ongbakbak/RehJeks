@@ -3,8 +3,6 @@ var Challenge = require('./challengeModel');
 var User = require('../users/userModel');
 var Solution = require('../solutions/solutionModel');
 
-
-
 module.exports.getChallenges = function(req, res) {
   let {query: {quantity = 5, difficulty, order}} = req;
 
