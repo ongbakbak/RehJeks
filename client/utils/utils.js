@@ -39,7 +39,7 @@ angular.module('rehjeks.utils',[])
     $http({
       method: 'GET',
       url: serverUrl + '/challenge',
-      params: {username: username, solvedChallenges: solvedChallenges};
+      params: {username: username, solvedChallenges: solvedChallenges}
     })
     .then(
       function(successRes){ //first param = successCallback
