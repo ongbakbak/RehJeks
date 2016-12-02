@@ -1,7 +1,7 @@
 angular.module('rehjeks.signUp',[])
-  .controller('signUpController', function ($scope){
+  .controller('SignUpController', function ($scope, Auth){
     $scope.user = {};
     $scope.signUp = function() {
-
+      Auth.signUp($scope.user);
     };
   });

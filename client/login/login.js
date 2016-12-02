@@ -1,5 +1,5 @@
 angular.module('rehjeks.logIn', [])
-  .controller('logInController', function($scope){
+  .controller('LogInController', function($scope){
     $scope.user = {};
 
     $scope.logIn = function () {
