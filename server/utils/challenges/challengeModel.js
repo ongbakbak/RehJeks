@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var challengeSchema = new mongoose.Schema('Challenge', {
+var challengeSchema = mongoose.Schema({
   id: String,
   userId: String,
   title: String,
@@ -10,6 +10,6 @@ var challengeSchema = new mongoose.Schema('Challenge', {
   expected: [String],
   answer: String,
   cheats: [String]
-})
+});
 
 module.exports = mongoose.model('Challenge', challengeSchema);
