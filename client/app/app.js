@@ -3,7 +3,7 @@ angular.module('rehjeks', [
   'rehjeks.login',
   'rehjeks.signup',
   //'rehjeks.challenges',
-  //'rehjeks.solve',
+  'rehjeks.solve',
   'ui.router',
   'ngRoute'
 ])
@@ -16,6 +16,10 @@ angular.module('rehjeks', [
     .when('/signup', {
       templateUrl: 'signup/signup.html',
       controller: 'SignupController'
+    })
+    .when('/solve', {
+      templateUrl: 'solve/solve.html',
+      controller: 'SolveController'
     })
     .when('/', {
       templateUrl: 'signup/signup.html',

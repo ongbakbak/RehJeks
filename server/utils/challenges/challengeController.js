@@ -1,8 +1,11 @@
 var mongoose = require('mongoose');
 var Challenge = require('./challengeModel');
 
-module.exports.getRandomChallenge = function() {
-  console.log('getRandomChallenge')
+module.exports.getRandomChallenge = function(req, res) {
+  console.log("Server looking for Random Challenge");
+  console.log("req.params = ", req.params);
+
+  res.send("beep boop New Challenge Data 00111010100");
 
 };
 
