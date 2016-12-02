@@ -43,7 +43,7 @@ angular.module('rehjeks.utils',[])
     })
     .then(
       function(successRes){ //first param = successCallback
-        console.log('server should give me response!');
+        console.log('getRandom Returned this form server: ', successRes);
       },
       function(errorRes){ //second param = errorCallback
         console.log(errorRes);
