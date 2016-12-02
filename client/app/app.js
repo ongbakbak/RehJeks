@@ -1,9 +1,9 @@
 angular.module('rehjeks', [
-  // 'rehjeks.utils',
-   'rehjeks.logIn',
-   'rehjeks.signUp',
-  // 'rehjeks.challenges',
-  // 'rehjeks.solve',
+  'rehjeks.utils',
+  'rehjeks.logIn',
+  'rehjeks.signUp',
+  //'rehjeks.challenges',
+  //'rehjeks.solve',
   'ui.router',
   'ngRoute'
 ])
