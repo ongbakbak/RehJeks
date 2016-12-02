@@ -6,8 +6,11 @@ module.exports.getSolvedChallenges = function() {
   
 };
 
-module.exports.signup = function() {
-  console.log('signUp')
+
+module.exports.signUp = function(req, res) {
+  console.log('Server got POST @ /signup');
+  console.log("req.body = ", req.body);
+
 
 };
 
