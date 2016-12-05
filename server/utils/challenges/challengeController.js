@@ -5,11 +5,31 @@ var Solution = require('../solutions/solutionModel');
 
 
 
+module.exports.getChallenges = function(req, res) {
+  let {query: {quantity = 5, difficulty, order}} = req;
 
+  Challenge.find(difficulty?{difficulty: difficulty}:undefined)
+  .limit(+quantity) // Note: quantity comes in from params as a string, Mongoose needs it as a number
+  .then(data => res.send(data));
+};
 
-module.exports.getRandomChallenge = function(req, res) {
-  console.log('Getting random challenge')
-  let {query: {username, userId, challengeIdList}} = req;
+module.exports.getSingleChallenge = function(req, res) {
+  // Serve up a single challenge in this order of priority:
+    // If challengeId given in params, fetch that challenge
+    // If difficulty given, select only challenges with the given difficulty:
+      // If array of solved challenges given in params for a user who is not signed in (solvedChallenges),
+        // Serve up a random challenge whose id is not contained in that array
+      // If username or userId given in params
+        // Serve up a random challenge not already solved by the user
+
+  let {query: {username, userId, difficulty, solvedChallenges, challengeId}} = req;
+
+  // if specific challenge requested by Id, serve it
+  if (challengeId) {
+    return Challenge.findOne({id: challengeId})
+    .then(challenge => res.send(challenge))
+    .catch(err => res.statusCode(500).send(err));
+  }
 
 
   var checkIfUserAlreadySolved = function(userId, challenge) {
@@ -17,9 +37,9 @@ module.exports.getRandomChallenge = function(req, res) {
     // or if the challengeId is is challengeIdList.
     // Otherwise, returns the challenge
 
-    if (challengeIdList) {
+    if (solvedChallenges) {
       return new Promise(function(resolve, reject) {
-        if (challengeIdList.indexOf(challenge.id) !== -1) {
+        if (solvedChallenges.indexOf(challenge.id) !== -1) {
           resolve(true);
         } else {
           resolve(challenge);
@@ -44,7 +64,7 @@ module.exports.getRandomChallenge = function(req, res) {
 
     let rand = parseInt(Math.random() * count);
 
-    return Challenge.findOne().skip(rand)
+    return Challenge.findOne(difficulty?{difficulty: difficulty}:undefined).skip(rand)
 
     .then(function(challenge) {
       return checkIfUserAlreadySolved(userId, challenge)
@@ -61,7 +81,7 @@ module.exports.getRandomChallenge = function(req, res) {
   };
 
 
-  // find username
+  // find userId given username
   return new Promise(function(resolve, reject) {
     if (userId === undefined && username !== undefined) {
       return User.findOne({username: username})
@@ -75,18 +95,18 @@ module.exports.getRandomChallenge = function(req, res) {
       resolve();
     }
   })
-
+  // Count challenges to select our random seed
   .then(function() {
-    return Challenge.count();
+    return Challenge.count(difficulty?{difficulty: difficulty}:undefined);
   })
-
+  // Find the challenge given the count of challenges
   .then(function(count) {
     return findRandomChallenge(userId, count);
   })
-
+  // Serve the challenge
   .then(challenge => res.send(challenge))
 
-  .catch((err) => res.send(500));
+  .catch((err) => res.statusCode(500).send('Unknown Error serving challenge'));
 
 
 };
@@ -101,7 +121,7 @@ module.exports.submitNewChallenge = function(req, res) {
   })
   .catch(function(err) {
     console.log('error while submitting a new challenge:', err)
-    res.send(500);
+    res.statusCode(500).send(err);
   });
 
 };
