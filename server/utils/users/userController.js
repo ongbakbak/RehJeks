@@ -67,6 +67,3 @@ module.exports.comparePassword = function() {
   // use bcrypt compare method
 };
 
-
-// check if user in database can login
-
