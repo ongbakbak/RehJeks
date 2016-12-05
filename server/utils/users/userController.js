@@ -23,8 +23,6 @@ module.exports.getSolvedChallenges = function(req, res, next) {
 
 module.exports.signup = function(req, res, next) {
   var { body: {username, password} } = req
-  // var username = req.body.username;
-  // var password = req.body.password; 
 
   User.findOne({username: username})
   .then(function(user) {
@@ -32,21 +30,20 @@ module.exports.signup = function(req, res, next) {
       next(new Error("username already exists"));
     }
     else {
-      var user = User.create({
+      User.create({
         username: username, 
         password: password
       })
-      console.log("successfully created user");
-      //send token here
-      res.json({username: user.username, userid: user.id});
+      .then(function(newUser) {
+        //send token here
+        res.json({username: newUser.username, userid: newUser.id});
+      })
     }
   })
-
 };
 
 module.exports.login = function(req, res, next) {
-  var username = req.body.username;
-  var password = req.body.password;
+  var { body: {username, password} } = req
 
   User.findOne({username: username})
     .then(function(user){
@@ -64,7 +61,7 @@ module.exports.login = function(req, res, next) {
     		next(new Error('user does not exist'));
     	}
     })
-};
+  };
 
 module.exports.comparePassword = function() {
   // fill this in when decide to encrypt password with bcrypt
