@@ -12,6 +12,8 @@ module.exports = function (app, express) {
 
   app.get('/challenges', challengeController.getChallenges);
 
+  app.get('/challenges', challengeController.getAllChallenges);
+
   app.get('/solution', solutionController.getOtherSolutions);
 
   app.get('/user', userController.getSolvedChallenges);

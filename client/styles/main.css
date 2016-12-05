@@ -9,3 +9,23 @@
   width:300px;
   margin: 20px 0 20px 20px;
 }
+
+.challengeBlurb {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.challengeBlurb:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
+
+}
+
+.challengeTitle,
+.challengeDesc {
+  display: inline-block;
+}
+
+.challengeDesc {
+  padding-left: 30px;
+}

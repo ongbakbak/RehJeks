@@ -1,8 +1,8 @@
 angular.module('rehjeks', [
-  'rehjeks.utils',
+  'rehjeks.factories',
   'rehjeks.login',
   'rehjeks.signup',
-  //'rehjeks.challenges',
+  'rehjeks.challenges',
   'rehjeks.solve',
   'ui.router',
   'ngRoute'
@@ -21,8 +21,12 @@ angular.module('rehjeks', [
       templateUrl: 'solve/solve.html',
       controller: 'SolveController'
     })
+    .when('/challenges', {
+      templateUrl: 'challenges/challenges.html',
+      controller: 'ChallengesController'
+    })
     .when('/', {
-      templateUrl: 'solve/solve.html',
-      controller: 'SolveController'
+      templateUrl: 'challenges/challenges.html',
+      controller: 'ChallengesController'
     });
 });

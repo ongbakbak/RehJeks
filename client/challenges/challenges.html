@@ -1,7 +1,15 @@
 <div id='challenge'>
-  <h1>Challenge</h1>
-  <form name="challengeForm" ng-submit='challenge()'>
-    <input type='text' ng-model='problem'>
-    <button>Submit</button>
-  </form>
+  <h1>Choose your challenge!</h1>
+  <hr>
+  <div id="challengeList">
+    <div ng-repeat="challenge in challengeList" class="challengeBlurb" ng-click="getChallenge(challenge)">
+      <div class="challengeTitle">
+        <h3>{{challenge.title}}</h3>
+      </div>
+      <div class="challengeDesc">
+        <p>{{challenge.prompt}}</p>
+      </div>
+
+    </div>
+  </div>
 </div>

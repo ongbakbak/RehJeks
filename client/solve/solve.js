@@ -1,13 +1,28 @@
 angular.module('rehjeks.solve',[])
-.controller('SolveController', function($scope, Solver){
+.controller('SolveController', function($scope, Server){
 
-  $scope.challengeText = "The man who invented it doesn't want it. The man who bought it doesn't need it. The man who needs it doesn't know it. What is it?";
+  $scope.challengeData = {};
+
+  $scope.solve = function(){
+    //checks to see if given solution is valid
+    //if valid
+      //send valid solution to /solution
+      //get new random challenge [GETRANDOM]
+    // else not valid
+      //display error?
+  };
+
 
   $scope.getRandom = function(){
     console.log("SolveController calling getRandom")
-    Solver.getRandom();
+    Server.getRandom($scope);
   };
 
+  if (Server.currentChallenge.data !== undefined){
+    $scope.challengeData = Server.currentChallenge.data;
+  } else {
+    $scope.getRandom();
+  }
 
 });
 
