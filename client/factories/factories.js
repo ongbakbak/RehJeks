@@ -6,8 +6,8 @@
 
 
 
-window.GlobalUser = {}; 
-window.GlobalUser.username = "Guest";
+window.GlobalUser = {};
+window.GlobalUser.username = "user1";
 window.GlobalUser.solvedChallenges = ['X12X', 'Y14Y'];
 
 var exampleChallengeList = [
@@ -93,10 +93,10 @@ angular.module('rehjeks.factories',[])
         console.log('getRandom Returned this form server: ', returnedChallenge);
 
         //DUMMY
-        returnedChallenge = exampleChallengeList[Math.floor(Math.random() * 2)]; //DUMMY
+        // returnedChallenge = exampleChallengeList[Math.floor(Math.random() * 2)]; //DUMMY
 
-        $scope.challengeData = returnedChallenge;
-        currentChallenge.data = returnedChallenge;
+        $scope.challengeData = returnedChallenge.data;
+        currentChallenge.data = returnedChallenge.data;
         //$scope.challengeData = returnedData
 
       })
@@ -128,7 +128,7 @@ angular.module('rehjeks.factories',[])
       function(errorRes){ //second param = errorCallback
         console.log(errorRes);
     });
-  
+
   };
 
 
@@ -144,7 +144,7 @@ angular.module('rehjeks.factories',[])
     })
     .then(
       function(returnedChallenge){ //first param = successCallback
-        
+
         //DUMMY FIX
         returnedChallenge = exampleChallengeList[id - 1]; //DUMMY
 
@@ -158,7 +158,7 @@ angular.module('rehjeks.factories',[])
       function(errorRes){ //second param = errorCallback
         console.log(errorRes);
     });
-  
+
   };
 
 
@@ -174,19 +174,3 @@ angular.module('rehjeks.factories',[])
   }
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

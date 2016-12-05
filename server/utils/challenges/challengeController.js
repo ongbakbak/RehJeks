@@ -5,7 +5,9 @@ var Solution = require('../solutions/solutionModel');
 
 
 module.exports.getChallenges = function(req, res) {
+
   let {query: {quantity = 5, difficulty, order}} = req;
+
 
   Challenge.find(difficulty?{difficulty: difficulty}:undefined)
   .limit(+quantity) // Note: quantity comes in from params as a string, Mongoose needs it as a number
@@ -83,13 +85,14 @@ module.exports.getSingleChallenge = function(req, res) {
 
   // find userId given username
   return new Promise(function(resolve, reject) {
-    if (userId === undefined && username !== undefined) {
+    if ([null, undefined].includes(userId) && username !== undefined) {
       return User.findOne({username: username})
 
       .then((user) => {
-        userId = user.id;
+        if (user) userId = user.id;
         resolve();
-      });
+      })
+      .catch((err) => reject(err));
 
     } else {
       resolve();
