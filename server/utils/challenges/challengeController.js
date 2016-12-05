@@ -3,6 +3,7 @@ var Challenge = require('./challengeModel');
 var User = require('../users/userModel');
 var Solution = require('../solutions/solutionModel');
 
+
 module.exports.getChallenges = function(req, res) {
   let {query: {quantity = 5, difficulty, order}} = req;
 
@@ -10,6 +11,7 @@ module.exports.getChallenges = function(req, res) {
   .limit(+quantity) // Note: quantity comes in from params as a string, Mongoose needs it as a number
   .then(data => res.send(data));
 };
+
 
 module.exports.getSingleChallenge = function(req, res) {
   // Serve up a single challenge in this order of priority:
@@ -106,7 +108,6 @@ module.exports.getSingleChallenge = function(req, res) {
 
   .catch((err) => res.statusCode(500).send('Unknown Error serving challenge'));
 
-
 };
 
 module.exports.submitNewChallenge = function(req, res) {
@@ -122,10 +123,4 @@ module.exports.submitNewChallenge = function(req, res) {
     res.statusCode(500).send(err);
   });
 
-};
-
-
-module.exports.getAllChallenges = function(req, res){
-  console.log('Server trying to get all challenges from Database');
-  res.send("server working, beep-boop");
 };
