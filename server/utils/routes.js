@@ -10,6 +10,8 @@ module.exports = function (app, express) {
   ////////////////
   app.get('/challenge', challengeController.getRandomChallenge);
 
+  app.get('/challenges', challengeController.getAllChallenges);
+
   app.get('/solution', solutionController.getOtherSolutions);
 
   app.get('/user', userController.getSolvedChallenges);

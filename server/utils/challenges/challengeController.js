@@ -14,3 +14,9 @@ module.exports.submitNewChallenge = function() {
   console.log('submitNewChallenge')
 
 };
+
+
+module.exports.getAllChallenges = function(req, res){
+  console.log('Server trying to get all challenges from Database');
+  res.send("server working, beep-boop");
+};
