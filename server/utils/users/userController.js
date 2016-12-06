@@ -5,7 +5,7 @@ var Solution = require('../solutions/solutionModel');
 module.exports.getSolvedChallenges = function(req, res, next) {
   // Send username via request from front end to get userID
   var user = req.query.username;
-  
+
   User.findOne({username: user})
   .then(function(user) {
     Solution.find({userId: user.id})
@@ -21,6 +21,7 @@ module.exports.getSolvedChallenges = function(req, res, next) {
   })
 };
 
+
 module.exports.signup = function(req, res, next) {
   var { body: {username, password} } = req
 
@@ -31,7 +32,7 @@ module.exports.signup = function(req, res, next) {
     }
     else {
       User.create({
-        username: username, 
+        username: username,
         password: password
       })
       .then(function(newUser) {
@@ -67,4 +68,3 @@ module.exports.comparePassword = function() {
   // fill this in when decide to encrypt password with bcrypt
   // use bcrypt compare method
 };
-
