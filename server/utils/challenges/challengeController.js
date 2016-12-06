@@ -23,8 +23,7 @@ module.exports.getSingleChallenge = function(req, res) {
         // Serve up a random challenge not already solved by the user
 
   let {query: {username, userId, difficulty, solvedChallenges, challengeId}} = req;
-  console.log('username', username);
-  console.log('userId', userId);
+  
   // if specific challenge requested by Id, serve it
   if (challengeId) {
     return Challenge.findOne({id: challengeId})
