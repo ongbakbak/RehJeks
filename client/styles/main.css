@@ -35,3 +35,9 @@
   background-color: #ddd;
   border: 1px solid grey;
 }
+
+.minutes,
+.seconds {
+  font-weight: bold;
+  font-size: 1.5em;
+}

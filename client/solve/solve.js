@@ -1,12 +1,42 @@
 angular.module('rehjeks.solve',[])
 .controller('SolveController', function($scope, Server){
+ 
+  ////////////////////////
+  // Internal variables
+  // & functions
+  ////////////////////////
+
   var regexBody = /[^\/].*(?=\/[gim]{0,3}$)/;
   var regexFlags = /[gim]{0,3}$/;
+  var challStartTime = new Date();
 
+
+  var updateTimer = function(startTime){
+    var now = new Date();
+    var secondsElapsed = Math.floor( (now - startTime) / 1000 );
+    console.log("seconds elapsed ", secondsElapsed);
+    $scope.seconds = '' + ( secondsElapsed % 60);
+    $scope.minutes = '' + ( Math.floor(secondsElapsed / 60) );
+    
+
+  };
+
+  ////////////////////////
+  // $scope variables 
+  ////////////////////////
 
   $scope.RegexValid;
   $scope.attempt;
   $scope.challengeData = {};
+  $scope.seconds = '0';
+  $scope.minutes = '0';
+
+
+
+
+  ////////////////////////
+  // $scope functions 
+  ////////////////////////
 
   $scope.checkGex = function(){
     $scope.RegexValid = regexBody.test($scope.attempt);
@@ -44,20 +74,6 @@ angular.module('rehjeks.solve',[])
 
     }
 
-
-
-
-
-
-  };
-
-  $scope.solve = function() {
-    //checks to see if given solution is valid
-    //if valid
-      //send valid solution to /solution
-      //get new random challenge [GETRANDOM]
-    // else not valid
-      //display error?
   };
 
 
@@ -66,11 +82,27 @@ angular.module('rehjeks.solve',[])
     Server.getRandom($scope);
   };
 
+
+  ////////////////////////
+  // Run scripts!!
+  ////////////////////////
+
+  //Load Challenge
   if (Server.currentChallenge.data !== undefined) {
     $scope.challengeData = Server.currentChallenge.data;
   } else {
     $scope.getRandom();
   }
+
+  //Start Timer
+  setInterval(function(){
+    $scope.$apply(function(){
+      updateTimer(challStartTime);
+    });
+
+    console.log("$scope.seconds is ", $scope.seconds);
+  }, 1000);
+
 
 });
 
@@ -79,15 +111,14 @@ angular.module('rehjeks.solve',[])
     if(arr1.length !== arr2.length){
       return false;
     }
-
     for(i = 0; i < arr1.length; i++) {
       if(arr1[i] !== arr2[i]) {
         return false;
       }
     }
-
     return true;
   };
+
 
 
 
