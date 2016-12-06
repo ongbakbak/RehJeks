@@ -11,25 +11,40 @@ angular.module('rehjeks.solve',[])
   $scope.checkGex = function(){
     $scope.RegexValid = regexBody.test($scope.attempt);
 
+    console.log("Valid Regix = ", $scope.RegexValid);
     console.log("body is ", $scope.attempt.match(regexBody));
     console.log("flags are ", $scope.attempt.match(regexFlags));
 
   };
 
   $scope.checkSolution = function() {
-    //Disaggregate user's input into regex components
-    var attemptBody = $scope.attempt.match(regexBody);
-    var attemptFlags = $scope.attempt.match(regexFlags);
+    //Only check solution if user has input valid regex
+    if($scope.RegexValid){
+      //Disaggregate user's input into regex components
+      var attemptBody = $scope.attempt.match(regexBody);
+      var attemptFlags = $scope.attempt.match(regexFlags);
 
-    //create new regex object
-    var attemptRegex = new RegExp(attemptBody, attemptFlags);
+      //create new regex object
+      var attemptRegex = new RegExp(attemptBody, attemptFlags);
 
-    //create matches for user's input
-    var userAnswers = $scope.challengeData.text.match(attemptRegex);
-    console.log("__you got: ", userAnswers);
-    var validSolution = soltionsMatch(userAnswers, $scope.challengeData.expected);
+      //create matches for user's input
+      var userAnswers = $scope.challengeData.text.match(attemptRegex);
+      console.log("__you got: ", userAnswers);
 
-    console.log("answers match ", validSolution);
+      //Compare user's answers to challenge answers
+      var validSolution = soltionsMatch(userAnswers, $scope.challengeData.expected);
+      console.log("answers match ", validSolution);
+      
+      if(validSolution) {
+        //submit solution to server
+        console.log("__Calling submitUserSolution factory")
+        Server.submitUserSolution($scope.attempt, $scope.challengeData.id);
+        console.log("______Called submitUserSolution factory")
+      }
+
+    }
+
+
 
 
 

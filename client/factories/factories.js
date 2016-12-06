@@ -92,12 +92,11 @@ angular.module('rehjeks.factories',[])
       function(returnedChallenge){ //first param = successCallback
         console.log('getRandom Returned this form server: ', returnedChallenge);
 
-        //DUMMY
-        // returnedChallenge = exampleChallengeList[Math.floor(Math.random() * 2)]; //DUMMY
-
+        //pass challenge to proper scope to display
         $scope.challengeData = returnedChallenge.data;
+
+        //save current challenge in shared access
         currentChallenge.data = returnedChallenge.data;
-        //$scope.challengeData = returnedData
 
       })
     .catch(
@@ -152,7 +151,6 @@ angular.module('rehjeks.factories',[])
         currentChallenge.data = returnedChallenge;
         $location.path('solve');
 
-
       })
     .catch(
       function(errorRes){ //second param = errorCallback
@@ -162,15 +160,35 @@ angular.module('rehjeks.factories',[])
   };
 
 
+  var submitUserSolution = function(solution, challengeId){
+
+    var submission = {
+      solution: solution,
+      username: window.GlobalUser.username,
+      challengeId: challengeId
+    };
+
+    $http({
+      method: 'POST',
+      url: 'solution',
+      data: JSON.stringify(submission)
+    })
+
+  };
 
 
 
+
+  ///////////////////////////
+  //    Factory Interface  //
+  ///////////////////////////
 
   return {
     getAllChallenges: getAllChallenges,
     getRandom: getRandom,
     getChallenge: getChallenge,
-    currentChallenge: currentChallenge
+    currentChallenge: currentChallenge,
+    submitUserSolution: submitUserSolution
   }
 
 });
