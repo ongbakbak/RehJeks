@@ -1,7 +1,7 @@
 var challengeArray = [{
   "title": "Hex Color",
   "prompt": "write a regular expression that matches a hex color",
-  "text": ' #rgf #abc #dks366 #f00 #BADA55 #C0FFEE #349',
+  "text": ' #rgf #abc #dks366 #f00 #BADA55 #C0FFEE #674d',
   "difficulty": "hard",
   "expected": ["#abc", "#f00", "#BADA55", "#C0FFEE"],
   "answer": "/^#([a-f\d]{3}){1,2}$i",
@@ -10,7 +10,7 @@ var challengeArray = [{
 {
   "title": "Number",
   "prompt": "Number without exponent or digit separators",
-  "text": ["-1 .05 +1000 3.1415926535 42. "],
+  "text": "-1 .05 +1000 3.1415926535 42. ",
   "difficulty": "very hard",
   "expected": ["-1", ".05", "+1000", "3.1415926535", "42."],
   "answer": "/^[-+]?(\d*\.?\d+|\d+\.)$/",
@@ -35,30 +35,21 @@ var challengeArray = [{
   "cheats": [""]
 },
 {
-  "title": "Word Count",
-  "prompt": "Count words",
-  "text": ["a word to count"],
-  "difficulty": "easy",
-  "expected": ["4"],
-  "answer": "text[0].split(/\s+/)",
-  "cheats": [""]
-},
-{
   "title": "Matching Characters",
   "prompt": "Only match the first three strings, but not the last three strings.",
-  "text": ["can man fan dan ran pan"],
+  "text": "can man fan dan ran pan",
   "difficulty": "easy",
-  "expected": ["can man fan"],
-  "answer": "[cmf]an",
+  "expected": ["can", "man", "fan"],
+  "answer": "/[cmf]an/gi",
   "cheats": [""]
 },
 {
   "title": "Excluding specific characters",
   "prompt": "Pattern that matches only the live animals (hog, dog, but not bog).",
-  "text": ["hog dog bog"],
+  "text": "hog dog bog",
   "difficulty": "easy",
-  "expected": ["hot dog"],
-  "answer": "[^b]og",
+  "expected": ["hog", "dog"],
+  "answer": "/[^b]og/gi",
   "cheats": [""]
 },
 {
@@ -76,7 +67,7 @@ var challengeArray = [{
   "text": "foo bar foo apple",
   "difficulty": "easy",
   "expected": ["bar", "apple"],
-  "answer": (/^(?!.*foo).+$/),
+  "answer": "/^(?!.*foo).+$/gi",
   "cheats": [""]
 },
 {
@@ -85,7 +76,7 @@ var challengeArray = [{
   "text": "\"foo\", \'bar\', \'He said \"hi\"\', \"He \'said\' \\\"hi\\\"\",\"\",\'\\\\\'",
   "difficulty": "hard",
   "expected": ["bar", 'He said "hi"', "hi", "He 'said' \"hi\"", "", '\\', 'said'],
-  "answer": (/("|')(\\?.)*?\1/g),
+  "answer": "/("|')(\\?.)*?\1/g",
   "cheats": [""]
 }
 ];
