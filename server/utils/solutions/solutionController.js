@@ -27,6 +27,7 @@ module.exports.getOtherSolutions = function(req, res) {
 
 module.exports.addUserSolution = function(req, res) {
   // Adds a (correct) solution to the database.
+  console.log("req.body is ____",req.body);
 
   Solution.create(req.body)
   .then(data => console.log(data))

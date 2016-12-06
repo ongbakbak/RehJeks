@@ -3,9 +3,10 @@
   <div class='challengePrompt'>
     <h3>{{challengeData.title}}</h3>
     <p>{{challengeData.prompt}}</p>
+    <p class="challText">{{challengeData.text}}</p>
   </div>
-  <form name="solveForm" ng-submit='solve()'>
-    <input id="regexAttempt" type="text" ng-model='solution' placeholder="Insert regex (ie. not /regex/gi)">
+  <form name="solveForm" ng-submit='checkSolution()'>
+    <input id="regexAttempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" title="Try /example/gi" >
     <button>Submit</button>
   </form>
   <button ng-click='getRandom()'>Click to Get Random</button>

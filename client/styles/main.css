@@ -29,3 +29,9 @@
 .challengeDesc {
   padding-left: 30px;
 }
+
+.challText {
+  padding: 5px 20px;
+  background-color: #ddd;
+  border: 1px solid grey;
+}
