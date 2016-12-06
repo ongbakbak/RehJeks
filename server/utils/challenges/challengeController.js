@@ -23,7 +23,7 @@ module.exports.getSingleChallenge = function(req, res) {
         // Serve up a random challenge not already solved by the user
 
   let {query: {username, userId, difficulty, solvedChallenges, challengeId}} = req;
-  
+
   // if specific challenge requested by Id, serve it
   if (challengeId) {
     return Challenge.findOne({id: challengeId})
@@ -67,6 +67,7 @@ module.exports.getSingleChallenge = function(req, res) {
     return Challenge.findOne(difficulty?{difficulty: difficulty}:undefined).skip(rand)
 
     .then(function(challenge) {
+
       return checkIfUserAlreadySolved(userId, challenge)
     })
 
@@ -112,10 +113,22 @@ module.exports.getSingleChallenge = function(req, res) {
 };
 
 module.exports.submitNewChallenge = function(req, res) {
-  console.log('Submiting new challenge')
+  // Saves a challenge. Can work off of username or userId for the author.
+  // If no username or userId given, records "anonymous".
+
+  let {body: {username, userId}} = req;
 
   newChallenge = new Challenge(req.body);
-  newChallenge.save()
+  User.findOne(username ? {username: username} : userId ? {id: userId} : undefined)
+  .then((user) => {
+    if (user) {
+      delete newChallenge.username;
+      newChallenge.userId = user.id;
+    } else {
+      newChallenge.userId = "anonymous";
+    }
+    return newChallenge.save();
+  })
   .then(function(data) {
     res.send(200);
   })
