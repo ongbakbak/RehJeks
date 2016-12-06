@@ -2,7 +2,7 @@ var challengeArray = [{
   "title": "Hex Color",
   "prompt": "write a regular expression that matches a hex color",
   "text": ["#abc", "#f00", "#BADA55", "#C0FFEE"],
-  "difficulty": "hard",
+  "difficulty": "very hard",
   "expected": [""],
   "answer": "/^#([a-f\d]{3}){1,2}$i",
   "cheats": [""]
@@ -11,8 +11,8 @@ var challengeArray = [{
   "title": "Number",
   "prompt": "Number without exponent or digit separators",
   "text": ["-1", ".05", "+1000", "3.1415926535", "42."],
-  "difficulty": "hard",
-  "expected": [""],
+  "difficulty": " very hard",
+  "expected": ["-1", ".05", "+1000", "3.1415926535", "42."],
   "answer": "/^[-+]?(\d*\.?\d+|\d+\.)$/",
   "cheats": [""]
 },
@@ -21,7 +21,7 @@ var challengeArray = [{
   "prompt": "Just dates, no time or timezone information",
   "text": ["2012-12-12", "1986-06-13"],
   "difficulty": "very hard",
-  "expected": [""],
+  "expected": ["2012-12-12", "1986-06-13"],
   "answer": "/^\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])$/",
   "cheats": [""]
 },
@@ -46,18 +46,18 @@ var challengeArray = [{
 {
   "title": "Subtraction",
   "prompt": "Any number that's not divisible by 50",
-  "text": ["50"],
+  "text": ["50", "40", "100"],
   "difficulty": "medium",
-  "expected": [""],
+  "expected": [true, false, true],
   "answer": "/\b(?!\d+[50]0)\d+\b/",
   "cheats": [""]
 },
 {
   "title": "Negation",
-  "prompt": "write a regular expression that matches a hex color",
-  "text": ["foo", "'bar'", "'He said "hi"'", '"He 'said''],
-  "difficulty": "very hard",
+  "prompt": "Anything that doesn't contain 'foo'",
+  "text": ["foo", 'bar', 'He said \"hi\"', '"He \'said'],
+  "difficulty": "hard",
   "expected": [""],
   "answer": (/("|')(\\?.)*?\1/g),
   "cheats": [""]
-}]
+}];
