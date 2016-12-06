@@ -48,14 +48,14 @@ module.exports = function(db) {
 
   var solution1 = new Solution({
     userId: user1.id,
-    challangeId: challenge1.id,
+    challengeId: challenge1.id,
     solution: "123",
     timeToSubmit: "3 hours"
   })
 
   var solution2 = new Solution({
     userId: user2.id,
-    challangeId: challenge2.id,
+    challengeId: challenge2.id,
     solution: "123",
     timeToSubmit: "3 hours"
   })

@@ -8,9 +8,9 @@ module.exports = function (app, express) {
   ////////////////
   // GET REQUESTS
   ////////////////
-  app.get('/challenge', challengeController.getRandomChallenge);
+  app.get('/challenge', challengeController.getSingleChallenge);
 
-  app.get('/challenges', challengeController.getAllChallenges);
+  app.get('/challenges', challengeController.getChallenges);
 
   app.get('/solution', solutionController.getOtherSolutions);
 
