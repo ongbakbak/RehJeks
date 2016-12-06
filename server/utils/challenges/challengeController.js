@@ -3,7 +3,6 @@ var Challenge = require('./challengeModel');
 var User = require('../users/userModel');
 var Solution = require('../solutions/solutionModel');
 
-
 module.exports.getChallenges = function(req, res) {
 
   let {query: {quantity = 5, difficulty, order}} = req;
@@ -13,7 +12,6 @@ module.exports.getChallenges = function(req, res) {
   .limit(+quantity) // Note: quantity comes in from params as a string, Mongoose needs it as a number
   .then(data => res.send(data));
 };
-
 
 module.exports.getSingleChallenge = function(req, res) {
   // Serve up a single challenge in this order of priority:
@@ -25,7 +23,8 @@ module.exports.getSingleChallenge = function(req, res) {
         // Serve up a random challenge not already solved by the user
 
   let {query: {username, userId, difficulty, solvedChallenges, challengeId}} = req;
-
+  console.log('username', username);
+  console.log('userId', userId);
   // if specific challenge requested by Id, serve it
   if (challengeId) {
     return Challenge.findOne({id: challengeId})
@@ -85,7 +84,7 @@ module.exports.getSingleChallenge = function(req, res) {
 
   // find userId given username
   return new Promise(function(resolve, reject) {
-    if ([null, undefined].includes(userId) && username !== undefined) {
+    if (userId === undefined && username !== undefined) {
       return User.findOne({username: username})
 
       .then((user) => {

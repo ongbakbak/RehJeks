@@ -77,8 +77,8 @@ angular.module('rehjeks.factories',[])
 
   var getRandom = function($scope){
 
-    username = window.GlobalUser.username;
-    solvedChallenges = window.GlobalUser.solvedChallenges;
+    var username = window.GlobalUser.username;
+    var solvedChallenges = window.GlobalUser.solvedChallenges;
 
     var params = {username, solvedChallenges};
 
