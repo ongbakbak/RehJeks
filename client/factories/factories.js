@@ -130,29 +130,17 @@ angular.module('rehjeks.factories',[])
 
   };
 
-  var getUserSolutions = function($scope, username){
-    return $http({
-      method: 'GET',
-      url: serverUrl + '/solution',
-      params: {username: username},
-      paramSerializer: '$httpParamSerializerJQLike'
-      
-    })
-    .then(function(returnedSolutions){
-      $scope.user.solutions = returnedSolutions; 
-    })
-    .catch(function(error){
-      console.log("Error - did not get user solutions");
-    })
-  }
 
-  var getUserChallenges = function($scope){
+  var getUserChallenges = function($scope, username){
+    // Getting user specific challenges to display on profile
     return $http({
       method: 'GET', 
-      url: serverUrl + '/challenges' 
+      url: serverUrl + '/challenges',
+      params: {username: username},
+      paramSerializer: '$httpParamSerializerJQLike'
     })
-    .then(function(returnedChallenges){
-      $scope.user.allchallenges = returnedChallenges;
+    .then(function(challenges){
+      $scope.user.challenges = challenges.data; 
     })
   }
 
@@ -211,7 +199,6 @@ angular.module('rehjeks.factories',[])
 
   return {
     getAllChallenges: getAllChallenges,
-    getUserSolutions: getUserSolutions, 
     getUserChallenges: getUserChallenges,
     getRandom: getRandom,
     getChallenge: getChallenge,

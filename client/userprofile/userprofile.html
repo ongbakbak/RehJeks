@@ -1,8 +1,18 @@
 <div id='solve'>
   <h1>User Profile</h1>
   <h2>User Solutions</h2>
-  <div class='solutions'>
-  	<button>Click to display solutions</button>
+  <div class='solutions view'>
+  	<button ng-click='show()'>Show Challenges</button>
+  	<div class='challengeBlurb' ng-show='user.show' ng-repeat='challenge in user.challenges'>
+  		<div id='problem' ng-click='show=!show'>
+	 			<div class='challengeTitle'>{{challenge.challenge.title}}</div>
+	 			<div class='challengeDesc'>{{challenge.challenge.prompt}}</div>
+	 			<div>{{challenge.challenge.difficulty}}</div>
+	 		</div>
+	 			<div ng-hide='show'>
+	 				{{challenge.solution.solution}}
+	 			</div>
+  	</div>
   </div>
   <form name="profileForm">
     <button>Submit</button>
