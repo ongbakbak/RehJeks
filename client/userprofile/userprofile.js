@@ -19,4 +19,3 @@ angular.module('rehjeks.profile', [])
     });
     
   });
-  
