@@ -1,5 +1,5 @@
 angular.module('rehjeks.solve',[])
-.controller('SolveController', function($scope, Server){
+.controller('SolveController', function($scope, $interval, Server){
  
   ////////////////////////
   // Internal variables
@@ -14,11 +14,8 @@ angular.module('rehjeks.solve',[])
   var updateTimer = function(startTime){
     var now = new Date();
     var secondsElapsed = Math.floor( (now - startTime) / 1000 );
-    console.log("seconds elapsed ", secondsElapsed);
-    $scope.seconds = '' + ( secondsElapsed % 60);
-    $scope.minutes = '' + ( Math.floor(secondsElapsed / 60) );
-    
-
+    $scope.seconds = secondsElapsed % 60;
+    $scope.minutes = Math.floor(secondsElapsed / 60);
   };
 
   ////////////////////////
@@ -28,8 +25,8 @@ angular.module('rehjeks.solve',[])
   $scope.RegexValid;
   $scope.attempt;
   $scope.challengeData = {};
-  $scope.seconds = '0';
-  $scope.minutes = '0';
+  $scope.seconds = 0;
+  $scope.minutes = 0;
 
 
 
@@ -67,9 +64,10 @@ angular.module('rehjeks.solve',[])
       
       if(validSolution) {
         //submit solution to server
-        console.log("__Calling submitUserSolution factory")
-        Server.submitUserSolution($scope.attempt, $scope.challengeData.id);
+        var timeToSolve = new Date() - challStartTime;
+        Server.submitUserSolution($scope.attempt, $scope.challengeData.id, timeToSolve);
         console.log("______Called submitUserSolution factory")
+        $interval.cancel(solutionClock);
       }
 
     }
@@ -95,11 +93,8 @@ angular.module('rehjeks.solve',[])
   }
 
   //Start Timer
-  setInterval(function(){
-    $scope.$apply(function(){
-      updateTimer(challStartTime);
-    });
-
+  var solutionClock = $interval(function(){
+    updateTimer(challStartTime);
     console.log("$scope.seconds is ", $scope.seconds);
   }, 1000);
 
