@@ -14,9 +14,9 @@ var challengeSchema = mongoose.Schema({
   answer: String,
   cheats: [String]
 },
-{
-  timestamps: true
-});
+  {
+    timestamps: true
+  });
 
 challengeSchema.pre('save', function(next) {
   if (!this.id) {
@@ -26,3 +26,4 @@ challengeSchema.pre('save', function(next) {
 });
 
 module.exports = mongoose.model('Challenge', challengeSchema);
+
