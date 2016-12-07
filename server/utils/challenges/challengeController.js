@@ -4,18 +4,25 @@ var User = require('../users/userModel');
 var Solution = require('../solutions/solutionModel');
 
 module.exports.getChallenges = function(req, res) {
-  // Returns a list of challenges, if a username or a userId is provided it will be the challenges that
-  // The user has solved--otherwise, it will be any challenges.
+  // Returns a list of challenges, if a username or a userId is provided it will be a tuple of the challenges that
+  // the user has solved, and their respective solutions--otherwise, it will be an array of any challenges given the params.
 
   let {query: {quantity = 10, difficulty, order, username, userId}} = req;
 
   if (username || userId) {
+    let userSolutions;
     User.findOne(username ? {username: username} : {id: userId})
     .then(user => Solution.find({userId: user.id}))
+    .then(solutions => userSolutions = solutions)
     .then(solutions => solutions.map(solution => `{"id": "${solution.challengeId}"}`))
     .then(challengeIds => `{"$or": [${challengeIds.join(", ")}]}`)
     .then(challengeQuery => Challenge.find(JSON.parse(challengeQuery)).limit(+quantity))
-    .then(challenges => res.send(challenges));
+    .then(challenges => challenges.map(chal => {
+      var solution = userSolutions.filter(sol => sol.challengeId === chal.id)[0];
+      return {challenge: chal, solution: solution};
+    }))
+    .then(solvedChallenges => res.send(solvedChallenges))
+    .then(a=>console.log(userSolutions));
   } else {
     Challenge.find(difficulty?{difficulty: difficulty}:undefined)
     .limit(+quantity) // Note: quantity comes in from params as a string, Mongoose needs it as a number
