@@ -26,7 +26,7 @@ module.exports.getChallenges = function(req, res) {
   } else {
     Challenge.find(difficulty?{difficulty: difficulty}:undefined)
     .limit(+quantity) // Note: quantity comes in from params as a string, Mongoose needs it as a number
-    .then(data => res.send(challenges));
+    .then(data => res.send(data));
   }
 
 
