@@ -72,11 +72,11 @@ var challengeArray = [{
 },
 {
   "title": "Strings",
-  "prompt": "Anything that doesn't contain 'foo'",
-  "text": "\"foo\", \'bar\', \'He said \"hi\"\', \"He \'said\' \\\"hi\\\"\",\"\",\'\\\\\'",
+  "prompt": "Find any kind of valid quote (including the quotation marks. Single quoted, double quoted, nested quoted, or with escaped quotes.",
+  "text": "\"foo\", 'bar', 'He said \"hi\"', \"He 'said' \\\"hi\\\"\",\"\", '\\\\'",
   "difficulty": "hard",
-  "expected": ["bar", 'He said "hi"', "hi", "He 'said' \"hi\"", "", '\\', 'said'],
-  "answer": "/("|')(\\?.)*?\1/g",
+  "expected": ["\"foo\"", "\'bar\'", "'He said \"hi\"'", "\"He 'said' \\\"hi\\\"\"", "\"\"", "'\\\\'"],
+  "answer": "/(\"|\')(\\\\?.)*?\\1/g",
   "cheats": [""]
 }
 ];
