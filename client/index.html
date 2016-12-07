@@ -7,7 +7,12 @@
 </head>
 <body ng-app="rehjeks"> <!-- Can ng-app be here or in html tag?-->
     <h1>RehJeks</h1>
-    <nav></nav>
+    <nav>
+        <ul>
+            <li><a href="#/solve">Solve</a></li>
+            <li><a href="#/challenges">Challenges</a></li>
+        </ul>
+    </nav>
     <div ng-view></div>
     <script src="lib/angular/angular.js"></script>
     <script src='lib/angular-route/angular-route.js'></script>
