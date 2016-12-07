@@ -5,12 +5,21 @@
   	<button ng-click='show()'>Show Challenges</button>
   	<div class='challengeBlurb' ng-show='user.show' ng-repeat='challenge in user.challenges'>
   		<div id='problem' ng-click='show=!show'>
+<<<<<<< d8f3961e97cd8c49f9c18dae1de00c8ade1e13b2
 	 			<div class='challengeTitle'><h3>Title: {{challenge.challenge.title}}</h3></div>
 	 			<div class='challengeDesc'>Prompt: {{challenge.challenge.prompt}}</div>
 	 			<div>Difficulty: {{challenge.challenge.difficulty}}</div>
 	 		</div>
 	 			<div class='solution' ng-hide='show'>
 	 				Soltution: {{challenge.solution.solution}}
+=======
+	 			<div class='challengeTitle'>{{challenge.challenge.title}}</div>
+	 			<div class='challengeDesc'>{{challenge.challenge.prompt}}</div>
+	 			<div>{{challenge.challenge.difficulty}}</div>
+	 		</div>
+	 			<div ng-hide='show'>
+	 				{{challenge.solution.solution}}
+>>>>>>> Diplaying completed challenges on user profile
 	 			</div>
   	</div>
   </div>
