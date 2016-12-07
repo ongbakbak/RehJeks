@@ -130,6 +130,31 @@ angular.module('rehjeks.factories',[])
 
   };
 
+  var getUserSolutions = function($scope, username){
+    return $http({
+      method: 'GET',
+      url: serverUrl + '/solution',
+      params: {username: username},
+      paramSerializer: '$httpParamSerializerJQLike'
+      
+    })
+    .then(function(returnedSolutions){
+      $scope.user.solutions = returnedSolutions; 
+    })
+    .catch(function(error){
+      console.log("Error - did not get user solutions");
+    })
+  }
+
+  var getUserChallenges = function($scope){
+    return $http({
+      method: 'GET', 
+      url: serverUrl + '/challenges' 
+    })
+    .then(function(returnedChallenges){
+      $scope.user.allchallenges = returnedChallenges;
+    })
+  }
 
 
   var getChallenge = function(id){
@@ -186,6 +211,8 @@ angular.module('rehjeks.factories',[])
 
   return {
     getAllChallenges: getAllChallenges,
+    getUserSolutions: getUserSolutions, 
+    getUserChallenges: getUserChallenges,
     getRandom: getRandom,
     getChallenge: getChallenge,
     currentChallenge: currentChallenge,
