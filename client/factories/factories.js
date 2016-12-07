@@ -56,8 +56,6 @@ angular.module('rehjeks.factories',[])
     .then(
       function(successRes){ //first param = successCallback
         console.log('server should give me response!');
-        console.log('successRes.data.token is ', successRes.data.token);
-        return successRes.data.token;
       },
       function(errorRes){ //second param = errorCallback
         console.log(errorRes);
@@ -136,13 +134,13 @@ angular.module('rehjeks.factories',[])
   var getUserChallenges = function($scope, username){
     // Getting user specific challenges to display on profile
     return $http({
-      method: 'GET', 
+      method: 'GET',
       url: serverUrl + '/challenges',
       params: {username: username},
       paramSerializer: '$httpParamSerializerJQLike'
     })
     .then(function(challenges){
-      $scope.user.challenges = challenges.data; 
+      $scope.user.challenges = challenges.data;
     })
   }
 
