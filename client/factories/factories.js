@@ -5,7 +5,6 @@
 //////////////////////////////////
 
 
-
 window.GlobalUser = {};
 window.GlobalUser.username = "user1";
 window.GlobalUser.userId = "80085"
@@ -35,8 +34,6 @@ var exampleChallengeList = [
     cheats: ['something']
   }
 ];
-
-
 
 
 //////////////////////////////////
@@ -179,9 +176,6 @@ angular.module('rehjeks.factories',[])
     })
 
   };
-
-
-
 
   ///////////////////////////
   //    Factory Interface  //
