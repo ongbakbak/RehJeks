@@ -10,7 +10,9 @@ var solutionSchema = mongoose.Schema({
 });
 
 solutionSchema.pre('save', function(next) {
-  this.id = shortid.generate();
+  if (!this.id) {
+    this.id = shortid.generate();
+  }
   next();
 });
 

@@ -16,7 +16,9 @@ var challengeSchema = mongoose.Schema({
 });
 
 challengeSchema.pre('save', function(next) {
-  this.id = shortid.generate();
+  if (!this.id) {
+    this.id = shortid.generate();
+  }
   next();
 });
 
