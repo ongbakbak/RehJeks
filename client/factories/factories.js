@@ -130,6 +130,19 @@ angular.module('rehjeks.factories',[])
   };
 
 
+  var getUserChallenges = function($scope, username){
+    // Getting user specific challenges to display on profile
+    return $http({
+      method: 'GET', 
+      url: serverUrl + '/challenges',
+      params: {username: username},
+      paramSerializer: '$httpParamSerializerJQLike'
+    })
+    .then(function(challenges){
+      $scope.user.challenges = challenges.data; 
+    })
+  }
+
 
   var getChallenge = function(id){
 
@@ -183,6 +196,7 @@ angular.module('rehjeks.factories',[])
 
   return {
     getAllChallenges: getAllChallenges,
+    getUserChallenges: getUserChallenges,
     getRandom: getRandom,
     getChallenge: getChallenge,
     currentChallenge: currentChallenge,

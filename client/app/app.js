@@ -4,6 +4,7 @@ angular.module('rehjeks', [
   'rehjeks.signup',
   'rehjeks.challenges',
   'rehjeks.solve',
+  'rehjeks.profile',
   'ui.router',
   'ngRoute'
 ])
@@ -24,6 +25,10 @@ angular.module('rehjeks', [
     .when('/challenges', {
       templateUrl: 'challenges/challenges.html',
       controller: 'ChallengesController'
+    })
+    .when('/profile', {
+      templateUrl: 'userprofile/userprofile.html',
+      controller: 'UserprofileController'
     })
     .when('/', {
       templateUrl: 'challenges/challenges.html',
