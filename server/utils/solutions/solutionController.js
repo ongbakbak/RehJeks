@@ -7,7 +7,7 @@ module.exports.getOtherSolutions = function(req, res) {
   // Either provide a challengeId and it will return solutions for the challenge
   // Or provide a username/userId and a list of the user's solutions will be sent.
 
-  let {query: {username, userId, challengeId, quantity}} = req;
+  let {query: {username, userId, challengeId, quantity = 10}} = req;
 
   if (challengeId) {
 

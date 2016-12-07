@@ -5,9 +5,9 @@
 //////////////////////////////////
 
 
-
 window.GlobalUser = {};
 window.GlobalUser.username = "user1";
+window.GlobalUser.userId = "80085"
 window.GlobalUser.solvedChallenges = ['X12X', 'Y14Y'];
 
 var exampleChallengeList = [
@@ -34,8 +34,6 @@ var exampleChallengeList = [
     cheats: ['something']
   }
 ];
-
-
 
 
 //////////////////////////////////
@@ -120,7 +118,8 @@ angular.module('rehjeks.factories',[])
         //$scope.challengeList = returnedData.data;
         //  OR
         //$scope.challengeList = returnedData;
-        $scope.challengeList = exampleChallengeList;
+        console.log(returnedData);
+        $scope.challengeList = returnedData.data;
 
       })
     .catch(
@@ -165,8 +164,9 @@ angular.module('rehjeks.factories',[])
     var submission = {
       solution: solution,
       username: window.GlobalUser.username,
+      userId: window.GlobalUser.userId,
       challengeId: challengeId,
-      timeToSubmit: timeToSolve
+      timeToSolve: timeToSolve
     };
 
     $http({
@@ -176,9 +176,6 @@ angular.module('rehjeks.factories',[])
     })
 
   };
-
-
-
 
   ///////////////////////////
   //    Factory Interface  //

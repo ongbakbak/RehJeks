@@ -6,7 +6,7 @@ var solutionSchema = mongoose.Schema({
   userId: String,
   challengeId: String,
   solution: String,
-  timeToSubmit: String
+  timeToSolve: Number
 },
 {
   timestamps: true
