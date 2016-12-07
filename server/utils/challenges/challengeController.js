@@ -4,13 +4,25 @@ var User = require('../users/userModel');
 var Solution = require('../solutions/solutionModel');
 
 module.exports.getChallenges = function(req, res) {
+  // Returns a list of challenges, if a username or a userId is provided it will be the challenges that
+  // The user has solved--otherwise, it will be any challenges.
 
-  let {query: {quantity = 5, difficulty, order}} = req;
+  let {query: {quantity = 10, difficulty, order, username, userId}} = req;
+
+  if (username || userId) {
+    User.findOne(username ? {username: username} : {id: userId})
+    .then(user => Solution.find({userId: user.id}))
+    .then(solutions => solutions.map(solution => `{"id": "${solution.challengeId}"}`))
+    .then(challengeIds => `{"$or": [${challengeIds.join(", ")}]}`)
+    .then(challengeQuery => Challenge.find(JSON.parse(challengeQuery)).limit(+quantity))
+    .then(challenges => res.send(challenges));
+  } else {
+    Challenge.find(difficulty?{difficulty: difficulty}:undefined)
+    .limit(+quantity) // Note: quantity comes in from params as a string, Mongoose needs it as a number
+    .then(data => res.send(challenges));
+  }
 
 
-  Challenge.find(difficulty?{difficulty: difficulty}:undefined)
-  .limit(+quantity) // Note: quantity comes in from params as a string, Mongoose needs it as a number
-  .then(data => res.send(data));
 };
 
 module.exports.getSingleChallenge = function(req, res) {

@@ -7,10 +7,15 @@ var solutionSchema = mongoose.Schema({
   challengeId: String,
   solution: String,
   timeToSubmit: String
+},
+{
+  timestamps: true
 });
 
 solutionSchema.pre('save', function(next) {
-  this.id = shortid.generate();
+  if (!this.id) {
+    this.id = shortid.generate();
+  }
   next();
 });
 

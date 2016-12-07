@@ -6,10 +6,15 @@ var userSchema = mongoose.Schema({
   id: String,
   username: String,
   pw: String
+},
+{
+  timestamps: true
 });
 
 userSchema.pre('save', function(next) {
-  this.id = shortid.generate();
+  if (!this.id) {
+    this.id = shortid.generate();
+  }
   next();
 });
 

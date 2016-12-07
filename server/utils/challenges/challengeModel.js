@@ -13,10 +13,15 @@ var challengeSchema = mongoose.Schema({
   expected: [String],
   answer: String,
   cheats: [String]
+},
+{
+  timestamps: true
 });
 
 challengeSchema.pre('save', function(next) {
-  this.id = shortid.generate();
+  if (!this.id) {
+    this.id = shortid.generate();
+  }
   next();
 });
 

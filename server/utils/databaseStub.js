@@ -49,15 +49,22 @@ module.exports = function(db) {
   var solution1 = new Solution({
     userId: user1.id,
     challengeId: challenge1.id,
-    solution: "123",
+    solution: "[ascii puke]",
     timeToSubmit: "3 hours"
   })
 
   var solution2 = new Solution({
     userId: user2.id,
     challengeId: challenge2.id,
-    solution: "123",
-    timeToSubmit: "3 hours"
+    solution: "[ascii puke]",
+    timeToSubmit: "4 hours"
+  })
+
+  var solution3 = new Solution({
+    userId: user2.id,
+    challengeId: challenge1.id,
+    solution: "123barf",
+    timeToSubmit: "30 hours"
   })
 
 
@@ -65,6 +72,7 @@ module.exports = function(db) {
   user2.save();
   solution1.save();
   solution2.save();
+  solution3.save();
   challenge1.save();
   challenge2.save();
 
