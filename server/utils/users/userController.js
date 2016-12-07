@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var User = require('./userModel');
 var Solution = require('../solutions/solutionModel');
+var passport = require('passport');
+
 
 module.exports.getSolvedChallenges = function(req, res, next) {
   // Send username via request from front end to get userID
@@ -8,7 +10,7 @@ module.exports.getSolvedChallenges = function(req, res, next) {
 
   User.findOne({username: user})
   .then(function(user) {
-    return Solution.find({userId: user.id})
+    return Solution.find({userId: user.id});
   })
   .then(function(solutions) {
     if(solutions){
@@ -18,29 +20,22 @@ module.exports.getSolvedChallenges = function(req, res, next) {
     else{
       next(new Error("user does not have any solutions to display"));
     }
-  })
+  });
 };
 
 
 module.exports.signup = function(req, res, next) {
-  var { body: {username, password} } = req
+  var { body: {username, password} } = req;
 
-  User.findOne({username: username})
-  .then(function(user) {
-    if(user) {
-      next(new Error("username already exists"));
+  User.register(new User({ username : username }), password, function(err, account) {
+    if (err) {
+      console.log('Registering user ', err);
     }
-    else {
-      return User.create({
-        username: username, 
-        password: password
-      })
-    }
-  })
-  .then(function(newUser) {
-    //send token here
-    res.json({username: newUser.username, userid: newUser.id});
-  })
+    passport.authenticate('local')(req, res, function () {
+     res.send(200);
+    });
+  });
+
 };
 
 module.exports.login = function(req, res, next) {

@@ -59,13 +59,14 @@ angular.module('rehjeks.factories',[])
       },
       function(errorRes){ //second param = errorCallback
         console.log(errorRes);
+
       }
     );
   };
 
   return {
     authorize: authorize
-  }
+  };
 
 
 })
@@ -133,13 +134,13 @@ angular.module('rehjeks.factories',[])
   var getUserChallenges = function($scope, username){
     // Getting user specific challenges to display on profile
     return $http({
-      method: 'GET', 
+      method: 'GET',
       url: serverUrl + '/challenges',
       params: {username: username},
       paramSerializer: '$httpParamSerializerJQLike'
     })
     .then(function(challenges){
-      $scope.user.challenges = challenges.data; 
+      $scope.user.challenges = challenges.data;
     })
   }
 
@@ -186,7 +187,7 @@ angular.module('rehjeks.factories',[])
       method: 'POST',
       url: 'solution',
       data: JSON.stringify(submission)
-    })
+    });
 
   };
 
@@ -201,6 +202,6 @@ angular.module('rehjeks.factories',[])
     getChallenge: getChallenge,
     currentChallenge: currentChallenge,
     submitUserSolution: submitUserSolution
-  }
+  };
 
 });
