@@ -7,6 +7,9 @@ var solutionSchema = mongoose.Schema({
   challengeId: String,
   solution: String,
   timeToSubmit: String
+},
+{
+  timestamps: true
 });
 
 solutionSchema.pre('save', function(next) {

@@ -6,6 +6,9 @@ var userSchema = mongoose.Schema({
   id: String,
   username: String,
   pw: String
+},
+{
+  timestamps: true
 });
 
 userSchema.pre('save', function(next) {

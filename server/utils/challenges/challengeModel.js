@@ -13,6 +13,9 @@ var challengeSchema = mongoose.Schema({
   expected: [String],
   answer: String,
   cheats: [String]
+},
+{
+  timestamps: true
 });
 
 challengeSchema.pre('save', function(next) {
