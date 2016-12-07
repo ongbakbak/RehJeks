@@ -22,6 +22,7 @@ module.exports.getSolvedChallenges = function(req, res, next) {
 
 
 module.exports.signup = function(req, res, next) {
+  console.log('in signup controller, body is __', req.body);
   var { body: {username, password} } = req;
 
   User.findOne({username: username})
@@ -31,7 +32,7 @@ module.exports.signup = function(req, res, next) {
     } else {
       return User.create({
         username: username, 
-        password: password
+        pw: password
       });
     }
   })
@@ -42,6 +43,7 @@ module.exports.signup = function(req, res, next) {
 };
 
 module.exports.login = function(req, res, next) {
+  console.log('in login controller, body is __', req.body);
   var { body: {username, password} } = req;
 
   User.findOne({username: username})
