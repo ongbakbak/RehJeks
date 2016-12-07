@@ -15,7 +15,7 @@ module.exports.getChallenges = function(req, res) {
     .then(user => Solution.find({userId: user.id}))
     .then(solutions => userSolutions = solutions)
     .then(solutions => solutions.map(solution => `{"id": "${solution.challengeId}"}`))
-    .then(challengeIds => `{"$or": [${challengeIds.join(", ")}]}`)
+    .then(challengeIds => `{"$or": [${challengeIds.join(', ')}]}`)
     .then(challengeQuery => Challenge.find(JSON.parse(challengeQuery)).limit(+quantity))
     .then(challenges => challenges.map(chal => {
       var solution = userSolutions.filter(sol => sol.challengeId === chal.id)[0];
@@ -24,7 +24,7 @@ module.exports.getChallenges = function(req, res) {
     .then(solvedChallenges => res.send(solvedChallenges))
     .then(a=>console.log(userSolutions));
   } else {
-    Challenge.find(difficulty?{difficulty: difficulty}:undefined)
+    Challenge.find(difficulty ? {difficulty: difficulty} : undefined)
     .limit(+quantity) // Note: quantity comes in from params as a string, Mongoose needs it as a number
     .then(data => res.send(data));
   }
@@ -76,18 +76,18 @@ module.exports.getSingleChallenge = function(req, res) {
       }
     });
 
-  }
+  };
 
   var findRandomChallenge = function(userId, count) {
     // Finds a random challenge that the user at userId hasn't already solved
 
     let rand = parseInt(Math.random() * count);
 
-    return Challenge.findOne(difficulty?{difficulty: difficulty}:undefined).skip(rand)
+    return Challenge.findOne(difficulty ? {difficulty: difficulty} : undefined).skip(rand)
 
     .then(function(challenge) {
 
-      return checkIfUserAlreadySolved(userId, challenge)
+      return checkIfUserAlreadySolved(userId, challenge);
     })
 
     .then(function(challengeOrSolved) {
@@ -107,7 +107,7 @@ module.exports.getSingleChallenge = function(req, res) {
       return User.findOne({username: username})
 
       .then((user) => {
-        if (user) userId = user.id;
+        if (user) { userId = user.id; }
         resolve();
       })
       .catch((err) => reject(err));
@@ -118,7 +118,7 @@ module.exports.getSingleChallenge = function(req, res) {
   })
   // Count challenges to select our random seed
   .then(function() {
-    return Challenge.count(difficulty?{difficulty: difficulty}:undefined);
+    return Challenge.count(difficulty ? {difficulty: difficulty} : undefined);
   })
   // Find the challenge given the count of challenges
   .then(function(count) {
@@ -144,7 +144,7 @@ module.exports.submitNewChallenge = function(req, res) {
       delete newChallenge.username;
       newChallenge.userId = user.id;
     } else {
-      newChallenge.userId = "anonymous";
+      newChallenge.userId = 'anonymous';
     }
     return newChallenge.save();
   })
@@ -152,8 +152,9 @@ module.exports.submitNewChallenge = function(req, res) {
     res.send(200);
   })
   .catch(function(err) {
-    console.log('error while submitting a new challenge:', err)
+    console.log('error while submitting a new challenge:', err);
     res.statusCode(500).send(err);
   });
 
 };
+

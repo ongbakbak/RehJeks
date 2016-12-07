@@ -5,33 +5,34 @@ angular.module('rehjeks', [
   'rehjeks.challenges',
   'rehjeks.solve',
   'rehjeks.profile',
-  'ui.router',
-  'ngRoute'
+  'ui.router'
 ])
-.config(function($routeProvider /*, $httpProvider */){
-  $routeProvider
-    .when('/login', {
-      templateUrl: 'login/login.html',
-      controller: 'LoginController'
-    })
-    .when('/signup', {
-      templateUrl: 'signup/signup.html',
-      controller: 'SignupController'
-    })
-    .when('/solve', {
-      templateUrl: 'solve/solve.html',
-      controller: 'SolveController'
-    })
-    .when('/challenges', {
-      templateUrl: 'challenges/challenges.html',
-      controller: 'ChallengesController'
-    })
-    .when('/profile', {
-      templateUrl: 'userprofile/userprofile.html',
-      controller: 'UserprofileController'
-    })
-    .when('/', {
-      templateUrl: 'challenges/challenges.html',
-      controller: 'ChallengesController'
-    });
+.config(function($stateProvider /*, $httpProvider */){
+  $stateProvider
+  .state('login', {
+    url: '/login',
+    templateUrl: 'login/login.html',
+    controller: 'LoginController'
+  })
+  .state('signup', {
+    url: '/signup',
+    templateUrl: 'signup/signup.html',
+    controller: 'SignupController'
+  })
+  .state('solve', {
+    url: '/solve',
+    templateUrl: 'solve/solve.html',
+    controller: 'SolveController'
+  })
+  .state('challenges', {
+    url: '/challenges',
+    templateUrl: 'challenges/challenges.html',
+    controller: 'ChallengesController'
+  })
+  .state('profile', {
+    url: '/profile',
+    templateUrl: 'userprofile/userprofile.html',
+    controller: 'UserprofileController'
+  })
+
 });

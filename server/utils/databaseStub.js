@@ -9,18 +9,17 @@ module.exports = function(db) {
   Challenge.collection.drop();
   Solution.collection.drop();
 
-
   var user1 = new User({
     id: 1,
-    username: "user1",
-    pw: "pw1"
-  })
+    username: 'user1',
+    pw: 'pw1'
+  });
 
   var user2 = new User({
     id: 2,
-    username: "user2",
-    pw: "pw2"
-  })
+    username: 'user2',
+    pw: 'pw2'
+  });
 
   var challenge1 = new Challenge({
     id: 1,
@@ -49,23 +48,23 @@ module.exports = function(db) {
   var solution1 = new Solution({
     userId: user1.id,
     challengeId: challenge1.id,
-    solution: "[ascii puke]",
-    timeToSubmit: "3 hours"
-  })
+    solution: '[ascii puke]',
+    timeToSubmit: '3 hours'
+  });
 
   var solution2 = new Solution({
     userId: user2.id,
     challengeId: challenge2.id,
-    solution: "[ascii puke]",
-    timeToSubmit: "4 hours"
-  })
+    solution: '[ascii puke]',
+    timeToSubmit: '4 hours'
+  });
 
   var solution3 = new Solution({
     userId: user2.id,
     challengeId: challenge1.id,
-    solution: "123barf",
-    timeToSubmit: "30 hours"
-  })
+    solution: '123barf',
+    timeToSubmit: '30 hours'
+  });
 
 
   user1.save();

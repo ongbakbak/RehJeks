@@ -9,9 +9,9 @@ var userSchema = mongoose.Schema({
   username: String,
   pw: String
 },
-{
-  timestamps: true
-});
+  {
+    timestamps: true
+  });
 
 userSchema.pre('save', function(next) {
   if (!this.id) {
@@ -24,3 +24,4 @@ userSchema.pre('save', function(next) {
 userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', userSchema);
+

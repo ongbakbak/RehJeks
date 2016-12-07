@@ -1,9 +1,20 @@
 <div id='login' ng-controller='LoginController'>
-  <h1>LogIn</h1>
-  <form name="loginForm" ng-submit='login()'>
-    <input type='text' ng-model='user.username'>
-    <input type="password" ng-model='user.password'>
-    <button>Login</button>
-  </form>
-  <a href="#/signup">Don't have an account? <strong>Signup</strong> </a>
+  <h1>{{actionTitle}}</h1>
+  <p>So many great benefits! Such a good price!</p>
+
+  <div class="loginForm">
+    <form name="loginForm" ng-submit='submit()'>
+      <label>Username:
+        <input type='text' ng-model='user.username'>
+      </label>
+      <br>
+      <label>Password:
+        <input type="password" ng-model='user.password'>
+      </label>
+      <br>
+      <button>{{actionTitle}}</button>
+    </form>
+  </div>
+  <p ng-show="login">Don't have an account? <span class="switch" ng-click="seeSignup()">Signup</span> </p>
+  <p ng-show="signup">Already have an account? <span class="switch" ng-click="seeLogin()">Login</span> </p>
 </div>

@@ -11,10 +11,10 @@ angular.module('rehjeks.challenges', [])
 
 
 
-  $scope.getAllChallenges = function(){
+  $scope.getAllChallenges = function() {
     Server.getAllChallenges($scope);
   };
 
   $scope.getAllChallenges();
 
-})
+});

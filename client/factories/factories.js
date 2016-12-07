@@ -6,8 +6,8 @@
 
 
 window.GlobalUser = {};
-window.GlobalUser.username = "user1";
-window.GlobalUser.userId = "80085"
+window.GlobalUser.username = 'user1';
+window.GlobalUser.userId = '80085';
 window.GlobalUser.solvedChallenges = ['X12X', 'Y14Y'];
 
 var exampleChallengeList = [
@@ -42,22 +42,22 @@ var exampleChallengeList = [
 //                              //
 //////////////////////////////////
 
-var serverUrl = 'http://localhost:8000' //Update me with Process.Env.Port?
+var serverUrl = 'http://localhost:8000'; //Update me with Process.Env.Port?
 
-angular.module('rehjeks.factories',[])
+angular.module('rehjeks.factories', [])
 .factory('Auth', function($http) {
 
-  var authorize = function( {username, password}, route){
+  var authorize = function( {username, password}, route) {
     $http({
       method: 'POST',
       url: serverUrl + route,
       data: JSON.stringify({username: username, password: password})
     })
     .then(
-      function(successRes){ //first param = successCallback
+      function(successRes) { //first param = successCallback
         console.log('server should give me response!');
       },
-      function(errorRes){ //second param = errorCallback
+      function(errorRes) { //second param = errorCallback
         console.log(errorRes);
 
       }
@@ -70,11 +70,11 @@ angular.module('rehjeks.factories',[])
 
 
 })
-.factory('Server', function($http, $location){
+.factory('Server', function($http, $location) {
   //shared acces for Challenges and Solve Controller
   var currentChallenge = {data: undefined};
 
-  var getRandom = function($scope){
+  var getRandom = function($scope) {
 
     var username = window.GlobalUser.username;
     var solvedChallenges = window.GlobalUser.solvedChallenges;
@@ -88,7 +88,7 @@ angular.module('rehjeks.factories',[])
       paramSerializer: '$httpParamSerializerJQLike'
     })
     .then(
-      function(returnedChallenge){ //first param = successCallback
+      function(returnedChallenge) { //first param = successCallback
         console.log('getRandom Returned this form server: ', returnedChallenge);
 
         //pass challenge to proper scope to display
@@ -99,21 +99,21 @@ angular.module('rehjeks.factories',[])
 
       })
     .catch(
-      function(errorRes){ //second param = errorCallback
+      function(errorRes) { //second param = errorCallback
         console.log(errorRes);
-    });
+      });
 
   };
 
 
-  var getAllChallenges = function($scope){
+  var getAllChallenges = function($scope) {
 
     $http({
       method: 'GET',
       url: serverUrl + '/challenges'
     })
     .then(
-      function(returnedData){ //first param = successCallback
+      function(returnedData) { //first param = successCallback
         console.log('getRandom Returned this form server: ', returnedData);
 
         //$scope.challengeList = returnedData.data;
@@ -124,14 +124,14 @@ angular.module('rehjeks.factories',[])
 
       })
     .catch(
-      function(errorRes){ //second param = errorCallback
+      function(errorRes) { //second param = errorCallback
         console.log(errorRes);
-    });
+      });
 
   };
 
 
-  var getUserChallenges = function($scope, username){
+  var getUserChallenges = function($scope, username) {
     // Getting user specific challenges to display on profile
     return $http({
       method: 'GET',
@@ -139,13 +139,20 @@ angular.module('rehjeks.factories',[])
       params: {username: username},
       paramSerializer: '$httpParamSerializerJQLike'
     })
+<<<<<<< HEAD
     .then(function(challenges){
       $scope.user.challenges = challenges.data;
     })
   }
+=======
+    .then(function(challenges) {
+      $scope.user.challenges = challenges.data; 
+    });
+  };
+>>>>>>> BackAlleyHax/master
 
 
-  var getChallenge = function(id){
+  var getChallenge = function(id) {
 
     $http({
       method: 'GET',
@@ -155,7 +162,7 @@ angular.module('rehjeks.factories',[])
 
     })
     .then(
-      function(returnedChallenge){ //first param = successCallback
+      function(returnedChallenge) { //first param = successCallback
 
         //DUMMY FIX
         returnedChallenge = exampleChallengeList[id - 1]; //DUMMY
@@ -166,14 +173,14 @@ angular.module('rehjeks.factories',[])
 
       })
     .catch(
-      function(errorRes){ //second param = errorCallback
+      function(errorRes) { //second param = errorCallback
         console.log(errorRes);
-    });
+      });
 
   };
 
 
-  var submitUserSolution = function(solution, challengeId, timeToSolve){
+  var submitUserSolution = function(solution, challengeId, timeToSolve) {
 
     var submission = {
       solution: solution,
