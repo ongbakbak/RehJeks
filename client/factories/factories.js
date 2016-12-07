@@ -56,6 +56,7 @@ angular.module('rehjeks.factories',[])
     .then(
       function(successRes){ //first param = successCallback
         console.log('server should give me response!');
+        console.log('successRes.data.token is ', successRes.data.token);
         return successRes.data.token;
       },
       function(errorRes){ //second param = errorCallback
