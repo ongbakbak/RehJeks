@@ -56,16 +56,18 @@ angular.module('rehjeks.factories',[])
     .then(
       function(successRes){ //first param = successCallback
         console.log('server should give me response!');
+        return successRes.data.token;
       },
       function(errorRes){ //second param = errorCallback
         console.log(errorRes);
+
       }
     );
   };
 
   return {
     authorize: authorize
-  }
+  };
 
 
 })
@@ -186,7 +188,7 @@ angular.module('rehjeks.factories',[])
       method: 'POST',
       url: 'solution',
       data: JSON.stringify(submission)
-    })
+    });
 
   };
 
@@ -201,6 +203,6 @@ angular.module('rehjeks.factories',[])
     getChallenge: getChallenge,
     currentChallenge: currentChallenge,
     submitUserSolution: submitUserSolution
-  }
+  };
 
 });
