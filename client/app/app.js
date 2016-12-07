@@ -8,7 +8,7 @@ angular.module('rehjeks', [
   'ui.router',
   'ngRoute'
 ])
-.config(function($routeProvider /*, $httpProvider */){
+.config(function($routeProvider /*, $httpProvider */) {
   $routeProvider
     .when('/login', {
       templateUrl: 'login/login.html',
@@ -35,3 +35,4 @@ angular.module('rehjeks', [
       controller: 'ChallengesController'
     });
 });
+

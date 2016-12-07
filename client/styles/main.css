@@ -1,3 +1,19 @@
+input {
+  margin: 5px;
+}
+
+button {
+  padding: 5px;
+  border-radius: 3px;
+
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #a8a8a8;
+}
+
+
 .challengePrompt {
   width:400px;
   border:1px solid black;
@@ -71,3 +87,30 @@ nav ul li a:hover {
 h1 .cute{
   color: #245fbf;
 }
+
+.switch {
+  font-weight: bold;
+  font-size:1em;
+  color: #245fbf;
+  cursor: pointer;
+}
+
+#login,
+#solve,
+#challenges {
+  padding: 0 30px;
+  width: 400px;
+}
+
+
+.loginForm {
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: auto;
+  background-color: #e5edf9;
+}
+
+
+
+
