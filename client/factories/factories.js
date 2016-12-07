@@ -160,12 +160,13 @@ angular.module('rehjeks.factories',[])
   };
 
 
-  var submitUserSolution = function(solution, challengeId){
+  var submitUserSolution = function(solution, challengeId, timeToSolve){
 
     var submission = {
       solution: solution,
       username: window.GlobalUser.username,
-      challengeId: challengeId
+      challengeId: challengeId,
+      timeToSubmit: timeToSolve
     };
 
     $http({
