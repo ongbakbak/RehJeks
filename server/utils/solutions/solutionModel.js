@@ -8,9 +8,9 @@ var solutionSchema = mongoose.Schema({
   solution: String,
   timeToSolve: Number
 },
-{
-  timestamps: true
-});
+  {
+    timestamps: true
+  });
 
 solutionSchema.pre('save', function(next) {
   if (!this.id) {
@@ -20,3 +20,4 @@ solutionSchema.pre('save', function(next) {
 });
 
 module.exports = mongoose.model('Solution', solutionSchema);
+
