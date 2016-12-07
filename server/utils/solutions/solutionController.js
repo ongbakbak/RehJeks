@@ -17,8 +17,8 @@ module.exports.getOtherSolutions = function(req, res) {
 
   } else {
 
-    User.findOne(userId ? {id: +userId} : {username: username})
-    .then(user => Solution.find({userId: user.id}).limit(+quantity))
+    User.findOne(userId ? {id: userId} : {username: username})
+    .then(user => Solution.find({userId: user ? user.id : "undefined"}).limit(+quantity))
     .then(data => res.send(data))
     .catch(err => { res.sendStatus(500); console.log(err); });
 
