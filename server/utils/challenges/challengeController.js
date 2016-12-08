@@ -7,6 +7,8 @@ module.exports.getChallenges = function(req, res) {
   // Returns a list of challenges, if a username or a userId is provided it will be a tuple of the challenges that
   // the user has solved, and their respective solutions--otherwise, it will be an array of any challenges given the params.
 
+  console.log('challenge controller says req.query is ', req.query);
+
   let {query: {quantity = 10, difficulty, order, username, userId}} = req;
 
   if (username || userId) {
