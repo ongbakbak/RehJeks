@@ -11,8 +11,9 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var localDb = 'mongodb://127.0.0.1:27017/rehjeks';
 var currentDb = process.env.MONGODB_URI || localDb;
-console.log("currentDb is __", currentDb);
+console.log('currentDb is __', currentDb);
 var PORT = process.env.PORT || 8000;
+
 
 var db = mongoose.connect(currentDb);
 
@@ -25,9 +26,9 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
 
 app.use(session({
-	secret: 'keyboard cat',
-	resave: false,
-	saveUninitialized: false
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
 }));
 
 app.use(passport.initialize());
