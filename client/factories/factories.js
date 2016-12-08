@@ -7,7 +7,7 @@
 
 window.GlobalUser = {};
 window.GlobalUser.username = '';
-window.GlobalUser.userId = '80085';
+window.GlobalUser.userId = '';
 window.GlobalUser.solvedChallenges = ['X12X', 'Y14Y'];
 
 var exampleChallengeList = [
@@ -56,7 +56,8 @@ angular.module('rehjeks.factories', [])
     .then(
       function(successRes) { //first param = successCallback
         console.log('data', successRes.data);
-        window.GlobalUser.username = successRes.data.username; 
+        window.GlobalUser.username = successRes.data.username;
+        window.GlobalUser.userId = successRes.data.userid;  
       },
       function(errorRes) { //second param = errorCallback
         console.log(errorRes);
