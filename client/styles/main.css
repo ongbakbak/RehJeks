@@ -48,12 +48,14 @@ nav ul li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  transition: 0.3s;
+  transition: 0.2s;
   font-size: 17px;
 }
 
 nav ul li a:hover {
   background-color: #555;
+  text-decoration: none;
+  color: green;
 }
 
 .login-button {
