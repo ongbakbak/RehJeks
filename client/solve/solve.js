@@ -67,7 +67,7 @@ angular.module('rehjeks.solve', [])
         var timeToSolve = new Date() - challStartTime;
         Server.submitUserSolution($scope.attempt, $scope.challengeData.id, timeToSolve);
         console.log('______Called submitUserSolution factory');
-        $interval.cancel(solutionClock);
+        $interval.cancel(window.solutionClock);
       }
 
     }
@@ -93,7 +93,7 @@ angular.module('rehjeks.solve', [])
   }
 
   //Start Timer
-  var solutionClock = $interval(function() {
+  window.solutionClock = $interval(function() {
     updateTimer(challStartTime);
     console.log('$scope.seconds is ', $scope.seconds);
   }, 1000);
