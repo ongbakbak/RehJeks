@@ -27,6 +27,7 @@ angular.module('rehjeks.solve', [])
   $scope.challengeData = {};
   $scope.seconds = 0;
   $scope.minutes = 0;
+  $scope.difficulty;
 
 
 
@@ -77,7 +78,7 @@ angular.module('rehjeks.solve', [])
 
   $scope.getRandom = function() {
     console.log('SolveController calling getRandom');
-    Server.getRandom($scope);
+    Server.getRandom($scope, $scope.difficulty);
   };
 
 

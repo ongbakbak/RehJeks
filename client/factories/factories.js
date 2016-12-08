@@ -75,12 +75,13 @@ angular.module('rehjeks.factories', [])
   //shared acces for Challenges and Solve Controller
   var currentChallenge = {data: undefined};
 
-  var getRandom = function($scope) {
+  var getRandom = function($scope, difficulty) {
 
     var username = window.GlobalUser.username;
     var solvedChallenges = window.GlobalUser.solvedChallenges;
 
-    var params = {username, solvedChallenges};
+    var params = {username, solvedChallenges, difficulty};
+    console.log('params req is ', params);
 
     $http({
       method: 'GET',
