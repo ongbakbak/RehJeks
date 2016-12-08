@@ -48,7 +48,6 @@ angular.module('rehjeks.solve', [])
   $scope.checkSolution = function() {
     //Only check solution if user has input valid regex
     if ($scope.RegexValid) {
-      console.log('$scope.RegexValid === ',$scope.RegexValid);
       //Disaggregate user's input into regex components
       var attemptBody = $scope.attempt.match(regexBody);
       var attemptFlags = $scope.attempt.match(regexFlags);
