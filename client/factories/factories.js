@@ -6,7 +6,7 @@
 
 
 window.GlobalUser = {};
-window.GlobalUser.username = 'user1';
+window.GlobalUser.username = '';
 window.GlobalUser.userId = '80085';
 window.GlobalUser.solvedChallenges = ['X12X', 'Y14Y'];
 
