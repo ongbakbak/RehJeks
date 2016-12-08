@@ -7,7 +7,10 @@ angular.module('rehjeks', [
   'rehjeks.profile',
   'ui.router'
 ])
-.config(function($stateProvider /*, $httpProvider */){
+.config(function($stateProvider, $urlRouterProvider, $httpProvider){
+
+  $urlRouterProvider.otherwise('/solve');
+
   $stateProvider
   .state('login', {
     url: '/login',
