@@ -1,6 +1,6 @@
 angular.module('rehjeks.solve', [])
 .controller('SolveController', function($scope, $interval, Server) {
- 
+
   ////////////////////////
   // Internal variables
   // & functions
@@ -19,7 +19,7 @@ angular.module('rehjeks.solve', [])
   };
 
   ////////////////////////
-  // $scope variables 
+  // $scope variables
   ////////////////////////
 
   $scope.RegexValid;
@@ -33,7 +33,7 @@ angular.module('rehjeks.solve', [])
 
 
   ////////////////////////
-  // $scope functions 
+  // $scope functions
   ////////////////////////
 
   $scope.checkGex = function() {
@@ -62,7 +62,7 @@ angular.module('rehjeks.solve', [])
       //Compare user's answers to challenge answers
       var validSolution = soltionsMatch(userAnswers, $scope.challengeData.expected);
       console.log('answers match ', validSolution);
-      
+
       if (validSolution) {
         //submit solution to server
         var timeToSolve = new Date() - challStartTime;
@@ -96,7 +96,7 @@ angular.module('rehjeks.solve', [])
   //Start Timer
   window.solutionClock = $interval(function() {
     updateTimer(challStartTime);
-    console.log('$scope.seconds is ', $scope.seconds);
+    // console.log('$scope.seconds is ', $scope.seconds);
   }, 1000);
 
 
