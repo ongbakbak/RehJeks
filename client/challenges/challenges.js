@@ -3,6 +3,7 @@ angular.module('rehjeks.challenges', [])
 
 .controller('ChallengesController', function($scope, $interval, Server) {
   $interval.cancel(window.solutionClock);
+  $scope.difficulty;
   $scope.challengeList = [];
 
   $scope.getChallenge = function( {id} ) {
@@ -13,7 +14,7 @@ angular.module('rehjeks.challenges', [])
 
 
   $scope.getAllChallenges = function() {
-    Server.getAllChallenges($scope);
+    Server.getAllChallenges($scope, $scope.difficulty);
   };
 
   $scope.getAllChallenges();

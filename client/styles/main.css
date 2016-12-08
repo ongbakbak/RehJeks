@@ -5,7 +5,6 @@ input {
 button {
   padding: 5px;
   border-radius: 3px;
-
 }
 
 button:hover {
@@ -99,6 +98,14 @@ h1 .cute{
 #solve,
 #challenges {
   padding: 0 30px;
+  width: auto;
+}
+
+#solve{
+  width: auto;
+}
+
+#login {
   width: 400px;
 }
 
@@ -111,6 +118,26 @@ h1 .cute{
   background-color: #e5edf9;
 }
 
+#challengesNav {
+  display: inline-block;
+  vertical-align: top;
+  border: solid black 1px;
+  border-radius: 10px;
+  background-color: #333;
+  padding: 20px 10px;
+  width: auto;
+  height: auto;
+}
 
 
+
+#challengesList {
+  display: inline-block;
+  width: 400px;
+}
+
+label#difficulty {
+  color: white;
+  font-size: .8em;
+}
 
