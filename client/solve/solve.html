@@ -1,19 +1,35 @@
 <div id='solve'>
   <h1>Solve</h1>
-  <div class='challengePrompt'>
-    <h3>{{challengeData.title}}</h3>
-    <p>{{challengeData.prompt}}</p>
-    <p class="challText">{{challengeData.text}}</p>
+  <div id="solveNav">
+    <label id="difficulty">Choose difficulty:
+      <br> 
+      <select name="difficulty" id="difficulty" ng-model="difficulty" ng-change="getAllChallenges()">
+        <option value="easy">easy</option>
+        <option value="medium" selected>medium</option>
+        <option value="hard">hard</option>
+        <option value="mega hard">mega hard</option>
+      </select>
+    </label>
+    <br>
+    <br>
+    <button ng-click='getRandom()'>Click to Get Random</button>
   </div>
-  <form name="solveForm" ng-submit='checkSolution()'>
-    <input id="regexAttempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" title="Try /example/gi" >
-    <button>Submit</button>
-  </form>
-  <button ng-click='getRandom()'>Click to Get Random</button>
-  <br>
-  <br>
-  <p>Time Elapsed: 
-  <span class="minutes">{{ minutes }}</span> minutes
-  <span class="seconds">{{ seconds }}</span> seconds
-  </p>
+  <div id="solveSpace">
+    <div class='challengePrompt'>
+      <h3>{{challengeData.title}}</h3>
+      <p>{{challengeData.prompt}}</p>
+      <p class="challText">{{challengeData.text}}</p>
+    </div>
+    <form name="solveForm" ng-submit='checkSolution()'>
+      <input id="regexAttempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" title="Try /example/gi" >
+      <button>Submit</button>
+    </form>
+    <br>
+    <br>
+    <p>Time Elapsed: 
+    <span class="minutes">{{ minutes }}</span> minutes
+    <span class="seconds">{{ seconds }}</span> seconds
+    </p>
+    
+  </div>
 </div>
