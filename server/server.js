@@ -12,6 +12,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var localDb = 'mongodb://127.0.0.1:27017/rehjeks';
 var currentDb = process.env.MONGODB_URI || localDb;
 console.log('currentDb is __', currentDb);
+
 var PORT = process.env.PORT || 8000;
 
 
