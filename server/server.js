@@ -45,4 +45,5 @@ routes(app, express);
 app.use(express.static(__dirname + './../client'));
 
 app.listen(PORT);
+
 console.log('Listening on ', PORT);
