@@ -98,10 +98,4 @@ Challenge.collection.insertMany(challengeArray, function(err, row){
   }
 });
 
-// challengeArray.forEach(function(chal) {
-//   let challenge = new Challenge(chal);
-//   challenge.save()
-//   .then((k)=>console.log('done'));
-// });
-
 mongoose.connection.close();
