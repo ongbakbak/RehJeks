@@ -31,7 +31,7 @@ module.exports.signup = function(req, res, next) {
     }
     passport.authenticate('local')(req, res, function () {
       console.log('authenticated!');
-      res.json({message: 'Success', username: req.user.username});
+      res.json({message: 'Success', username: req.user.username, userid: req.user.id});
     });
   });
 

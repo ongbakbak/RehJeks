@@ -23,7 +23,7 @@ module.exports = function (app, express) {
   app.post('/signup', userController.signup);
 
   app.post('/login', passport.authenticate('local'), function(req, res){
-    res.json({message: 'Success', username: req.user.username});
+    res.json({message: 'Success', username: req.user.username, userid: req.user.id});
   });
 
   app.post('/solution', solutionController.addUserSolution);
