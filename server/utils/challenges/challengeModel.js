@@ -25,5 +25,6 @@ challengeSchema.pre('save', function(next) {
   next();
 });
 
-module.exports = mongoose.model('Challenge', challengeSchema);
+var Challenge = mongoose.model('Challenge', challengeSchema);
+module.exports = Challenge;
 
