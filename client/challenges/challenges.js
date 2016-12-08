@@ -1,7 +1,8 @@
 
 angular.module('rehjeks.challenges', [])
 
-.controller('ChallengesController', function($scope, Server) {
+.controller('ChallengesController', function($scope, $interval, Server) {
+  $interval.cancel(window.solutionClock);
   $scope.challengeList = [];
 
   $scope.getChallenge = function( {id} ) {
