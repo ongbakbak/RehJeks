@@ -1,12 +1,16 @@
-var challengeArray = [{
-  'title': 'Hex Color',
-  'prompt': 'write a regular expression that matches a hex color',
-  'text': ' #rgf #abc #dks366 #f00 #BADA55 #C0FFEE #674d',
-  'difficulty': 'hard',
-  'expected': ['#abc', '#f00', '#BADA55', '#C0FFEE'],
-  'answer': '/^#([a-f\d]{3}){1,2}$i',
-  'cheats': ['']
-},
+
+var Challenge = require('./challengeModel');
+
+var challengeArray = [
+  {
+    'title': 'Hex Color',
+    'prompt': 'write a regular expression that matches a hex color',
+    'text': ' #rgf #abc #dks366 #f00 #BADA55 #C0FFEE #674d',
+    'difficulty': 'hard',
+    'expected': ['#abc', '#f00', '#BADA55', '#C0FFEE'],
+    'answer': '/^#([a-f\d]{3}){1,2}$i',
+    'cheats': ['']
+  },
   {
     'title': 'Number',
     'prompt': 'Number without exponent or digit separators',
@@ -81,3 +85,7 @@ var challengeArray = [{
   }
 ];
 
+challengeArray.forEach(function(chal) {
+  var chalModel = new Challenge(chal);
+  chalModel.save();
+});
