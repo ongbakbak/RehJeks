@@ -23,7 +23,6 @@ module.exports.getSolvedChallenges = function(req, res, next) {
 
 
 module.exports.signup = function(req, res, next) {
-  console.log('in signup controller, body is __', req.body);
   var { body: {username, password} } = req;
 
   User.register(new User({ username : username }), password, function(err, account) {
@@ -37,4 +36,3 @@ module.exports.signup = function(req, res, next) {
   });
 
 };
-

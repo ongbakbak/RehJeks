@@ -9,6 +9,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var db = mongoose.connect('mongodb://127.0.0.1:27017/rehjeks');
 
+
 //stub(db);
 
 var app = express();
@@ -20,7 +21,8 @@ app.use(session({
 	secret: 'keyboard cat',
 	resave: false,
 	saveUninitialized: false
-}))
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -36,4 +38,3 @@ app.use(express.static(__dirname + './../client'));
 
 app.listen(8000);
 console.log('Listening on 127.0.0.1:8000');
-

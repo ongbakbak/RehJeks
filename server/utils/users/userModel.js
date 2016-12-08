@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var shortid = require('shortid');
 mongoose.Promise = require('bluebird');
+
+//requiring passport local mongoose for authentication
 var passportLocalMongoose = require('passport-local-mongoose');
 
 var userSchema = mongoose.Schema({
@@ -19,7 +21,7 @@ userSchema.pre('save', function(next) {
   next();
 });
 
+//adding plugin to authenticate
 userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', userSchema);
-

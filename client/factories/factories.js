@@ -60,6 +60,7 @@ angular.module('rehjeks.factories', [])
       },
       function(errorRes) { //second param = errorCallback
         console.log(errorRes);
+
       }
     );
   };
@@ -135,7 +136,7 @@ angular.module('rehjeks.factories', [])
   var getUserChallenges = function($scope, username) {
     // Getting user specific challenges to display on profile
     return $http({
-      method: 'GET', 
+      method: 'GET',
       url: serverUrl + '/challenges',
       params: {username: username},
       paramSerializer: '$httpParamSerializerJQLike'
