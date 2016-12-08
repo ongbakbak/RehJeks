@@ -139,17 +139,10 @@ angular.module('rehjeks.factories', [])
       params: {username: username},
       paramSerializer: '$httpParamSerializerJQLike'
     })
-<<<<<<< HEAD
-    .then(function(challenges){
-      $scope.user.challenges = challenges.data;
-    })
-  }
-=======
     .then(function(challenges) {
       $scope.user.challenges = challenges.data; 
     });
   };
->>>>>>> BackAlleyHax/master
 
 
   var getChallenge = function(id) {
