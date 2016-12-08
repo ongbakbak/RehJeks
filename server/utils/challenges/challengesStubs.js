@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var Challenge = require('./challengeModel');
 var db = mongoose.connect('mongodb://127.0.0.1:27017/rehjeks');
 
+// run this command in terminal from root directory to fetch data:   node server/utils/challenges/challengesStubs.js
+
 var challengeArray = [
   {
     'title': 'Hex Color',
