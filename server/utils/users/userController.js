@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var User = require('./userModel');
 var Solution = require('../solutions/solutionModel');
+var passport = require('passport');
 
 module.exports.getSolvedChallenges = function(req, res, next) {
   // Send username via request from front end to get userID
@@ -25,21 +26,17 @@ module.exports.signup = function(req, res, next) {
   console.log('in signup controller, body is __', req.body);
   var { body: {username, password} } = req;
 
-  User.findOne({username: username})
-  .then(function(user) {
-    if (user) {
-      next(new Error('username already exists'));
-    } else {
-      return User.create({
-        username: username, 
-        pw: password
-      });
-    }
-  })
-  .then(function(newUser) {
-    //send token here
-    res.json({username: newUser.username, userid: newUser.id});
-  });
+  User.register(new User({ username : username }), password, function(err, account) {
+        if (err) {
+            return res.render('register', { account : account });
+        }
+
+        passport.authenticate('local')(req, res, function () {
+            console.log('authenticated!');
+            res.redirect('/');
+        });
+    });
+
 };
 
 module.exports.login = function(req, res, next) {

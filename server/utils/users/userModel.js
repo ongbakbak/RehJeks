@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var shortid = require('shortid');
 mongoose.Promise = require('bluebird');
+var passportLocalMongoose = require('passport-local-mongoose');
 
 var userSchema = mongoose.Schema({
   id: String,
@@ -17,6 +18,8 @@ userSchema.pre('save', function(next) {
   }
   next();
 });
+
+userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', userSchema);
 
