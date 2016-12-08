@@ -5,6 +5,7 @@ angular.module('rehjeks', [
   'rehjeks.challenges',
   'rehjeks.solve',
   'rehjeks.profile',
+  'rehjeks.nav',
   'ui.router'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
@@ -12,30 +13,52 @@ angular.module('rehjeks', [
   $urlRouterProvider.otherwise('/solve');
 
   $stateProvider
-  .state('login', {
-    url: '/login',
+
+  .state('solve', {
+    url: '/solve',
+    views: {
+      "nav": {
+        templateUrl: 'nav/nav.html',
+        controller: 'NavController'
+      },
+      "body": {
+        templateUrl: 'solve/solve.html',
+        controller: 'SolveController'
+      }
+    }
+  })
+  .state('solve.login', {
     templateUrl: 'login/login.html',
     controller: 'LoginController'
   })
-  .state('signup', {
-    url: '/signup',
-    templateUrl: 'signup/signup.html',
-    controller: 'SignupController'
+  .state('solve.useroptions', {
+    templateUrl: 'useroptions/useroptions.html'
   })
-  .state('solve', {
-    url: '/solve',
-    templateUrl: 'solve/solve.html',
-    controller: 'SolveController'
-  })
+
+
+
+
+
   .state('challenges', {
     url: '/challenges',
-    templateUrl: 'challenges/challenges.html',
-    controller: 'ChallengesController'
+    views: {
+      "nav": {
+        templateUrl: 'nav/nav.html',
+        controller: 'NavController'
+      },
+      "body": {
+        templateUrl: 'challenges/challenges.html',
+        controller: 'ChallengesController'
+      }
+    }
   })
-  .state('profile', {
-    url: '/profile',
-    templateUrl: 'userprofile/userprofile.html',
-    controller: 'UserprofileController'
+  .state('challenges.login', {
+    templateUrl: 'login/login.html',
+    controller: 'LoginController'
   })
+  .state('challenges.useroptions', {
+    templateUrl: 'useroptions/useroptions.html'
+  })
+
 
 });

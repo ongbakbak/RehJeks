@@ -56,6 +56,10 @@ nav ul li a:hover {
   background-color: #555;
 }
 
+.login-button {
+  float: right;
+}
+
 .challengeBlurb:hover {
   background-color: #eeeeee;
   cursor: pointer;
@@ -109,8 +113,13 @@ h1 .cute{
   width: 400px;
 }
 
+.login-box {
+  position: absolute;
+  right: 8px;
+  background-color: #AAA;
+}
 
-.loginForm {
+.login-form {
   padding: 10px 20px;
   border: 1px solid black;
   border-radius: 5px;
@@ -140,4 +149,3 @@ label#difficulty {
   color: white;
   font-size: .8em;
 }
-
