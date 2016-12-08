@@ -136,13 +136,30 @@ h1 .cute{
   padding: 20px 10px;
   width: auto;
   height: auto;
+  margin: 0 15px;
 }
-
-
 
 #challengesList {
   display: inline-block;
   width: 400px;
+}
+
+#solveNav {
+  display: inline-block;
+  vertical-align: top;
+  border: solid black 1px;
+  border-radius: 10px;
+  background-color: #333;
+  padding: 20px 10px;
+  width: auto;
+  height: auto;
+  margin: 0 15px;
+}
+
+#solveSpace {
+  display: inline-block;
+  width: 500px;
+
 }
 
 label#difficulty {
