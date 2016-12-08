@@ -4,7 +4,6 @@ var challengeController = require('./challenges/challengeController.js');
 var solutionController = require('./solutions/solutionController.js');
 var passport = require('passport');
 
-
 module.exports = function (app, express) {
   ////////////////
   // GET REQUESTS
@@ -24,7 +23,7 @@ module.exports = function (app, express) {
   app.post('/signup', userController.signup);
 
   app.post('/login', passport.authenticate('local'), function(req, res){
-    res.redirect('/');
+    res.json({message: 'Success', username: req.user.username});
   });
 
   app.post('/solution', solutionController.addUserSolution);
