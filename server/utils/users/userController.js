@@ -27,40 +27,14 @@ module.exports.signup = function(req, res, next) {
   var { body: {username, password} } = req;
 
   User.register(new User({ username : username }), password, function(err, account) {
-        if (err) {
-            return res.render('register', { account : account });
-        }
-
-        passport.authenticate('local')(req, res, function () {
-            console.log('authenticated!');
-            res.redirect('/');
-        });
-    });
-
-};
-
-module.exports.login = function(req, res, next) {
-  console.log('in login controller, body is __', req.body);
-  var { body: {username, password} } = req;
-
-  User.findOne({username: username})
-  .then(function(user) {
-    if (user) {
-      if (user.pw === password) {
-        //send token here
-        console.log('successfully logged in');
-        res.json({username: user.username, userid: user.id});
-      } else {
-        next(new Error('password is incorrect'));
-      }
-    }  	else {
-      next(new Error('user does not exist'));
+    if (err) {
+      next(new Error('error registering user'));
     }
+    passport.authenticate('local')(req, res, function () {
+      console.log('authenticated!');
+      res.json({message: 'Success', username: req.user.username});
+    });
   });
-};
 
-module.exports.comparePassword = function() {
-  // fill this in when decide to encrypt password with bcrypt
-  // use bcrypt compare method
 };
 

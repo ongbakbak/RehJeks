@@ -55,7 +55,8 @@ angular.module('rehjeks.factories', [])
     })
     .then(
       function(successRes) { //first param = successCallback
-        console.log('server should give me response!');
+        console.log('data', successRes.data);
+        window.GlobalUser.username = successRes.data.username; 
       },
       function(errorRes) { //second param = errorCallback
         console.log(errorRes);
