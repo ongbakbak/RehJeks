@@ -7,12 +7,8 @@ angular.module('rehjeks.login', [])
 
 
 
-<<<<<<< HEAD
-      console.log("user object contains ", $scope.user);
-=======
     $scope.login = function () {
       console.log('user object contains ', $scope.user);
->>>>>>> BackAlleyHax/master
       Auth.authorize($scope.user, '/login');
     };
 
