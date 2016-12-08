@@ -43,6 +43,6 @@ routes(app, express);
 
 app.use(express.static(__dirname + './../client'));
 
-app.listen(PORT);
-
-console.log('Listening on ', PORT);
+app.listen(PORT, function() {
+  console.log('Listening on ', PORT);
+});
