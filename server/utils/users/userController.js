@@ -19,18 +19,11 @@ module.exports.getSolvedChallenges = function(req, res, next) {
     } else {
       next(new Error('user does not have any solutions to display'));
     }
-<<<<<<< HEAD
-    else{
-      next(new Error("user does not have any solutions to display"));
-    }
-=======
->>>>>>> BackAlleyHax/master
   });
 };
 
 
 module.exports.signup = function(req, res, next) {
-<<<<<<< HEAD
   var { body: {username, password} } = req;
 
   User.register(new User({ username : username }), password, function(err, account) {
@@ -42,26 +35,6 @@ module.exports.signup = function(req, res, next) {
     });
   });
 
-=======
-  console.log('in signup controller, body is __', req.body);
-  var { body: {username, password} } = req;
-
-  User.findOne({username: username})
-  .then(function(user) {
-    if (user) {
-      next(new Error('username already exists'));
-    } else {
-      return User.create({
-        username: username, 
-        pw: password
-      });
-    }
-  })
-  .then(function(newUser) {
-    //send token here
-    res.json({username: newUser.username, userid: newUser.id});
-  });
->>>>>>> BackAlleyHax/master
 };
 
 module.exports.login = function(req, res, next) {
