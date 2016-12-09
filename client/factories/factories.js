@@ -47,7 +47,10 @@ var exampleChallengeList = [
 
 angular.module('rehjeks.factories', [])
 .factory('Auth', function($http, $location) {
+<<<<<<< 5b8e908ed9ddb4222128d22b4e155a263f6f2f6e
   var serverURL = $location.protocol() + '://' + location.host;
+=======
+>>>>>>> add $location.path test
 
   var authorize = function( {username, password}, route, $scope) {
     $http({
@@ -130,6 +133,7 @@ angular.module('rehjeks.factories', [])
 
   var getAllChallenges = function($scope, difficulty) {
 
+    console.log("trying to get all Challenges from __", $location.path());
 
     $http({
       method: 'GET',
