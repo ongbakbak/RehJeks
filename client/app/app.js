@@ -7,6 +7,7 @@ angular.module('rehjeks', [
   'rehjeks.profile',
   'rehjeks.nav',
   'rehjeks.submit',
+  'rehjeks.useroptions',
   'ui.router'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
@@ -30,10 +31,13 @@ angular.module('rehjeks', [
   })
   .state('solve.login', {
     templateUrl: 'login/login.html',
-    controller: 'LoginController'
+    controller: 'LoginController',
+    parent: 'solve'
   })
   .state('solve.useroptions', {
-    templateUrl: 'useroptions/useroptions.html'
+    templateUrl: 'useroptions/useroptions.html',
+    controller: 'UserOptionsController',
+    parent: 'solve'
   })
 
 
@@ -55,10 +59,13 @@ angular.module('rehjeks', [
   })
   .state('challenges.login', {
     templateUrl: 'login/login.html',
-    controller: 'LoginController'
+    controller: 'LoginController',
+    parent: 'challenges'
   })
   .state('challenges.useroptions', {
-    templateUrl: 'useroptions/useroptions.html'
+    templateUrl: 'useroptions/useroptions.html',
+    controller: 'UserOptionsController',
+    parent: 'challenges'
   })
   .state('submit', {
     url: '/submit',
@@ -74,4 +81,8 @@ angular.module('rehjeks', [
     }
   });
 
-});
+})
+// Workaround for "unhandled rejection" inherent to Angular 1.6.0 with ui-router
+.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);;

@@ -1,23 +1,25 @@
 angular.module('rehjeks.login', [])
   .controller('LoginController', function($scope, Auth) {
     $scope.user = {};
-    $scope.login = true;
-    $scope.signup = false;
+    $scope.showLogin = true;
+    $scope.showSignup = false;
     $scope.signin = false;
     $scope.actionTitle = 'Login';
-
-    $scope.loggedin = window.GlobalUser.username !== '';
+    $scope.loggedin = window.GlobalUser.username !== ''; // Shouldn't have to use this eventually
+    $scope.loggedin = document.cookie !== "undefined";
 
 
 
     $scope.login = function () {
       console.log('user object contains ', $scope.user);
       Auth.authorize($scope.user, '/login', $scope);
+      $scope.$parent.showDropdown = false;
     };
 
     $scope.submit = function() {
       if ($scope.login) {
-        Auth.authorize($scope.user, '/login', $scope);
+        Auth.authorize($scope.user, '/login', $scope)
+        .then((resp)=>$scope.$parent.showDropdown=false);
       } else if ($scope.signup) {
         Auth.authorize($scope.user, '/signup', $scope);
       }
@@ -27,22 +29,22 @@ angular.module('rehjeks.login', [])
 
     $scope.seeLogin = function() {
       console.log('trying to show signin');
-      $scope.login = true;
-      $scope.signup = false;
+      $scope.showLogin = true;
+      $scope.showSignup = false;
       $scope.actionTitle = 'Login';
     };
 
     $scope.seeSignup = function() {
       console.log('trying to show signin');
-      $scope.login = false;
-      $scope.signup = true;
+      $scope.showLogin = false;
+      $scope.showSignup = true;
       $scope.actionTitle = 'Signup';
     };
 
     $scope.logout = function() {
       console.log('logging out');
       Auth.logout();
-
+      document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
       window.GlobalUser.username = '';
 
       $scope.loggedin = false;
@@ -50,4 +52,3 @@ angular.module('rehjeks.login', [])
 
 
   });
-
