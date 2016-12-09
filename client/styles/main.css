@@ -95,6 +95,14 @@ button:hover {
   text-align: center;
 }
 
+.skip-button {
+  align: center;
+}
+
+.solve-form {
+  text-align: center;
+}
+
 .challenge-blurb {
   width: 600px;
   border: solid 1px #282;
