@@ -99,7 +99,7 @@ angular.module('rehjeks.factories', [])
 
     return $http({
       method: 'GET',
-      url: serverUrl + '/challenge',
+      url: serverURL + '/challenge',
       params: params,
       paramSerializer: '$httpParamSerializerJQLike'
     })
