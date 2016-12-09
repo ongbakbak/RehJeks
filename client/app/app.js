@@ -34,7 +34,8 @@ angular.module('rehjeks', [
     controller: 'LoginController'
   })
   .state('solve.useroptions', {
-    templateUrl: 'useroptions/useroptions.html'
+    templateUrl: 'useroptions/useroptions.html',
+    controller: 'UserOptionsController'
   })
 
 
@@ -76,4 +77,8 @@ angular.module('rehjeks', [
     }
   });
 
-});
+})
+// Workaround for "unhandled rejection" inherent to Angular 1.6.0 with ui-router
+.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);;
