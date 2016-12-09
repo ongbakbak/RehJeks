@@ -15,6 +15,9 @@
       <button>{{actionTitle}}</button>
     </form>
   </div>
+  <div ng-show='loggedin'>Successfully Logged In!!!
+  <button class='logout' ng-click='logout()'>Logout</button>
+  </div>
   <p ng-show="login">Don't have an account? <span class="switch" ng-click="seeSignup()">Signup</span> </p>
   <p ng-show="signup">Already have an account? <span class="switch" ng-click="seeLogin()">Login</span> </p>
 </div>

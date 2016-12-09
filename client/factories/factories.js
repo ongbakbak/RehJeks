@@ -47,7 +47,7 @@ var serverUrl = 'http://localhost:8000'; //Update me with Process.Env.Port?
 angular.module('rehjeks.factories', [])
 .factory('Auth', function($http) {
 
-  var authorize = function( {username, password}, route) {
+  var authorize = function( {username, password}, route, $scope) {
     $http({
       method: 'POST',
       url: serverUrl + route,
@@ -55,9 +55,10 @@ angular.module('rehjeks.factories', [])
     })
     .then(
       function(successRes) { //first param = successCallback
-        console.log('data', successRes.data);
+        console.log(successRes.data.username);
         window.GlobalUser.username = successRes.data.username;
-        window.GlobalUser.userId = successRes.data.userid;
+        window.GlobalUser.userId = successRes.data.userid;  
+        $scope.loggedin = true;
       },
       function(errorRes) { //second param = errorCallback
         console.log(errorRes);
@@ -66,8 +67,17 @@ angular.module('rehjeks.factories', [])
     );
   };
 
+  var logout = function(){
+    $http({
+      method: 'GET',
+      url: serverUrl + '/logout'
+    })
+    .then(result => console.log('logged out response from serverside'));
+  }
+
   return {
-    authorize: authorize
+    authorize: authorize,
+    logout: logout
   };
 
 

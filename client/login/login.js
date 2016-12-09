@@ -3,21 +3,25 @@ angular.module('rehjeks.login', [])
     $scope.user = {};
     $scope.login = true;
     $scope.signup = false;
+    $scope.signin = false;
     $scope.actionTitle = 'Login';
+    $scope.loggedin = false;
 
 
 
     $scope.login = function () {
       console.log('user object contains ', $scope.user);
-      Auth.authorize($scope.user, '/login');
+      Auth.authorize($scope.user, '/login', $scope);
     };
 
     $scope.submit = function() {
       if ($scope.login) {
-        Auth.authorize($scope.user, '/login');
+        Auth.authorize($scope.user, '/login', $scope);
       } else if ($scope.signup) {
-        Auth.authorize($scope.user, '/signup');
+        Auth.authorize($scope.user, '/signup', $scope);
       }
+      var form = document.getElementsByName('loginForm')[0];
+      form.reset();
     };
 
     $scope.seeLogin = function() {
@@ -34,6 +38,11 @@ angular.module('rehjeks.login', [])
       $scope.actionTitle = 'Signup';
     };
 
+    $scope.logout = function(){
+      console.log("logging out");
+      Auth.logout();
+      $scope.loggedin = false;
+    }
 
 
   });

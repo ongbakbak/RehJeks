@@ -29,10 +29,15 @@ module.exports.signup = function(req, res, next) {
     if (err) {
       next(new Error('error registering user'));
     }
-    passport.authenticate('local')(req, res, function () {
+    else{
+      passport.authenticate('local')(req, res, function () {
       console.log('authenticated!');
       res.json({message: 'Success', username: req.user.username, userid: req.user.id});
     });
+    }
   });
+};
 
+module.exports.logout = function(req, res, next) {
+  req.session.destroy(result => console.log('session destroyed'));
 };
