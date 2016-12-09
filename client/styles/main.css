@@ -57,7 +57,7 @@ button:hover {
 
 #regexAttempt {
   font-size: 24px;
-  width:300px;
+  width: 50%;
   margin: 20px 0 20px 20px;
   color: green;
   border-style: none;
@@ -75,7 +75,7 @@ button:hover {
 }
 
 .challenge-blurb {
-  width: 600px;
+  width: 50%px;
   border: solid 1px #282;
   background: #DDD; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(left top, #E0E8E0, #D0E8D0); /* For Safari 5.1 to 6.0 */
@@ -185,10 +185,12 @@ h1 .cute{
 .user-options li:hover {
   text-decoration: none;
   background: #DDD; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left top, #E0E8E0, #D0E8D0); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(bottom right, #E0E8E0, #D0E8D0); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(bottom right, #E0E8E0, #D0E8D0); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to bottom right, #E0E8E0, #D0E8D0); /* Standard syntax */
+  background: -webkit-linear-gradient(left top, #999, #BBB); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #999, #BBB); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #999, #BBB); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #999, #BBB); /* Standard syntax */
+  border-radius: 5px;
+  border-style: solid 1px #555;
 
 }
 
