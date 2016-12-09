@@ -172,6 +172,7 @@ angular.module('rehjeks.factories', [])
   };
 
 
+
   var getChallenge = function(challenge) {
 
         //SET currentChallengeData to returned Data
