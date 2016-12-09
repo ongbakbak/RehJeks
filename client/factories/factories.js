@@ -43,10 +43,11 @@ var exampleChallengeList = [
 //////////////////////////////////
 
 
-var serverUrl = 'http://localhost:8000'; //Update me with Process.Env.Port?
+//var serverUrl = 'http://localhost:8000'; //Update me with Process.Env.Port?
 
 angular.module('rehjeks.factories', [])
 .factory('Auth', function($http, $location) {
+  var surverURL = $location.protocol() + '://' + location.host;
 
   var authorize = function( {username, password}, route, $scope) {
     $http({
@@ -84,6 +85,7 @@ angular.module('rehjeks.factories', [])
 
 })
 .factory('Server', function($http, $location) {
+  var surverURL = $location.protocol() + '://' + location.host;
   //shared acces for Challenges and Solve Controller
   var currentChallenge = {data: undefined};
 
@@ -123,14 +125,6 @@ angular.module('rehjeks.factories', [])
 
 
   var getAllChallenges = function($scope, difficulty) {
-    var rightServer = $location.protocol() + '://' + location.host;
-    console.log('trying to get all Challenges from __', rightServer);
-    console.log('protocol ', $location.protocol());
-    console.log('host ', location.host);
-    console.log('path ', $location.path());
-    console.log('url', $location.url());
-
-
 
 
     $http({
