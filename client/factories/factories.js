@@ -123,8 +123,16 @@ angular.module('rehjeks.factories', [])
 
 
   var getAllChallenges = function($scope, difficulty) {
-    var rightServer = 'http://'+$location.host();
+    var rightServer = 'http://' + $location.host();
     console.log('trying to get all Challenges from __', rightServer);
+    console.log('protocol ', $location.protocol());
+    console.log('host ', location.host);
+    console.log('path ', $location.path());
+    console.log('url', $location.url());
+
+
+
+
     $http({
       method: 'GET',
       url: serverUrl + '/challenges',
