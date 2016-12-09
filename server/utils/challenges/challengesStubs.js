@@ -4,8 +4,9 @@ var Challenge = require('./challengeModel');
 
 
 var localDb = 'mongodb://127.0.0.1:27017/rehjeks';
-var currentDb = process.env.MONGODB_URI || localDb;
-var db = mongoose.connect(currentDb);
+var hostedDb = 'mongodb://heroku_rhmw8v8m:ugiqvmqosj3ed5et4c2o3hh0or@ds127938.mlab.com:27938/heroku_rhmw8v8m';
+//var currentDb = process.env.MONGODB_URI || localDb;
+var db = mongoose.connect(hostedDb);
 
 
 // run this command in terminal from root directory to fetch data:   node server/utils/challenges/challengesStubs.js
@@ -95,9 +96,9 @@ var challengeArray = [
 ];
 
 
-Challenge.remove({}, function(err, data) {return;});
+Challenge.remove({}, function(err, data) { return; });
 
-Challenge.collection.insertMany(challengeArray, function(err, row){
+Challenge.collection.insertMany(challengeArray, function(err, row) {
   if (err) {
     console.log(err);
   } else {
