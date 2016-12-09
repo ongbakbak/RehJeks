@@ -1,7 +1,12 @@
 
 var mongoose = require('mongoose');
 var Challenge = require('./challengeModel');
-var db = mongoose.connect('mongodb://127.0.0.1:27017/rehjeks');
+
+
+var localDb = 'mongodb://127.0.0.1:27017/rehjeks';
+var currentDb = process.env.MONGODB_URI || localDb;
+var db = mongoose.connect(currentDb);
+
 
 // run this command in terminal from root directory to fetch data:   node server/utils/challenges/challengesStubs.js
 

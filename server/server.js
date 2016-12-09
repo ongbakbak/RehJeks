@@ -7,10 +7,21 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var db = mongoose.connect('mongodb://127.0.0.1:27017/rehjeks');
+//deployed DB at mongodb://heroku_rhmw8v8m:ugiqvmqosj3ed5et4c2o3hh0or@ds127938.mlab.com:27938/heroku_rhmw8v8m
 
+
+var localDb = 'mongodb://127.0.0.1:27017/rehjeks';
+var currentDb = process.env.MONGODB_URI || localDb;
+console.log('currentDb is __', currentDb);
+
+
+var PORT = process.env.PORT || 8000;
+
+var db = mongoose.connect(currentDb);
 
 //stub(db);
+//
+
 
 var app = express();
 
@@ -18,9 +29,9 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
 
 app.use(session({
-	secret: 'keyboard cat',
-	resave: false,
-	saveUninitialized: false
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
 }));
 
 app.use(passport.initialize());
@@ -36,5 +47,7 @@ routes(app, express);
 
 app.use(express.static(__dirname + './../client'));
 
-app.listen(8000);
-console.log('Listening on 127.0.0.1:8000');
+app.listen(PORT, function() {
+  console.log('Listening on ', PORT);
+});
+

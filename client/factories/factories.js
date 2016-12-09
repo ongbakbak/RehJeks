@@ -42,10 +42,13 @@ var exampleChallengeList = [
 //                              //
 //////////////////////////////////
 
-var serverUrl = 'http://localhost:8000'; //Update me with Process.Env.Port?
+//var serverUrl = 'http://localhost:8000'; //Update me with Process.Env.Port?
 
 angular.module('rehjeks.factories', [])
-.factory('Auth', function($http) {
+.factory('Auth', function($http, $location) {
+
+  var surverURL = $location.protocol() + '://' + location.host;
+
 
   var authorize = function( {username, password}, route, $scope) {
     $http({
@@ -59,6 +62,7 @@ angular.module('rehjeks.factories', [])
         window.GlobalUser.username = successRes.data.username;
         window.GlobalUser.userId = successRes.data.userid;  
         $scope.loggedin = true;
+
       },
       function(errorRes) { //second param = errorCallback
         console.log(errorRes);
@@ -67,13 +71,16 @@ angular.module('rehjeks.factories', [])
     );
   };
 
-  var logout = function(){
+  var logout = function() {
+
     $http({
       method: 'GET',
       url: serverUrl + '/logout'
     })
     .then(result => console.log('logged out response from serverside'));
-  }
+
+  };
+
 
   return {
     authorize: authorize,
@@ -83,6 +90,8 @@ angular.module('rehjeks.factories', [])
 
 })
 .factory('Server', function($http, $location) {
+
+  var serverURL = $location.protocol() + '://' + location.host;
   //shared acces for Challenges and Solve Controller
   var currentChallenge = {data: undefined};
 
@@ -96,7 +105,7 @@ angular.module('rehjeks.factories', [])
 
     return $http({
       method: 'GET',
-      url: serverUrl + '/challenge',
+      url: serverURL + '/challenge',
       params: params,
       paramSerializer: '$httpParamSerializerJQLike'
     })
@@ -123,9 +132,11 @@ angular.module('rehjeks.factories', [])
 
   var getAllChallenges = function($scope, difficulty) {
 
+    console.log('trying to get all Challenges from __', $location.path());
+
     $http({
       method: 'GET',
-      url: serverUrl + '/challenges',
+      url: serverURL + '/challenges',
       params: {difficulty}
     })
     .then(
@@ -151,7 +162,7 @@ angular.module('rehjeks.factories', [])
     // Getting user specific challenges to display on profile
     return $http({
       method: 'GET',
-      url: serverUrl + '/challenges',
+      url: serverURL + '/challenges',
       params: {username: username},
       paramSerializer: '$httpParamSerializerJQLike'
     })
@@ -161,14 +172,14 @@ angular.module('rehjeks.factories', [])
   };
 
 
+
   var getChallenge = function(challenge) {
 
         //SET currentChallengeData to returned Data
-        currentChallenge.data = challenge;
-        $location.path('solve');
+    currentChallenge.data = challenge;
+    $location.path('solve');
 
   };
-
 
   var submitUserSolution = function(solution, challengeId, timeToSolve) {
 

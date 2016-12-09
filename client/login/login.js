@@ -5,7 +5,9 @@ angular.module('rehjeks.login', [])
     $scope.signup = false;
     $scope.signin = false;
     $scope.actionTitle = 'Login';
+
     $scope.loggedin = window.GlobalUser.username !== '';
+
 
 
     $scope.login = function () {
@@ -37,12 +39,14 @@ angular.module('rehjeks.login', [])
       $scope.actionTitle = 'Signup';
     };
 
-    $scope.logout = function(){
-      console.log("logging out");
+    $scope.logout = function() {
+      console.log('logging out');
       Auth.logout();
+
       window.GlobalUser.username = '';
+
       $scope.loggedin = false;
-    }
+    };
 
 
   });
