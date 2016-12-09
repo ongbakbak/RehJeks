@@ -42,9 +42,8 @@ var exampleChallengeList = [
 //                              //
 //////////////////////////////////
 
-var environmentServer = process.env.PORT ? 'https://rehjeks.herokuapp.com/' : 'http://localhost:8000';
 
-var serverUrl = environmentServer; //Update me with Process.Env.Port?
+var serverUrl = 'http://localhost:8000'; //Update me with Process.Env.Port?
 
 angular.module('rehjeks.factories', [])
 .factory('Auth', function($http, $location) {
@@ -124,7 +123,7 @@ angular.module('rehjeks.factories', [])
 
 
   var getAllChallenges = function($scope, difficulty) {
-    console.log("trying to get all Challenges from __", $location.path());
+    console.log('trying to get all Challenges from __', $location.path());
     $http({
       method: 'GET',
       url: serverUrl + '/challenges',
