@@ -41,6 +41,10 @@ button:hover {
   background-color: #F88;
 }
 
+.highlighted-text {
+  background-color: yellow;
+}
+
 nav ul {
     list-style-type: none;
     margin: 0;

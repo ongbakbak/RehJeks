@@ -12,7 +12,7 @@ var challengeArray = [
     'text': ' #rgf #abc #dks366 #f00 #BADA55 #C0FFEE #674d',
     'difficulty': 'medium',
     'expected': ['#abc', '#f00', '#BADA55', '#C0FFEE'],
-    'answer': '/^#([a-f\d]{3}){1,2}$i',
+    'answer': '/^#([a-f\d]{3}){1,2}$/i',
     'cheats': ['']
   },
   {

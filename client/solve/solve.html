@@ -19,7 +19,8 @@
       <div class='challengePrompt'>
         <h3>{{challengeData.title}}</h3>
         <p>{{challengeData.prompt}}</p>
-        <p class="challText">{{challengeData.text}}</p>
+        <p class="challText" ng-bind-html="highlightedText"></p>
+        <p>{{challengeData.expected}}</p>
       </div>
       <form name="solveForm" ng-submit='checkSolution()'>
         <input id="regexAttempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" title="Try /example/gi" >

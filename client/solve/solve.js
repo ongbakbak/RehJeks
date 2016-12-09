@@ -1,10 +1,5 @@
-<<<<<<< e7f1ed934bd1d97b1e40cbdab80e5d77b175100c
 angular.module('rehjeks.solve', [])
-.controller('SolveController', function($scope, $interval, Server) {
-=======
-angular.module('rehjeks.solve',[])
-.controller('SolveController', function($scope, $interval, Server){
->>>>>>> Some Fanfare Added
+.controller('SolveController', function($scope, $interval, Server, $sce) {
 
   ////////////////////////
   // Internal variables
@@ -27,7 +22,7 @@ angular.module('rehjeks.solve',[])
   // $scope variables
   ////////////////////////
 
-  $scope.RegexValid;
+  $scope.regexValid;
   $scope.attempt;
   $scope.challengeData = {};
   $scope.seconds = 0;
@@ -41,7 +36,12 @@ angular.module('rehjeks.solve',[])
   ////////////////////////
 
   $scope.checkGex = function(){
-    $scope.RegexValid = regexBody.test($scope.attempt);
+    var valid = regexBody.test($scope.attempt) && regexFlags.test($scope.attempt);
+    if (valid) {
+      $scope.highlight();
+    }
+    $scope.regexValid = valid;
+
 
     console.log("Valid Regix = ", $scope.RegexValid);
     console.log("body is ", $scope.attempt.match(regexBody));
@@ -51,17 +51,14 @@ angular.module('rehjeks.solve',[])
 
   $scope.checkSolution = function() {
     // Only check solution if user has input valid regex
-    if($scope.RegexValid){
+    if($scope.regexValid){
       // Disaggregate user's input into regex components
-      var attemptBody = $scope.attempt.match(regexBody);
-      var attemptFlags = $scope.attempt.match(regexFlags);
 
-      // Create new regex object
-      var attemptRegex = new RegExp(attemptBody, attemptFlags);
+      var attemptRegex = makeRegex();
 
       // Create matches for user's input
       var userAnswers = $scope.challengeData.text.match(attemptRegex);
-      
+
       console.log("__you got: ", userAnswers);
 
       // Compare user's answers to challenge answers
@@ -71,7 +68,7 @@ angular.module('rehjeks.solve',[])
       if(correctSolution) {
         // Submit solution to server
         $scope.timeToSolve = new Date() - challStartTime;
-        $scope.correctAttempt = attempt;
+
 
         // Trigger success fanfare box, cancel failure fanfare box
         $scope.success = true;
@@ -85,7 +82,18 @@ angular.module('rehjeks.solve',[])
 
     }
 
+
   };
+
+  $scope.highlight = function() {
+
+    let currentRegex = makeRegex();
+
+    let highlightedText = $scope.challengeData.text.replace(currentRegex,
+      '<span class="highlighted-text">$&</span>');
+
+      $scope.highlightedText = $sce.trustAsHtml(highlightedText);
+    }
 
   $scope.next = function() {
     Server.submitUserSolution($scope.attempt, $scope.challengeData.id, $scope.timeToSolve);
@@ -99,8 +107,10 @@ angular.module('rehjeks.solve',[])
 
   $scope.getRandom = function() {
     console.log("SolveController calling getRandom")
-    Server.getRandom($scope);
-    $scope.success
+    Server.getRandom($scope)
+    .then((testString) => $scope.highlightedText = $sce.trustAsHtml(testString));
+    $scope.success = false;
+    $scope.attempt = "";
   };
 
 
@@ -118,17 +128,24 @@ angular.module('rehjeks.solve',[])
   // Start Timer
   var solutionClock = $interval(function(){
     updateTimer(challStartTime);
-<<<<<<< e7f1ed934bd1d97b1e40cbdab80e5d77b175100c
     // console.log('$scope.seconds is ', $scope.seconds);
-=======
-    console.log("$scope.seconds is ", $scope.seconds);
->>>>>>> Some Fanfare Added
   }, 1000);
+
+  var makeRegex = function() {
+    var attemptBody = $scope.attempt.match(regexBody);
+    var attemptFlags = $scope.attempt.match(regexFlags);
+
+    // Create new regex object
+    return new RegExp(attemptBody, attemptFlags);
+  }
 
 
 });
 
   var solutionsMatch = function(arr1, arr2) {
+    if (!arr2 || !arr1) {
+      return false;
+    }
     var i;
     if(arr1.length !== arr2.length){
       return false;

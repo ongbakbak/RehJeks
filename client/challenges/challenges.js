@@ -6,8 +6,8 @@ angular.module('rehjeks.challenges', [])
   $scope.difficulty;
   $scope.challengeList = [];
 
-  $scope.getChallenge = function( {id} ) {
-    Server.getChallenge(id);
+  $scope.getChallenge = function(challenge) {
+    Server.getChallenge(challenge);
   };
 
 
