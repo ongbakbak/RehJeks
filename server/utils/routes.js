@@ -16,6 +16,8 @@ module.exports = function (app, express) {
 
   app.get('/user', userController.getSolvedChallenges);
 
+  app.get('/logout', userController.logout);
+
   ////////////////
   // POST REQUESTS
   ////////////////

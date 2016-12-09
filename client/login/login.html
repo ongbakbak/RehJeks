@@ -2,7 +2,7 @@
   <h1>{{actionTitle}}</h1>
   <p>So many great benefits! Such a good price!</p>
 
-  <div class="login-form">
+  <div ng-show='!loggedin' class="login-form">
     <form name="loginForm" ng-submit='submit()'>
       <label>Username:
         <input type='text' ng-model='user.username'>
@@ -14,6 +14,9 @@
       <br>
       <button>{{actionTitle}}</button>
     </form>
+  </div>
+  <div ng-show='loggedin'>Successfully Logged In!!!
+  <button class='logout' ng-click='logout()'>Logout</button>
   </div>
   <p ng-show="login">Don't have an account? <span class="switch" ng-click="seeSignup()">Signup</span> </p>
   <p ng-show="signup">Already have an account? <span class="switch" ng-click="seeLogin()">Login</span> </p>
