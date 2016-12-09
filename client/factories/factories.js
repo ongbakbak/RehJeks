@@ -47,7 +47,7 @@ var environmentServer = process.env.PORT ? 'https://rehjeks.herokuapp.com/' : 'h
 var serverUrl = environmentServer; //Update me with Process.Env.Port?
 
 angular.module('rehjeks.factories', [])
-.factory('Auth', function($http) {
+.factory('Auth', function($http, $location) {
 
   var authorize = function( {username, password}, route, $scope) {
     $http({
@@ -124,7 +124,7 @@ angular.module('rehjeks.factories', [])
 
 
   var getAllChallenges = function($scope, difficulty) {
-
+    console.log("trying to get all Challenges from __", $location.path());
     $http({
       method: 'GET',
       url: serverUrl + '/challenges',
