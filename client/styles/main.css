@@ -13,17 +13,57 @@ button:hover {
 }
 
 
-.challengePrompt {
-  width:400px;
+.challenge-prompt {
   border:1px solid black;
   padding: 10px 20px;
+  font-size: 24px;
+}
+
+.challenge-prompt-title {
+  position: relative;
+  left: 50px;
+  font-size: 36px;
+  font-family: 'Helvetica Neue';
+  color: #797;
+}
+
+.challenge-description {
+  font-family: "Helvetica Neue Light";
+  font-size: 24px;
+  color: #555;
+}
+
+.challenge-text {
+  align: justify;
+  background-color: #DDD;
+  font-family: "Helvetica Neue Light";
+  font-size: 24px;
+  color: #444;
+}
+
+.challenge-expected-label {
+  position: relative;
+  left: 50px;
+  color: #797;
 }
 
 #regexAttempt {
-  font-size: 16px;
+  font-size: 24px;
   width:300px;
   margin: 20px 0 20px 20px;
   color: green;
+  border-style: none;
+  background-color: #DDD;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.skip-button {
+  align: center;
+}
+
+.solve-form {
+  text-align: center;
 }
 
 .challengeBlurb {
@@ -43,6 +83,7 @@ button:hover {
 
 .highlighted-text {
   background-color: yellow;
+  border-radius: 5px;
 }
 
 nav ul {
@@ -130,10 +171,20 @@ h1 .cute{
   width: 400px;
 }
 
+#time-left {
+  color: green;
+  font-size: 28px;
+  text-align: center;
+  font-family: "Segment7Standard";
+  background-color: #444;
+}
+
 .login-box {
   position: absolute;
   right: 8px;
   background-color: #AAA;
+  opacity: 1;
+  z-index: 5;
 }
 
 .login-form {
@@ -161,9 +212,10 @@ h1 .cute{
   width: 400px;
 }
 
-#solveNav {
+#solve-nav {
   display: inline-block;
   vertical-align: top;
+  text-align: center;
   border: solid black 1px;
   border-radius: 10px;
   background-color: #333;
@@ -176,7 +228,7 @@ h1 .cute{
 #solveSpace, #submitSpace{
   display: inline-block;
   width: 500px;
-
+  border-radius: 5px;
 }
 
 label#difficulty {

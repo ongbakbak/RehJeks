@@ -50,7 +50,7 @@ angular.module('rehjeks.factories', [])
   var surverURL = $location.protocol() + '://' + location.host;
 
   var authorize = function( {username, password}, route, $scope) {
-    $http({
+    return $http({
       method: 'POST',
       url: serverUrl + route,
       data: JSON.stringify({username: username, password: password})
@@ -63,6 +63,7 @@ angular.module('rehjeks.factories', [])
         document.cookie = `username=${successRes.data.username}; userId=${successRes.data.userid};`;
         $scope.loggedin = true;
         $scope.showDropdown = false; // Doesn't seem to work yet
+        return true;
       },
       function(errorRes) { //second param = errorCallback
         console.log(errorRes);

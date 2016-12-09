@@ -6,6 +6,7 @@ angular.module('rehjeks.solve', [])
   // & functions
   ////////////////////////
 
+  var validation = /\/((?![*+?])(?:[^\r\n\[/\\]|\\.|\[(?:[^\r\n\]\\]|\\.)*\])+)\/((?:g(?:im?|mi?)?|i(?:gm?|mg?)?|m(?:gi?|ig?)?)?)/;
   var regexBody = /[^\/].*(?=\/[gim]{0,3}$)/;
   var regexFlags = /[gim]{0,3}$/;
   var challStartTime = new Date();
@@ -36,7 +37,7 @@ angular.module('rehjeks.solve', [])
   ////////////////////////
 
   $scope.checkGex = function(){
-    var valid = regexBody.test($scope.attempt) && regexFlags.test($scope.attempt);
+    var valid = validation.test($scope.attempt);
     if (valid) {
       $scope.highlight();
     }
