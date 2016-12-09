@@ -61,6 +61,7 @@ angular.module('rehjeks.factories', [])
         window.GlobalUser.username = successRes.data.username;
         window.GlobalUser.userId = successRes.data.userid;  
         $scope.loggedin = true;
+
       },
       function(errorRes) { //second param = errorCallback
         console.log(errorRes);
@@ -166,7 +167,6 @@ angular.module('rehjeks.factories', [])
 
 
   var getChallenge = function(challenge) {
-
 
         //SET currentChallengeData to returned Data
     currentChallenge.data = challenge;
