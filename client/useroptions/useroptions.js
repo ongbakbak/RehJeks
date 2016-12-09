@@ -1,10 +1,13 @@
-angular.module('rehjeks.useroptions', [])
+angular.module('rehjeks.useroptions', [
+  'ngCookies'
+])
 
-.controller('UserOptionsController', function($scope, Auth) {
+.controller('UserOptionsController', function($scope, Auth, $cookies) {
+  $scope.loggedin = true;
   $scope.logout = function(){
     console.log("logging out");
     Auth.logout();
-    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    $cookies.remove('username');
     window.GlobalUser.username = '';
     $scope.loggedin = false;
   }

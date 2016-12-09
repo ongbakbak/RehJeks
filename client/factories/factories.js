@@ -45,10 +45,9 @@ var exampleChallengeList = [
 //var serverUrl = 'http://localhost:8000'; //Update me with Process.Env.Port?
 
 angular.module('rehjeks.factories', [])
-.factory('Auth', function($http, $location) {
+.factory('Auth', function($http, $location, $window) {
 
   var surverURL = $location.protocol() + '://' + location.host;
-
 
   var authorize = function( {username, password}, route, $scope) {
     $http({
@@ -63,7 +62,7 @@ angular.module('rehjeks.factories', [])
         window.GlobalUser.userId = successRes.data.userid;
         document.cookie = `username=${successRes.data.username}; userId=${successRes.data.userid};`;
         $scope.loggedin = true;
-
+        $scope.showDropdown = false; // Doesn't seem to work yet
       },
       function(errorRes) { //second param = errorCallback
         console.log(errorRes);
@@ -81,7 +80,6 @@ angular.module('rehjeks.factories', [])
     .then(result => console.log('logged out response from serverside'));
 
   };
-
 
   return {
     authorize: authorize,
