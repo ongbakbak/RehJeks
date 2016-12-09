@@ -17,6 +17,12 @@ button:hover {
   border:1px solid black;
   padding: 10px 20px;
   font-size: 24px;
+  background: #DDD; /* for browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top, #eee, #fff); /* for safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #eee, #fff); /* for opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #eee, #fff); /* for firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #EEE, #FFF); /* Standard syntax */
+
 }
 
 .challenge-prompt-title {
@@ -34,7 +40,7 @@ button:hover {
 }
 
 .challenge-text {
-  align: justify;
+  text-align: center;
   background-color: #DDD;
   font-family: "Helvetica Neue Light";
   font-size: 24px;
@@ -45,6 +51,10 @@ button:hover {
   position: relative;
   left: 50px;
   color: #797;
+}
+
+.challenge-expected {
+  text-align: center;
 }
 
 #regexAttempt {
@@ -66,9 +76,27 @@ button:hover {
   text-align: center;
 }
 
-.challengeBlurb {
-  border: 1px solid black;
+.challenge-blurb {
+  width: 600px;
+  border: solid 1px #282;
+  background: #DDD; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top, #E0E8E0, #D0E8D0); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #E0E8E0, #D0E8D0); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #E0E8E0, #D0E8D0); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #E0E8E0, #D0E8D0); /* Standard syntax */
+
+  border-radius: 3px 30px 30px 20px;
   padding: 10px;
+  margin: 10px;
+  box-shadow: 2px 2px 2px  rgba(0,50,0,1);
+}
+
+.challenge-blurb:hover {
+  background: #D0D8D0;
+}
+
+.challenge-blurb:active {
+  background: #FFF;
 }
 
 .green-box {
@@ -146,7 +174,8 @@ nav ul li a:hover {
 }
 
 h1 .cute{
-  color: #245fbf;
+  color: green;
+  /*color: #245fbf;*/
 }
 
 .switch {
