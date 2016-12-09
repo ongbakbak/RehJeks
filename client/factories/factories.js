@@ -47,7 +47,7 @@ var exampleChallengeList = [
 
 angular.module('rehjeks.factories', [])
 .factory('Auth', function($http, $location) {
-  var surverURL = $location.protocol() + '://' + location.host;
+  var serverURL = $location.protocol() + '://' + location.host;
 
   var authorize = function( {username, password}, route, $scope) {
     $http({
@@ -85,7 +85,7 @@ angular.module('rehjeks.factories', [])
 
 })
 .factory('Server', function($http, $location) {
-  var surverURL = $location.protocol() + '://' + location.host;
+  var serverURL = $location.protocol() + '://' + location.host;
   //shared acces for Challenges and Solve Controller
   var currentChallenge = {data: undefined};
 
