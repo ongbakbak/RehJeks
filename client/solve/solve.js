@@ -123,6 +123,8 @@ angular.module('rehjeks.solve', [])
   // Load Challenge
   if (Server.currentChallenge.data !== undefined) {
     $scope.challengeData = Server.currentChallenge.data;
+    $scope.highlightedText = $sce.trustAsHtml(Server.currentChallenge.data.text);
+    $scope.attempt = "//gi"
   } else {
     $scope.getRandom();
   }
