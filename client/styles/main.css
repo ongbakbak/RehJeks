@@ -173,7 +173,7 @@ h1 .cute{
   margin: 0 15px;
 }
 
-#solveSpace {
+#solveSpace, #submitSpace{
   display: inline-block;
   width: 500px;
 
