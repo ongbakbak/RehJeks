@@ -6,6 +6,7 @@ angular.module('rehjeks', [
   'rehjeks.solve',
   'rehjeks.profile',
   'rehjeks.nav',
+  'rehjeks.submit',
   'ui.router'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
@@ -59,6 +60,18 @@ angular.module('rehjeks', [
   .state('challenges.useroptions', {
     templateUrl: 'useroptions/useroptions.html'
   })
-
+  .state('submit', {
+    url: '/submit',
+    views: {
+      "nav": {
+        templateUrl: 'nav/nav.html',
+        controller: 'NavController'
+      },
+      "body": {
+        templateUrl: 'submit/submit.html',
+        controller: 'SubmitController'
+      }
+    }
+  });
 
 });
