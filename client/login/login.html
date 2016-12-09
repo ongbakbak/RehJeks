@@ -1,0 +1,22 @@
+<div id='login' ng-controller='LoginController'>
+  <h1>{{actionTitle}}</h1>
+
+  <div ng-show='!loggedin' class="login-form">
+    <form name="loginForm" ng-submit='submit()'>
+      <label>Username:
+        <input type='text' ng-model='user.username'>
+      </label>
+      <br>
+      <label>Password:
+        <input type="password" ng-model='user.password'>
+      </label>
+      <br>
+      <button>{{actionTitle}}</button>
+    </form>
+  </div>
+  <div ng-show='loggedin'>Successfully Logged In!!!
+  <button class='logout' ng-click='logout()'>Logout</button>
+  </div>
+  <p ng-show="showLogin">Don't have an account? <span class="switch" ng-click="seeSignup()">Signup</span> </p>
+  <p ng-show="showSignup">Already have an account? <span class="switch" ng-click="seeLogin()">Login</span> </p>
+</div>
