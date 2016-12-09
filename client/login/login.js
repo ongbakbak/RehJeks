@@ -13,11 +13,13 @@ angular.module('rehjeks.login', [])
     $scope.login = function () {
       console.log('user object contains ', $scope.user);
       Auth.authorize($scope.user, '/login', $scope);
+      $scope.$parent.showDropdown = false;
     };
 
     $scope.submit = function() {
       if ($scope.login) {
-        Auth.authorize($scope.user, '/login', $scope);
+        Auth.authorize($scope.user, '/login', $scope)
+        .then((resp)=>$scope.$parent.showDropdown=false);
       } else if ($scope.signup) {
         Auth.authorize($scope.user, '/signup', $scope);
       }

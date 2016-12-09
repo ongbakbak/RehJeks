@@ -31,11 +31,13 @@ angular.module('rehjeks', [
   })
   .state('solve.login', {
     templateUrl: 'login/login.html',
-    controller: 'LoginController'
+    controller: 'LoginController',
+    parent: 'solve'
   })
   .state('solve.useroptions', {
     templateUrl: 'useroptions/useroptions.html',
-    controller: 'UserOptionsController'
+    controller: 'UserOptionsController',
+    parent: 'solve'
   })
 
 
@@ -57,11 +59,13 @@ angular.module('rehjeks', [
   })
   .state('challenges.login', {
     templateUrl: 'login/login.html',
-    controller: 'LoginController'
+    controller: 'LoginController',
+    parent: 'challenges'
   })
   .state('challenges.useroptions', {
     templateUrl: 'useroptions/useroptions.html',
-    controller: 'UserOptionsController'
+    controller: 'UserOptionsController',
+    parent: 'challenges'
   })
   .state('submit', {
     url: '/submit',
