@@ -23,11 +23,26 @@ button:hover {
   font-size: 16px;
   width:300px;
   margin: 20px 0 20px 20px;
+  color: green;
 }
 
 .challengeBlurb {
   border: 1px solid black;
   padding: 10px;
+}
+
+.green-box {
+  border: 1px solid green;
+  background-color: #8F8;
+}
+
+.red-box {
+  border: 1px solid red;
+  background-color: #F88;
+}
+
+.highlighted-text {
+  background-color: yellow;
 }
 
 nav ul {

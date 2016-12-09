@@ -57,7 +57,7 @@ angular.module('rehjeks.factories', [])
       function(successRes) { //first param = successCallback
         console.log('data', successRes.data);
         window.GlobalUser.username = successRes.data.username;
-        window.GlobalUser.userId = successRes.data.userid;  
+        window.GlobalUser.userId = successRes.data.userid;
       },
       function(errorRes) { //second param = errorCallback
         console.log(errorRes);
@@ -84,7 +84,7 @@ angular.module('rehjeks.factories', [])
     var params = {username, solvedChallenges, difficulty};
     console.log('params req is ', params);
 
-    $http({
+    return $http({
       method: 'GET',
       url: serverUrl + '/challenge',
       params: params,
@@ -99,6 +99,8 @@ angular.module('rehjeks.factories', [])
 
         //save current challenge in shared access
         currentChallenge.data = returnedChallenge.data;
+
+        return returnedChallenge.data.text;
 
       })
     .catch(
@@ -144,35 +146,16 @@ angular.module('rehjeks.factories', [])
       paramSerializer: '$httpParamSerializerJQLike'
     })
     .then(function(challenges) {
-      $scope.user.challenges = challenges.data; 
+      $scope.user.challenges = challenges.data;
     });
   };
 
 
-  var getChallenge = function(id) {
-
-    $http({
-      method: 'GET',
-      url: serverUrl + '/challenge',
-      params: {challengeId: id},
-      paramSerializer: '$httpParamSerializerJQLike'
-
-    })
-    .then(
-      function(returnedChallenge) { //first param = successCallback
-
-        //DUMMY FIX
-        returnedChallenge = exampleChallengeList[id - 1]; //DUMMY
+  var getChallenge = function(challenge) {
 
         //SET currentChallengeData to returned Data
-        currentChallenge.data = returnedChallenge;
+        currentChallenge.data = challenge;
         $location.path('solve');
-
-      })
-    .catch(
-      function(errorRes) { //second param = errorCallback
-        console.log(errorRes);
-      });
 
   };
 

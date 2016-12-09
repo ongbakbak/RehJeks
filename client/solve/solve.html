@@ -19,7 +19,8 @@
       <div class='challengePrompt'>
         <h3>{{challengeData.title}}</h3>
         <p>{{challengeData.prompt}}</p>
-        <p class="challText">{{challengeData.text}}</p>
+        <p class="challText" ng-bind-html="highlightedText"></p>
+        <p>{{challengeData.expected}}</p>
       </div>
       <form name="solveForm" ng-submit='checkSolution()'>
         <input id="regexAttempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" title="Try /example/gi" >
@@ -31,7 +32,15 @@
       <span class="minutes">{{ minutes }}</span> minutes
       <span class="seconds">{{ seconds }}</span> seconds
       </p>
-
+      <div ng-if="success" class="green-box">
+        Great Job! <a ng-click="next()">Get New Challenge!</a>
+      </div>
+      <div ng-if="failure" class="red-box">
+        Tests failed! Expected {{ challengeData.expected }}, your RegEx matched {{ attemptMatch || "nothing :(" }}.
+      </div>
+      <div ng-if="invalid" class="red-box">
+        Invalid RegEx!
+      </div>
     </div>
   </div>
 </div>
