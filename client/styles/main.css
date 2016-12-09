@@ -76,6 +76,14 @@ button:hover {
   text-align: center;
 }
 
+.skip-button {
+  align: center;
+}
+
+.solve-form {
+  text-align: center;
+}
+
 .challenge-blurb {
   width: 600px;
   border: solid 1px #282;
@@ -258,12 +266,6 @@ h1 .cute{
   display: inline-block;
   width: 500px;
   border-radius: 5px;
-}
-
-#solveSpace {
-  display: inline-block;
-  width: 1500px;
-
 }
 
 label#difficulty {
