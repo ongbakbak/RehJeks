@@ -42,7 +42,9 @@ var exampleChallengeList = [
 //                              //
 //////////////////////////////////
 
-var serverUrl = 'http://localhost:8000'; //Update me with Process.Env.Port?
+var environmentServer = process.env.PORT ? 'https://rehjeks.herokuapp.com/' : 'http://localhost:8000';
+
+var serverUrl = environmentServer; //Update me with Process.Env.Port?
 
 angular.module('rehjeks.factories', [])
 .factory('Auth', function($http) {
