@@ -60,7 +60,8 @@ angular.module('rehjeks.factories', [])
       function(successRes) { //first param = successCallback
         console.log(successRes.data.username);
         window.GlobalUser.username = successRes.data.username;
-        window.GlobalUser.userId = successRes.data.userid;  
+        window.GlobalUser.userId = successRes.data.userid;
+        document.cookie = `username=${successRes.data.username}; userId=${successRes.data.userid};`;
         $scope.loggedin = true;
 
       },
