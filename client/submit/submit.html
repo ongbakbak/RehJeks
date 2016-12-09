@@ -2,22 +2,22 @@
   <h1>Submit</h1>
   <hr>
   <div class="col col-md-8" id="submitSpace">
-    <form name="submitForm" ng-submit='submit()'>
-      <div class='challengePrompt'>
+    <div class='challengePrompt'>
+      <form name="submitForm" ng-submit='submit()'>
         <label>Challenge Title</label>
-        <input id="title" type="text" ng-model="title" placeholder="Challenge Title Here">
+        <input class='textInput' id="title" type="text" ng-model="title" placeholder="Challenge Title Here">
         <br>
 
         <label>Prompt</label>
-        <input id="prompt" type="text" ng-model="prompt" placeholder="Challenge Prompt Here">
+        <input class='textInput' id="prompt" type="text" ng-model="prompt" placeholder="Challenge Prompt Here">
         <br>
 
         <label>Text</label>
-        <input id="text" type="text" ng-model="text" placeholder="Challenge Text Here">
+        <input class='textInput' id="text" type="text" ng-model="text" placeholder="Challenge Text Here">
         <br>
 
         <label>Difficulty</label>
-        <select name="difficulty" id="difficulty" ng-model="difficulty">
+        <select class='textInput' name="difficulty" id="difficulty" ng-model="difficulty">
           <option value="easy">easy</option>
           <option value="medium" selected>medium</option>
           <option value="hard">hard</option>
@@ -25,19 +25,18 @@
         <br>
 
         <label>Expected</label>
-        <input id="expected" type="text" ng-model="expected" placeholder="Expected match here">
+        <input class='textInput' id="expected" type="text" ng-model="expected" placeholder="Expected match here">
         <br>
 
         <label>Answer</label>
-        <input id="answer" type="text" ng-model="answer" placeholder="Correct Answer here">
+        <input class='textInput' id="answer" type="text" ng-model="answer" placeholder="Correct Answer here">
         <br>
 
         <label>Cheats</label>
-        <input id="cheats" type="text" ng-model="cheats" placeholder="Cheats here">
+        <input class='textInput' id="cheats" type="text" ng-model="cheats" placeholder="Cheats here">
         <br>
 
-      <button>Submit</button>
-
-    </form>
-  </form>
+        <button>Submit</button>
+      </form>
+    </div>
 </div>

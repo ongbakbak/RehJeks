@@ -254,13 +254,40 @@ h1 .cute{
   margin: 0 15px;
 }
 
-#solveSpace, #submitSpace{
+#solveSpace {
   display: inline-block;
   width: 500px;
   border-radius: 5px;
 }
 
+#solveSpace {
+  display: inline-block;
+  width: 1500px;
+
+}
+
 label#difficulty {
   color: white;
   font-size: .8em;
+}
+
+
+/* Submit Form */
+
+#submitSpace label {
+  display:inline-block;
+  width:0px;
+  margin-right:30px;
+  text-align:right;
+}
+
+#submitSpace {
+border:none;
+width:500px;
+margin:0px auto;
+}
+
+.textInput {
+  display: inline-block;
+  width: 350px;
 }
