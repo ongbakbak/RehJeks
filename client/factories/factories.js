@@ -49,6 +49,7 @@ angular.module('rehjeks.factories', [])
 
   var surverURL = $location.protocol() + '://' + location.host;
 
+
   var authorize = function( {username, password}, route, $scope) {
     $http({
       method: 'POST',
