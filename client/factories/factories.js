@@ -71,12 +71,15 @@ angular.module('rehjeks.factories', [])
   };
 
   var logout = function() {
+
     $http({
       method: 'GET',
       url: serverUrl + '/logout'
     })
     .then(result => console.log('logged out response from serverside'));
+
   };
+
 
   return {
     authorize: authorize,
