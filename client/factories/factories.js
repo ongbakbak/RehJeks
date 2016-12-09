@@ -69,13 +69,13 @@ angular.module('rehjeks.factories', [])
     );
   };
 
-  var logout = function(){
+  var logout = function() {
     $http({
       method: 'GET',
       url: serverUrl + '/logout'
     })
     .then(result => console.log('logged out response from serverside'));
-  }
+  };
 
   return {
     authorize: authorize,
@@ -129,7 +129,7 @@ angular.module('rehjeks.factories', [])
 
     $http({
       method: 'GET',
-      url: serverUrl + '/challenges',
+      url: serverURL + '/challenges',
       params: {difficulty}
     })
     .then(
@@ -155,7 +155,7 @@ angular.module('rehjeks.factories', [])
     // Getting user specific challenges to display on profile
     return $http({
       method: 'GET',
-      url: serverUrl + '/challenges',
+      url: serverURL + '/challenges',
       params: {username: username},
       paramSerializer: '$httpParamSerializerJQLike'
     })
@@ -167,12 +167,12 @@ angular.module('rehjeks.factories', [])
 
   var getChallenge = function(challenge) {
 
+
         //SET currentChallengeData to returned Data
-        currentChallenge.data = challenge;
-        $location.path('solve');
+    currentChallenge.data = challenge;
+    $location.path('solve');
 
   };
-
 
   var submitUserSolution = function(solution, challengeId, timeToSolve) {
 
