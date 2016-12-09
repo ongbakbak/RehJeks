@@ -47,12 +47,12 @@ var exampleChallengeList = [
 angular.module('rehjeks.factories', [])
 .factory('Auth', function($http, $location, $window) {
 
-  var surverURL = $location.protocol() + '://' + location.host;
+  var serverURL = $location.protocol() + '://' + location.host;
 
   var authorize = function( {username, password}, route, $scope) {
     return $http({
       method: 'POST',
-      url: serverUrl + route,
+      url: serverURL + route,
       data: JSON.stringify({username: username, password: password})
     })
     .then(

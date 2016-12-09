@@ -17,10 +17,10 @@ angular.module('rehjeks.login', [])
     };
 
     $scope.submit = function() {
-      if ($scope.login) {
+      if ($scope.showLogin) {
         Auth.authorize($scope.user, '/login', $scope)
         .then((resp)=>$scope.$parent.showDropdown=false);
-      } else if ($scope.signup) {
+      } else if ($scope.showSignup) {
         Auth.authorize($scope.user, '/signup', $scope);
       }
       var form = document.getElementsByName('loginForm')[0];
@@ -43,7 +43,6 @@ angular.module('rehjeks.login', [])
 
     $scope.logout = function() {
       console.log('logging out');
-      Auth.logout();
       document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
       window.GlobalUser.username = '';
 
