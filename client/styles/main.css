@@ -12,7 +12,6 @@ button:hover {
   background-color: #a8a8a8;
 }
 
-
 .challenge-prompt {
   border:1px solid black;
   padding: 10px 20px;
@@ -22,7 +21,6 @@ button:hover {
   background: -o-linear-gradient(bottom right, #eee, #fff); /* for opera 11.1 to 12.0 */
   background: -moz-linear-gradient(bottom right, #eee, #fff); /* for firefox 3.6 to 15 */
   background: linear-gradient(to bottom right, #EEE, #FFF); /* Standard syntax */
-
 }
 
 .challenge-prompt-title {
@@ -149,7 +147,6 @@ nav ul li a:hover {
 .challengeBlurb:hover {
   background-color: #eeeeee;
   cursor: pointer;
-
 }
 
 .challengeTitle,
@@ -176,6 +173,23 @@ nav ul li a:hover {
 h1 .cute{
   color: green;
   /*color: #245fbf;*/
+}
+
+.user-options li {
+  display: block;
+  font-size: 18px;
+  font-family: Helvetica;
+  text-decoration: none;
+}
+
+.user-options li:hover {
+  text-decoration: none;
+  background: #DDD; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top, #E0E8E0, #D0E8D0); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #E0E8E0, #D0E8D0); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #E0E8E0, #D0E8D0); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #E0E8E0, #D0E8D0); /* Standard syntax */
+
 }
 
 .switch {
@@ -214,6 +228,7 @@ h1 .cute{
   background-color: #AAA;
   opacity: 1;
   z-index: 5;
+  border-radius: 0px 0px 0px 5px;
 }
 
 .login-form {
@@ -256,7 +271,7 @@ h1 .cute{
 
 #solveSpace, #submitSpace{
   display: inline-block;
-  width: 500px;
+  width: 50%;
   border-radius: 5px;
 }
 
