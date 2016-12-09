@@ -111,7 +111,7 @@ angular.module('rehjeks.solve', [])
     .then((testString) => $scope.highlightedText = $sce.trustAsHtml(testString));
     $scope.success = false;
     $scope.failure = false;
-    $scope.attempt = "";
+    $scope.attempt = "//gi";
   };
 
 

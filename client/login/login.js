@@ -1,12 +1,12 @@
 angular.module('rehjeks.login', [])
   .controller('LoginController', function($scope, Auth) {
     $scope.user = {};
-    $scope.login = true;
-    $scope.signup = false;
+    $scope.showLogin = true;
+    $scope.showSignup = false;
     $scope.signin = false;
     $scope.actionTitle = 'Login';
-
-    $scope.loggedin = window.GlobalUser.username !== '';
+    $scope.loggedin = window.GlobalUser.username !== ''; // Shouldn't have to use this eventually
+    $scope.loggedin = document.cookie !== "undefined";
 
 
 
@@ -27,22 +27,21 @@ angular.module('rehjeks.login', [])
 
     $scope.seeLogin = function() {
       console.log('trying to show signin');
-      $scope.login = true;
-      $scope.signup = false;
+      $scope.showLogin = true;
+      $scope.showSignup = false;
       $scope.actionTitle = 'Login';
     };
 
     $scope.seeSignup = function() {
       console.log('trying to show signin');
-      $scope.login = false;
-      $scope.signup = true;
+      $scope.showLogin = false;
+      $scope.showSignup = true;
       $scope.actionTitle = 'Signup';
     };
 
     $scope.logout = function() {
       console.log('logging out');
       Auth.logout();
-
       window.GlobalUser.username = '';
 
       $scope.loggedin = false;
@@ -50,4 +49,3 @@ angular.module('rehjeks.login', [])
 
 
   });
-

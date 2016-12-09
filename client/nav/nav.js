@@ -5,7 +5,7 @@ angular.module('rehjeks.nav', [
 ])
 
 .controller('NavController', function($scope) {
-  $scope.loggedIn = true;
-  $scope.showLogin = true;
-  $scope.username = "fred";
+  $scope.loggedIn = (document.cookie !== "undefined");
+  $scope.showLogin = false;
+  $scope.username = document.cookie===undefined ? document.cookie.split(';')[1].split('=')[1] : "anonymous";
 });
