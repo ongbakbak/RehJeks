@@ -15,6 +15,7 @@ angular.module('rehjeks.profile', [])
 
     $scope.getUserChallenges()
     .then(function(challenges) {
+      console.log("user challenges");
       console.log($scope.user.challenges);
     });
     
