@@ -18,10 +18,10 @@ var challengeArray = [
     'id': '1',
     'title': 'Hex Color',
     'prompt': 'write a regular expression that matches a hex color',
-    'text': ' #rgf #abc #dks366 #f00 #BADA55 #C0FFEE #674d',
+    'text': ' #rgf #abc #dks366 #f00 #BADA55 #C0FFEE #674',
     'difficulty': 'medium',
-    'expected': ['#abc', '#f00', '#BADA55', '#C0FFEE'],
-    'answer': '/^#([a-f\d]{3}){1,2}$/i',
+    'expected': ['#abc', '#f00', '#BADA55', '#C0FFEE', '#674'],
+    'answer': '/#([a-f\d]{3}){1,2}/i',
     'cheats': ['']
   },
   {
@@ -41,17 +41,17 @@ var challengeArray = [
     'text': '2012-12-12  Tue Dec 06 2016 14:19:04 GMT-0800 (PST) 1986-06-13',
     'difficulty': 'hard',
     'expected': ['2012-12-12', '1986-06-13'],
-    'answer': '/^\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])$/',
+    'answer': '/\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])/',
     'cheats': ['']
   },
   {
     'id': '4',
     'title': 'Intersection',
     'prompt': 'A 6+ letter password with at least: one number, one letter and a symbol',
-    'text': 'apple6 orange9! 123 123456 89apple',
+    'text': '^orange9!',
     'difficulty': 'easy',
-    'expected': ['orange9!'],
-    'answer': '/^(?=.*\d)(?=.*[a-z])(?=.*[W_]).{6,}$/i',
+    'expected': ['^orange9!'],
+    'answer': '/(?=.*\d)(?=.*[a-z])(?=.*[\W_]).{6,}/i',
     'cheats': ['']
   },
   {
