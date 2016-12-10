@@ -199,6 +199,27 @@ angular.module('rehjeks.factories', [])
 
   };
 
+  var submitNewChallenge = function($scope, username) {
+    // Creating new challenge by user
+
+    var submitData = {
+      username: username,
+      title: $scope.title,
+      prompt: $scope.prompt,
+      text: $scope.text,
+      difficulty: $scope.difficulty,
+      expected: $scope.expected,
+      answer: $scope.answer,
+      cheats: $scope.cheats
+    };
+
+    return $http({
+      method: 'POST',
+      url: serverURL + '/challenge',
+      data: JSON.stringify(submitData)
+    });
+
+  };
   ///////////////////////////
   //    Factory Interface  //
   ///////////////////////////
@@ -209,7 +230,8 @@ angular.module('rehjeks.factories', [])
     getRandom: getRandom,
     getChallenge: getChallenge,
     currentChallenge: currentChallenge,
-    submitUserSolution: submitUserSolution
+    submitUserSolution: submitUserSolution,
+    submitNewChallenge: submitNewChallenge
   };
 
 });

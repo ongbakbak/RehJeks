@@ -342,12 +342,38 @@ label#difficulty {
 }
 
 #submitSpace {
-border:none;
-width:500px;
-margin:0px auto;
+  width:40%;
+  margin:0px auto;
+  background-color: lightgrey;
+
+  vertical-align: top;
+  text-align: left;
+  border: solid black 1px;
+  border-radius: 10px;
+  /*background-color: #333;*/
+  padding: 20px 10px;
+  /*width: auto;*/
+  height: auto;
+  margin: 0 15px;
 }
 
 .textInput {
   display: inline-block;
-  width: 350px;
+  /*width: 350px;*/
+  float:right;
+  width: 100%;
+}
+
+.submitButton {
+  float: right;
+  border-radius: 10px:
+  border-color: grey;
+}
+
+.form-horizontal{
+  float: center;
+}
+
+.control-label {
+  color: green;
 }
