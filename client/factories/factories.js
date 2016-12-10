@@ -203,7 +203,17 @@ angular.module('rehjeks.factories', [
 
   var submitNewChallenge = function($scope) {
     // Creating new challenge by user
+
     let {submitData:{title, prompt, text, difficulty, expected, answer, cheats}} = $scope;
+
+    $scope.submitData.expected = function(){
+      var regexAnswer = $scope.submitData.answer;
+      var textString = $scope.submitData.text;
+      var textArray = textString.split(" ");
+      return textArray.filter ( function (text) {
+        return text.match(regexAnswer) !== null;
+      });
+    };
 
     let submitData = {
       username: $cookies.get('username'),
@@ -211,7 +221,7 @@ angular.module('rehjeks.factories', [
       prompt: prompt,
       text: text,
       difficulty: difficulty,
-      expected: expected,
+      expected: expected(),
       answer: answer,
       cheats: cheats
     };
