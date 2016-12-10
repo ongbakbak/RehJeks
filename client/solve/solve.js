@@ -111,7 +111,6 @@ angular.module('rehjeks.solve', [
   $scope.next = function() {
     Server.submitUserSolution($scope.attempt, $scope.challengeData.id, $scope.timeToSolve);
     console.log('______Called submitUserSolution factory');
-    $interval.cancel(solutionClock);
     $scope.success = false;
     $scope.failure = false;
     $scope.getRandom();
