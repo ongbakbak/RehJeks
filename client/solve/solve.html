@@ -1,8 +1,9 @@
 <div id='solve'>
-  <h1>Solve</h1>
   <hr>
-  <div class="row">
-    <div class="col col-md-4" id="solve-nav">
+  <div class="row solve-row">
+    <div class="col col-md-1 col-xs-1 col-lg-1"></div>
+    <div class="col col-md-8 col-xs-8 col-lg-8">
+    <div class="col col-md-4 col-xs-4 col-lg-4" id="solve-nav">
       <label id="difficulty">Choose difficulty:
         <br>
         <select name="difficulty" id="difficulty" ng-model="difficulty" ng-change="getAllChallenges()">
@@ -21,7 +22,7 @@
       </div>
     </div>
 
-    <div class="col col-md-8" id="solve-space">
+    <div class="col col-md-6" id="solve-space">
 
       <div class="container challenge-prompt">
         <h3 class="challenge-prompt-title">{{challengeData.title}}</h3>
@@ -35,10 +36,11 @@
         <h4 class="challenge-expected-label">Expected Matches:</h4>
         <p class="challenge-expected">{{challengeData.expected}}</p>
       </div>
+
       <div class="container solve-form">
         <form name="solveForm" ng-submit='checkSolution()'>
-          <input id="regexAttempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" title="Try /example/gi" >
-          <button>Submit</button>
+          <input id="regex-attempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" title="Try /example/gi" >
+          <!-- <button>Submit</button> -->
         </form>
       </div>
       <br>
@@ -52,6 +54,7 @@
       <div ng-if="invalid" class="red-box">
         Invalid RegEx!
       </div>
+    </div>
     </div>
   </div>
 </div>
