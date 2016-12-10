@@ -1,3 +1,7 @@
+body {
+  background-color: #EEE;
+}
+
 input {
   margin: 5px;
 }
@@ -102,23 +106,24 @@ button:hover {
 }
 
 .challenge-blurb {
-  width: 600px;
+  /*width: 600px;*/
 
-  border: solid 1px #282;
+
   background: #DDD; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left top, #E0E8E0, #D0E8D0); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(bottom right, #E0E8E0, #D0E8D0); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(bottom right, #E0E8E0, #D0E8D0); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to bottom right, #E0E8E0, #D0E8D0); /* Standard syntax */
+  background: -webkit-linear-gradient(left top, #FFFFFF, #FBFBFB); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #FFFFFF, #FBFBFB); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #FFFFFF, #FBFBFB); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #FFFFFF, #FBFBFB); /* Standard syntax */
 
-  border-radius: 3px 30px 30px 20px;
+  border-radius: 3px 20px 20px 50px;
   padding: 10px;
   margin: 10px;
-  box-shadow: 2px 2px 2px  rgba(0,50,0,1);
+  box-shadow: 0px 0px 5px  rgba(0,0,0,.4);
 }
 
 .challenge-blurb:hover {
-  background: #D0D8D0;
+  background: #EEE; /* For browsers that do not support gradients */
+
 }
 
 .challenge-blurb:active {
@@ -127,19 +132,21 @@ button:hover {
 }
 
 .challenge-title {
+  font-family: "Helvetica";
   float: left;
-  left: 50px;
+  margin-left: 30px;
 }
 
 .challenge-desc {
-  text-align: center;
+  font-family: "Helvetica Neue";
+  text-align: left;
   down: 50px;
 }
 
 .challenge-difficulty {
-  float: right;
-  margin-right: 200px;
-  text-align: right;
+  font-family: "Helvetica Neue";
+  margin-left: 100px;
+  margin-top: 20px;
   color: #777;
 }
 
@@ -163,7 +170,6 @@ nav ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
 }
 
 nav ul li {
@@ -178,12 +184,23 @@ nav ul li a {
   text-decoration: none;
   transition: 0.2s;
   font-size: 17px;
+  font-family: "Helvetica Neue";
 }
 
 nav ul li a:hover {
   background-color: #555;
   text-decoration: none;
-  color: green;
+  color: #FFF;
+}
+
+nav ul li a:visited {
+  text-decoration: none;
+  color: #FFF;
+}
+
+nav {
+  background-color: #888;
+  box-shadow: 0px 5px 5px rgba(0,0,0,.2);
 }
 
 .login-button {
@@ -223,9 +240,16 @@ h1 .cute{
 
 .user-options li {
   display: block;
-  font-size: 18px;
-  font-family: Helvetica;
+  font-size: 16px;
+  font-family: "Helvetica Neue Light";
   text-decoration: none;
+  color: #FFF;
+  margin: 10px;
+  text-align: right;
+}
+
+.user-options a {
+  color: #777;
 }
 
 .user-options li:hover {
@@ -277,12 +301,11 @@ h1 .cute{
 
 .login-box {
   position: absolute;
-  right: 8px;
-  background-color: #AAA;
+  right: 0px;
+  background-color: #888;
   opacity: 1;
   z-index: 5;
   border-radius: 0px 0px 0px 5px;
-
 }
 
 .login-form {
@@ -305,7 +328,9 @@ h1 .cute{
   margin: 0 15px;
 }
 
-#challengesList {
+#challenges-list {
+  box-shadow: 0px 0px 5px rgba(0,0,0,.25);
+  background-color: #FFFFF8;
   /*display: inline-block;*/
   /*width: 400px;*/
 }

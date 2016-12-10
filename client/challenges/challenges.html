@@ -13,14 +13,20 @@
         </select>
       </label>
     </div>
-    <div class="col col-md-9 col-xs-9 col-lg-9" id="challengesList">
+    <div class="col col-md-9 col-xs-9 col-lg-9" id="challenges-list">
       <div ng-repeat="challenge in challengeList" class="container challenge-blurb" ng-click="getChallenge(challenge)">
-        <div class="container">
-          <h3 class="challenge-title">{{challenge.title}}</h3>
-          <p class="challenge-difficulty"><br>{{challenge.difficulty}}</p>
-
+        <div class="container row">
+          <div class="col col-md-4 col-xs-4 col-lg-4">
+            <h3 class="challenge-title">{{challenge.title}}</h3>
+            <br>
+            <p class="challenge-difficulty"><br>{{challenge.difficulty}}</p>
+          </div>
+          <div class="col col-md-8 col-xs-8 col-lg-8">
+            <br>
+            <br>
+            <p class="challenge-desc">{{challenge.prompt}}</p>
+          </div>
         </div>
-        <p class="challenge-desc">{{challenge.prompt}}</p>
       </div>
     </div>
   </div>

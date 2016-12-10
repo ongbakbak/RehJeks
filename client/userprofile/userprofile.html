@@ -5,16 +5,24 @@
   <div class='solutions view'>
   	<!-- <button ng-click='show()'>Show Challenges</button> -->
   	<div class='container challenge-blurb' ng-click='show=!show' ng-repeat='challenge in user.challenges'>
-  		<div id='problem'>
-	 			<div class='challengeTitle'><h3>Title: {{challenge.challenge.title}}</h3></div>
-	 			<div class='challengeDesc'>Prompt: {{challenge.challenge.prompt}}</div>
-	 			<div>Difficulty: {{challenge.challenge.difficulty}}</div>
-	 		</div>
-	 			<div class='solution' ng-hide='show'>
-	 				Solution: {{challenge.solution.solution}}
+      <div class="container row">
+        <div class="col col-md-4 col-xs-4 col-lg-4">
+          <h3 class="challenge-title">{{challenge.challenge.title}}</h3>
           <br>
-          Time: {{$scope.timeString(challenge.solution.timeToSolve)}}
-	 			</div>
+          <p class="challenge-difficulty"><br>{{challenge.challenge.difficulty}}</p>
+        </div>
+        <div class="col col-md-8 col-xs-8 col-lg-8">
+          <br>
+          <br>
+          <p class="challenge-desc">{{challenge.challenge.prompt}}</p>
+        </div>
+      </div>
+ 			<div class='solution' ng-hide='show'>
+        <hr>
+ 				<h4 class="challenge-title">Solution: {{challenge.solution.solution}}</h4>
+        <br>
+        <h4 class="challenge-difficulty">Time: {{$scope.timeString(challenge.solution.timeToSolve)}}</h4>
+ 			</div>
   	</div>
   </div>
 </div>
