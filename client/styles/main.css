@@ -206,7 +206,7 @@ nav {
 }
 
 .fade-medium {
-  transition: all linear .15s;
+  transition: all linear .1s;
   opacity: 1;
 }
 
