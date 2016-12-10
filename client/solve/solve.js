@@ -19,8 +19,8 @@ angular.module('rehjeks.solve', [
     var secondsElapsed = Math.floor( (now - startTime) / 1000 );
     $scope.seconds = secondsElapsed % 60;
     $scope.minutes = Math.floor(secondsElapsed / 60);
-    if (!$scope.minutes && !$scope.seconds > 1) {
-      if ($scope.seconds > 2) {
+    if (!$scope.minutes) {
+      if ($scope.seconds === 1) {
         $scope.showTypeHint = true;
       } else if ($scope.seconds >= 10) {
         $scope.showTypeHint = false;

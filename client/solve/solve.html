@@ -43,19 +43,19 @@
           <input id="regex-attempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" focus-on-me>
           <!-- <button>Submit</button> -->
         </form>
-        <div ng-if="showTypeHint" class="show-type-hint">
+        <div ng-if="showTypeHint" class="fade">
           (Start Typing. Press Enter to sumbit)
         </div>
       </div>
       <br>
       <br>
-      <div ng-if="success" class="green-box">
+      <div ng-if="success" class="green-box fade fade-fast">
         Great Job! <a ng-click="next()">Get New Challenge!</a>
       </div>
-      <div ng-if="failure" class="red-box">
+      <div ng-if="failure" class="red-box fade fade-fast">
         Tests failed! Expected {{ challengeData.expected }}, your RegEx matched {{ attemptMatch || "nothing :(" }}.
       </div>
-      <div ng-if="invalid" class="red-box">
+      <div ng-if="invalid" class="red-box fade fade-fast">
         Invalid RegEx!
       </div>
     </div>

@@ -12,7 +12,7 @@ angular.module('rehjeks.login', [])
     $scope.login = function () {
       console.log('user object contains ', $scope.user);
       Auth.authorize($scope.user, '/login', $scope);
-      $scope.$parent.showDropdown = false;
+      $scope.$parent.dropdown.show = false;
     };
 
     $scope.submit = function() {
