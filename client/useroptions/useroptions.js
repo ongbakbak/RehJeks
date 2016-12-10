@@ -9,6 +9,7 @@ angular.module('rehjeks.useroptions', [
     $cookies.remove('username');
     window.GlobalUser.username = '';
     $scope.loggedin = false;
+    
   }
 
   $scope.redirect = function(){
