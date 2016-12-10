@@ -429,3 +429,8 @@ nav h1 {
   padding-top: 20px;
   padding-bottom: 10px;
 }
+
+select {
+  color: black;
+  font-weight: 400;
+}
