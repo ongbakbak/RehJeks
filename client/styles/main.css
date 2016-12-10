@@ -20,6 +20,9 @@ button:hover {
   background-color: #888;
 }
 
+.solve-row {
+  align: center;
+}
 
 .challenge-prompt {
   box-shadow: 0px 0px 5px rgba(0,0,0,.25);
@@ -158,7 +161,7 @@ nav a {
   text-decoration: none;
   transition: 0.2s;
   font-size: 17px;
-  /*font-family: "Helvetica Neue";*/
+  font-family: "Helvetica Neue";
 }
 
 nav a:hover {
@@ -226,6 +229,10 @@ h1 .cute{
   font: 400 22px/1.3 'Oleo Script', Helvetica, sans-serif;
 }
 
+.user-options {
+  transition: .5s;
+}
+
 .user-options li {
   display: block;
   font-size: 18px;
@@ -240,18 +247,11 @@ h1 .cute{
   color: #fff;
 }
 
-.user-options li:hover {
+.user-options a:hover {
   text-decoration: none;
-  background: #DDD; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left top, #999, #BBB); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(bottom right, #999, #BBB); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(bottom right, #999, #BBB); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to bottom right, #999, #BBB); /* Standard syntax */
-  border-radius: 5px;
-  border-style: solid 1px #555;
-
-
 }
+
+
 
 .solution {
   text-align: center;
@@ -350,6 +350,15 @@ label#difficulty {
   font-size: .8em;
 }
 
+.showing-solution {
+  background-color: #F2F2F2;
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+}
+
+
+.challenge-solution {
+  color: green;
+}
 
 /* Submit Form */
 

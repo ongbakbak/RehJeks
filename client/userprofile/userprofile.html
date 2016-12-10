@@ -4,7 +4,7 @@
   <h2>Solved Problems</h2>
   <div class='solutions view'>
   	<!-- <button ng-click='show()'>Show Challenges</button> -->
-  	<div class='container challenge-blurb' ng-click='show=!show' ng-repeat='challenge in user.challenges'>
+  	<div class='container challenge-blurb' ng-class='{"showing-solution": !show}' ng-click='show=!show; this.addClass("showing-solution");' ng-repeat='challenge in user.challenges'>
       <div class="container row">
         <div class="col col-md-4 col-xs-4 col-lg-4">
           <h3 class="challenge-title">{{challenge.challenge.title}}</h3>
@@ -19,7 +19,7 @@
       </div>
  			<div class='solution' ng-hide='show'>
         <hr>
- 				<h4 class="challenge-title">Solution: {{challenge.solution.solution}}</h4>
+ 				<h4 class="challenge-title">Solution: </h4><p class="challenge-solution">{{challenge.solution.solution}}</p>
         <br>
         <h4 class="challenge-difficulty">Time: {{$scope.timeString(challenge.solution.timeToSolve)}}</h4>
  			</div>
