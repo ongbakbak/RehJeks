@@ -104,7 +104,7 @@ angular.module('rehjeks.factories', [
     var solvedChallenges = window.GlobalUser.solvedChallenges;
     // var solvedChallenges = window.GlobalUser.solvedChallenges;
 
-    var params = {username, difficulty, solvedChallenges};
+    var params = username ? {username, difficulty} : {difficulty, solvedChallenges};
     console.log('params req is ', params);
 
     return $http({
