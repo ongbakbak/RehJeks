@@ -201,18 +201,19 @@ angular.module('rehjeks.factories', [
 
   };
 
-  var submitNewChallenge = function($scope, username) {
+  var submitNewChallenge = function($scope) {
     // Creating new challenge by user
+    let {submitData:{title, prompt, text, difficulty, expected, answer, cheats}} = $scope;
 
-    var submitData = {
-      username: username,
-      title: $scope.title,
-      prompt: $scope.prompt,
-      text: $scope.text,
-      difficulty: $scope.difficulty,
-      expected: $scope.expected,
-      answer: $scope.answer,
-      cheats: $scope.cheats
+    let submitData = {
+      username: $cookies.get('username'),
+      title: title,
+      prompt: prompt,
+      text: text,
+      difficulty: difficulty,
+      expected: expected,
+      answer: answer,
+      cheats: cheats
     };
 
     return $http({
