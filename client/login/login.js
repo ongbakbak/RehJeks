@@ -8,11 +8,9 @@ angular.module('rehjeks.login', [])
     $scope.loggedin = document.cookie !== "undefined" && document.cookie !== "";
 
 
-
     $scope.login = function () {
       console.log('user object contains ', $scope.user);
       Auth.authorize($scope.user, '/login', $scope);
-      $scope.$parent.dropdown.show = false;
     };
 
     $scope.submit = function() {

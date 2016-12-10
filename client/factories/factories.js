@@ -64,7 +64,6 @@ angular.module('rehjeks.factories', [
         window.GlobalUser.userId = successRes.data.userid;
         document.cookie = `username=${successRes.data.username}; userId=${successRes.data.userid};`;
         $scope.loggedin = true;
-        $scope.showDropdown = false; // Doesn't seem to work yet
         return true;
       },
       function(errorRes) { //second param = errorCallback
