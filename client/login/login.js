@@ -6,7 +6,9 @@ angular.module('rehjeks.login', [])
     $scope.signin = false;
     $scope.actionTitle = 'Login';
     $scope.loggedin = window.GlobalUser.username !== ''; // Shouldn't have to use this eventually
+
     $scope.loggedin = document.cookie !== "undefined" && document.cookie !== "";
+
 
 
 
@@ -21,6 +23,7 @@ angular.module('rehjeks.login', [])
         Auth.authorize($scope.user, '/login', $scope)
         .then((resp)=>$scope.$parent.showDropdown=false);
       } else if ($scope.showSignup) {
+
         Auth.authorize($scope.user, '/signup', $scope);
       }
       var form = document.getElementsByName('loginForm')[0];

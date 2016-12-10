@@ -36,7 +36,9 @@ angular.module('rehjeks.solve', [])
   // $scope functions
   ////////////////////////
 
+
   $scope.checkGex = function() {
+
     var valid = validation.test($scope.attempt);
     if (valid) {
       $scope.highlight();
@@ -114,6 +116,7 @@ angular.module('rehjeks.solve', [])
     $scope.failure = false;
     $scope.attempt = '//gi';
     challStartTime = new Date();
+
   };
 
 
