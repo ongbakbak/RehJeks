@@ -7,7 +7,7 @@ angular.module('rehjeks.nav', [
 ])
 
 .controller('NavController', function($scope, $cookies) {
-  $scope.loggedIn = !!$cookies.get('username');
+  $scope.loggedIn = $cookies.get('username');
   $scope.showDropdown = false;
   $scope.username = $cookies.get('username');
 
