@@ -67,6 +67,7 @@ angular.module('rehjeks', [
     controller: 'UserOptionsController',
     parent: 'challenges'
   })
+
   .state('submit', {
     url: '/submit',
     views: {
@@ -79,7 +80,41 @@ angular.module('rehjeks', [
         controller: 'SubmitController'
       }
     }
-  });
+  })
+  .state('submit.login', {
+    templateUrl: 'login/login.html',
+    controller: 'LoginController',
+    parent: 'submit'
+  })
+  .state('submit.useroptions', {
+    templateUrl: 'useroptions/useroptions.html',
+    controller: 'UserOptionsController',
+    parent: 'submit'
+  })
+
+  .state('profile', {
+    url: '/profile',
+    views: {
+      "nav": {
+        templateUrl: 'nav/nav.html',
+        controller: 'NavController'
+      },
+      "body": {
+        templateUrl: 'userprofile/userprofile.html',
+        controller: 'UserprofileController'
+      }
+    }
+  })
+  .state('profile.login', {
+    templateUrl: 'login/login.html',
+    controller: 'LoginController',
+    parent: 'profile'
+  })
+  .state('profile.useroptions', {
+    templateUrl: 'useroptions/useroptions.html',
+    controller: 'UserOptionsController',
+    parent: 'profile'
+  })
 
 })
 // Workaround for "unhandled rejection" inherent to Angular 1.6.0 with ui-router
