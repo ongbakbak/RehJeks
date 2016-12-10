@@ -185,19 +185,29 @@ nav {
   box-shadow: 0px 5px 5px rgba(0,0,0,.2);
 }
 
-.show-type-hint {
+.fade {
   transition: all linear 2s;
-  opacity: .7;
+  opacity: .4;
   font-family: "Helvetica Neue";
   font-size: 18px;
 }
 
-.show-type-hint.ng-enter {
+.fade.ng-enter {
   opacity: 0;
 }
 
-.show-type-hint.ng-leave-active {
+.fade.ng-leave-active {
   opacity: 0;
+}
+
+.fade-fast {
+  transition: all linear .05s;
+  opacity: 1;
+}
+
+.fade-medium {
+  transition: all linear .1s;
+  opacity: 1;
 }
 
 .login-button {
@@ -265,8 +275,6 @@ h1 .cute{
 .user-options a:hover {
   text-decoration: none;
 }
-
-
 
 .solution {
   text-align: center;

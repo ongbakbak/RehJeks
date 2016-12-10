@@ -2,13 +2,16 @@ angular.module('rehjeks.nav', [
   'rehjeks.login',
   'rehjeks.signup',
   'ngCookies',
+  'ngAnimate',
   'ui.router'
 ])
 
 .controller('NavController', function($scope, $cookies) {
-  $scope.loggedIn = (document.cookie !== "undefined");
-  $scope.showDropdown = false;
-  $scope.username = document.cookie===undefined ? document.cookie.split(';')[1].split('=')[1] : "anonymous";
+  $scope.loggedIn = $cookies.get('username');
+  $scope.dropdown = {
+    show: false
+  };
+  $scope.username = $cookies.get('username');
 
   $scope.$watch(function(){return $cookies.get('username');}, function(newValue) {
     $scope.loggedIn = !!$cookies.get('username');
