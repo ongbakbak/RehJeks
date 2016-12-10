@@ -1,7 +1,6 @@
 angular.module('rehjeks.nav', [
   'rehjeks.login',
   'rehjeks.signup',
-  'rehjeks.factories',
   'ngCookies',
   'ngAnimate',
   'ui.router'

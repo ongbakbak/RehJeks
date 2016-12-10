@@ -1,6 +1,4 @@
-angular.module('rehjeks.login', [
-  'rehjeks.factories'
-])
+angular.module('rehjeks.login', [])
   .controller('LoginController', function($scope, Auth) {
     $scope.user = {};
     $scope.showLogin = true;
