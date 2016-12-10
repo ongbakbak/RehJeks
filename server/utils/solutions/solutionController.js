@@ -31,7 +31,7 @@ module.exports.addUserSolution = function(req, res) {
 
   let {body: {userId, username, challengeId, solution, timeToSolve}} = req;
 
-  User.findOne(userId ? {userId: userId} : {username: username})
+  User.findOne(userId ? {id: userId} : {username: username})
   .then(user => Solution.create({
     userId: user.id,
     challengeId: challengeId,
