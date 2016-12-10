@@ -6,7 +6,7 @@ angular.module('rehjeks.login', [])
     $scope.signin = false;
     $scope.actionTitle = 'Login';
     $scope.loggedin = window.GlobalUser.username !== ''; // Shouldn't have to use this eventually
-    $scope.loggedin = document.cookie !== "undefined";
+    $scope.loggedin = document.cookie !== "undefined" && document.cookie !== "";
 
 
 

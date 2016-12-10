@@ -97,6 +97,23 @@ button:hover {
   background: #FFF;
 }
 
+.challenge-title {
+  float: left;
+  left: 50px;
+}
+
+.challenge-desc {
+  text-align: center;
+  down: 50px;
+}
+
+.challenge-difficulty {
+  float: right;
+  margin-right: 20px;
+  text-align: right;
+  color: #777;
+}
+
 .green-box {
   border: 1px solid green;
   background-color: #8F8;
