@@ -273,15 +273,10 @@ h1 .cute{
 
 #solveSpace {
   display: inline-block;
-  width: 50%;
+  width: 500px;
   border-radius: 5px;
 }
 
-#solveSpace {
-  display: inline-block;
-  width: 1500px;
-
-}
 
 label#difficulty {
   color: white;
