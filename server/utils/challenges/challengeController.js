@@ -10,7 +10,6 @@ module.exports.getChallenges = function(req, res) {
   console.log('challenge controller says req.query is ', req.query);
 
   let {query: {quantity = 10, difficulty, order, username, userId}} = req;
-
   if (username || userId) {
     let userSolutions;
     User.findOne(username ? {username: username} : {id: userId})
@@ -45,6 +44,9 @@ module.exports.getSingleChallenge = function(req, res) {
 
   let {query: {username, userId, difficulty, solvedChallenges, challengeId}} = req;
 
+  console.log('query', req.query);
+
+
   // if specific challenge requested by Id, serve it
   if (challengeId) {
     return Challenge.findOne({id: challengeId})
@@ -71,6 +73,9 @@ module.exports.getSingleChallenge = function(req, res) {
     return Solution.findOne({userId: userId, challengeId: challenge.id})
 
     .then(function(solution) {
+      console.log('challengeId', challenge.id)
+      console.log('userId', userId);
+      console.log("Solution: ",solution)
       if (solution) {
         return true;
       } else {
@@ -85,10 +90,12 @@ module.exports.getSingleChallenge = function(req, res) {
 
     let rand = parseInt(Math.random() * count);
 
-    return Challenge.findOne(difficulty ? {difficulty: difficulty} : undefined).skip(rand)
+    return Challenge.findOne(difficulty ? {difficulty: difficulty} : undefined)
+
+    .skip(rand)
 
     .then(function(challenge) {
-
+      console.log('challenge after Challenge.find', challenge);
       return checkIfUserAlreadySolved(userId, challenge);
     })
 
@@ -159,4 +166,3 @@ module.exports.submitNewChallenge = function(req, res) {
   });
 
 };
-

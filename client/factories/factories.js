@@ -44,7 +44,9 @@ var exampleChallengeList = [
 
 //var serverUrl = 'http://localhost:8000'; //Update me with Process.Env.Port?
 
-angular.module('rehjeks.factories', [])
+angular.module('rehjeks.factories', [
+  'ngCookies'
+])
 .factory('Auth', function($http, $location, $window) {
 
   var serverURL = $location.protocol() + '://' + location.host;
@@ -89,18 +91,19 @@ angular.module('rehjeks.factories', [])
 
 
 })
-.factory('Server', function($http, $location) {
+.factory('Server', function($http, $location, $cookies) {
 
   var serverURL = $location.protocol() + '://' + location.host;
   //shared acces for Challenges and Solve Controller
   var currentChallenge = {data: undefined};
 
-  var getRandom = function($scope, difficulty) {
+  var getRandom = function($scope) {
 
-    var username = window.GlobalUser.username;
-    var solvedChallenges = window.GlobalUser.solvedChallenges;
+    var difficulty = $scope.difficulty;
+    var username = $cookies.get('username');
+    // var solvedChallenges = window.GlobalUser.solvedChallenges;
 
-    var params = {username, solvedChallenges, difficulty};
+    var params = {username, difficulty};
     console.log('params req is ', params);
 
     return $http({
@@ -185,8 +188,7 @@ angular.module('rehjeks.factories', [])
 
     var submission = {
       solution: solution,
-      username: window.GlobalUser.username,
-      userId: window.GlobalUser.userId,
+      username: $cookies.get('username'),
       challengeId: challengeId,
       timeToSolve: timeToSolve
     };
