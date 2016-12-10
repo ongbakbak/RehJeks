@@ -8,7 +8,6 @@
 window.GlobalUser = {};
 window.GlobalUser.username = '';
 window.GlobalUser.userId = '';
-window.GlobalUser.solvedChallenges = [];
 
 var exampleChallengeList = [
   {
