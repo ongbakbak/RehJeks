@@ -5,8 +5,7 @@ angular.module('rehjeks.login', [])
     $scope.showSignup = false;
     $scope.signin = false;
     $scope.actionTitle = 'Login';
-    $scope.loggedin = window.GlobalUser.username !== ''; // Shouldn't have to use this eventually
-    $scope.loggedin = document.cookie !== "undefined";
+    $scope.loggedin = document.cookie !== "undefined" && document.cookie !== "";
 
 
 
@@ -45,7 +44,6 @@ angular.module('rehjeks.login', [])
       console.log('logging out');
       document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
       window.GlobalUser.username = '';
-
       $scope.loggedin = false;
     };
 
