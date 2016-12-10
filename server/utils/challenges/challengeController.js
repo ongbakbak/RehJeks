@@ -10,7 +10,6 @@ module.exports.getChallenges = function(req, res) {
   console.log('challenge controller says req.query is ', req.query);
 
   let {query: {quantity = 10, difficulty, order, username, userId}} = req;
-
   if (username || userId) {
     let userSolutions;
     User.findOne(username ? {username: username} : {id: userId})
@@ -42,8 +41,15 @@ module.exports.getSingleChallenge = function(req, res) {
         // Serve up a random challenge whose id is not contained in that array
       // If username or userId given in params
         // Serve up a random challenge not already solved by the user
+  // If query takes more than ten tries to find a challenge the user hasn't
+  // Already solved, then return a dummy challenge telling the user to try a harder difficulty
+
+  let numTries = 0;
 
   let {query: {username, userId, difficulty, solvedChallenges, challengeId}} = req;
+
+  console.log('query', req.query);
+
 
   // if specific challenge requested by Id, serve it
   if (challengeId) {
@@ -57,6 +63,7 @@ module.exports.getSingleChallenge = function(req, res) {
     // Returns true if the user at userId has already solved the challenge
     // or if the challengeId is is challengeIdList.
     // Otherwise, returns the challenge
+
 
     if (solvedChallenges) {
       return new Promise(function(resolve, reject) {
@@ -72,7 +79,15 @@ module.exports.getSingleChallenge = function(req, res) {
 
     .then(function(solution) {
       if (solution) {
-        return true;
+        if (numTries >= 10) {
+          return {
+            title: 'You have solved all challenges at this difficulty!',
+            prompt: 'Try moving up to something a little harder.'
+          }
+        } else {
+          numTries++;
+          return true;
+        }
       } else {
         return challenge;
       }
@@ -85,10 +100,12 @@ module.exports.getSingleChallenge = function(req, res) {
 
     let rand = parseInt(Math.random() * count);
 
-    return Challenge.findOne(difficulty ? {difficulty: difficulty} : undefined).skip(rand)
+    return Challenge.findOne(difficulty ? {difficulty: difficulty} : undefined)
+
+    .skip(rand)
 
     .then(function(challenge) {
-
+      console.log('challenge after Challenge.find', challenge);
       return checkIfUserAlreadySolved(userId, challenge);
     })
 
@@ -99,6 +116,7 @@ module.exports.getSingleChallenge = function(req, res) {
         return challengeOrSolved;
       }
     })
+
     .catch((err)=>console.log('Database Error on finding challenge:', err));
   };
 
@@ -112,6 +130,7 @@ module.exports.getSingleChallenge = function(req, res) {
         if (user) { userId = user.id; }
         resolve();
       })
+
       .catch((err) => reject(err));
 
     } else {
@@ -159,4 +178,3 @@ module.exports.submitNewChallenge = function(req, res) {
   });
 
 };
-

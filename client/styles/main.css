@@ -241,6 +241,10 @@ h1 .cute{
 
 }
 
+.solution {
+  text-align: center;
+}
+
 .switch {
   font-weight: bold;
   font-size:1em;

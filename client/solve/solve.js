@@ -129,6 +129,7 @@ angular.module('rehjeks.solve', [])
     $scope.challengeData = Server.currentChallenge.data;
     $scope.highlightedText = $sce.trustAsHtml(Server.currentChallenge.data.text);
     $scope.attempt = '//gi';
+    $scope.attempt = "//gi";
   } else {
     $scope.getRandom();
   }
@@ -136,7 +137,7 @@ angular.module('rehjeks.solve', [])
   // Start Timer
   var solutionClock = $interval(function() {
     updateTimer(challStartTime);
-    // console.log('$scope.seconds is ', $scope.seconds);
+    // console.log('$scope.seconds is ', $scope.seconds);``
   }, 1000);
 
   var makeRegex = function() {
