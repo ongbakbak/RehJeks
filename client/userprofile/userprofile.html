@@ -1,5 +1,5 @@
 <div id='solve'>
-  <h1>User Profile</h1>
+  <h1>{{ username }}'s Stats</h1>
   <hr>
   <h2>Solved Problems</h2>
   <div class='solutions view'>
@@ -11,7 +11,9 @@
 	 			<div>Difficulty: {{challenge.challenge.difficulty}}</div>
 	 		</div>
 	 			<div class='solution' ng-hide='show'>
-	 				Soltution: {{challenge.solution.solution}}
+	 				Solution: {{challenge.solution.solution}}
+          <br>
+          Time: {{$scope.timeString(challenge.solution.timeToSolve)}}
 	 			</div>
   	</div>
   </div>

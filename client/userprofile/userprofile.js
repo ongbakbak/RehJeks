@@ -4,6 +4,7 @@ angular.module('rehjeks.profile', [
 
   .controller('UserprofileController', function($scope, Server, $cookies) {
     $scope.user = {};
+    $scope.username = $cookies.get('username');
     $scope.user.show = false;
     $scope.user.challenges = [];
 
@@ -14,6 +15,11 @@ angular.module('rehjeks.profile', [
     $scope.show = function() {
       return $scope.user.show === !$scope.user.show;
     };
+
+    $scope.showTime = function(timeStr) {
+      console.log(timeStr);
+      return new Date(Number(timeStr)).toUTCString().slice(20,25);
+    }
 
     $scope.getUserChallenges()
     .then(function(challenges) {

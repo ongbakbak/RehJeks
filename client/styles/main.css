@@ -138,7 +138,7 @@ button:hover {
 
 .challenge-difficulty {
   float: right;
-  margin-right: 20px;
+  margin-right: 200px;
   text-align: right;
   color: #777;
 }
@@ -294,20 +294,20 @@ h1 .cute{
 }
 
 #challengesNav {
-  display: inline-block;
-  vertical-align: top;
+  /*display: inline-block;*/
+  /*vertical-align: top;*/
   border: solid black 1px;
   border-radius: 10px;
   background-color: #333;
   padding: 20px 10px;
-  width: auto;
-  height: auto;
+  /*width: auto;*/
+  /*height: auto;*/
   margin: 0 15px;
 }
 
 #challengesList {
-  display: inline-block;
-  width: 400px;
+  /*display: inline-block;*/
+  /*width: 400px;*/
 }
 
 #solve-nav {

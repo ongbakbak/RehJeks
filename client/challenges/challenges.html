@@ -2,7 +2,7 @@
   <h1>Choose your challenge!</h1>
   <hr>
   <div class="row">
-    <div class="col col-md-4" id="challengesNav">
+    <div class="col col-md-2 col-xs-2 col-lg-2" id="challengesNav">
       <label id="difficulty">Choose difficulty:
         <br>
         <select name="difficulty" id="difficulty" ng-model="difficulty" ng-change="getAllChallenges()">
@@ -13,7 +13,7 @@
         </select>
       </label>
     </div>
-    <div class="col col-md-8" id="challengesList">
+    <div class="col col-md-9 col-xs-9 col-lg-9" id="challengesList">
       <div ng-repeat="challenge in challengeList" class="container challenge-blurb" ng-click="getChallenge(challenge)">
         <div class="container">
           <h3 class="challenge-title">{{challenge.title}}</h3>
