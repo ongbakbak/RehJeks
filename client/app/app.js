@@ -117,7 +117,7 @@ angular.module('rehjeks', [
       },
       "body": {
         templateUrl: 'userprofile/userprofile.html',
-        controller: 'UserprofileController',
+        controller: 'UserprofileController'
       }
     }
   })
