@@ -8,6 +8,7 @@ angular.module('rehjeks', [
   'rehjeks.nav',
   'rehjeks.submit',
   'rehjeks.useroptions',
+  'ngAnimate',
   'ui.router'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
