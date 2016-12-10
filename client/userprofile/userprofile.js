@@ -1,16 +1,18 @@
-angular.module('rehjeks.profile', [])
+angular.module('rehjeks.profile', [
+  'ngCookies'
+])
 
-  .controller('UserprofileController', function($scope, Server) {
+  .controller('UserprofileController', function($scope, Server, $cookies) {
     $scope.user = {};
-    $scope.user.show = false; 
+    $scope.user.show = false;
     $scope.user.challenges = [];
 
     $scope.getUserChallenges = function() {
-    	return Server.getUserChallenges($scope, window.GlobalUser.username);
+    	return Server.getUserChallenges($scope, $cookies.get('username'));
     };
 
     $scope.show = function() {
-      return $scope.user.show === false ? $scope.user.show = true : $scope.user.show = false; 
+      return $scope.user.show === !$scope.user.show;
     };
 
     $scope.getUserChallenges()
@@ -18,6 +20,5 @@ angular.module('rehjeks.profile', [])
       console.log("user challenges");
       console.log($scope.user.challenges);
     });
-    
+
   });
-  
