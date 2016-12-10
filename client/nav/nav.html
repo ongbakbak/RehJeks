@@ -4,11 +4,10 @@
         <li><a ui-sref="challenges">Challenges</a></li>
         <li><a ui-sref="submit">Submit</a></li>
         <li id="title"><a>RehJeks</a></li>
-        <li ng-click="dropdown.show = !dropdown.show" class="login-button">
-          <a ng-if="!loggedIn" ui-sref=".login">Login</a>
-          <a ng-if="loggedIn" ui-sref=".useroptions">{{username}}</a>
+        <li ng-click="showDropdown = !showDropdown" class="login-button">
+          <a ng-show="!loggedIn" ui-sref=".login">Login</a>
+          <a ng-show="loggedIn" ui-sref=".useroptions">{{username}}</a>
         </li>
     </ul>
 </nav>
-
-<div ui-view ng-if="dropdown.show" class="login-box fade fade-medium dropdown"></div>
+<div ui-view ng-if="showDropdown" class="login-box fade fade-medium dropdown"></div>
