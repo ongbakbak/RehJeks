@@ -185,6 +185,21 @@ nav {
   box-shadow: 0px 5px 5px rgba(0,0,0,.2);
 }
 
+.show-type-hint {
+  transition: all linear 2s;
+  opacity: .7;
+  font-family: "Helvetica Neue";
+  font-size: 18px;
+}
+
+.show-type-hint.ng-enter {
+  opacity: 0;
+}
+
+.show-type-hint.ng-leave-active {
+  opacity: 0;
+}
+
 .login-button {
   float: right;
 }

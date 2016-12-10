@@ -15,7 +15,7 @@
       </label>
       <br>
       <br>
-      <button ng-click='getRandom()' class="skip-button">Skip --></button>
+      <button ng-click='getRandom()' class="skip-button">New Challenge</button>
       <br>
       <br>
       <div id="time-left">
@@ -40,9 +40,12 @@
 
       <div class="container solve-form">
         <form name="solveForm" ng-submit='checkSolution()'>
-          <input id="regex-attempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" title="Try /example/gi" >
+          <input id="regex-attempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" focus-on-me>
           <!-- <button>Submit</button> -->
         </form>
+        <div ng-if="showTypeHint" class="show-type-hint">
+          (Start Typing. Press Enter to sumbit)
+        </div>
       </div>
       <br>
       <br>

@@ -1,5 +1,7 @@
-angular.module('rehjeks.solve', [])
-.controller('SolveController', function($scope, $interval, Server, $sce) {
+angular.module('rehjeks.solve', [
+  'ngAnimate'
+])
+.controller('SolveController', function($scope, $interval, Server, $sce, $timeout) {
 
   ////////////////////////
   // Internal variables
@@ -17,6 +19,13 @@ angular.module('rehjeks.solve', [])
     var secondsElapsed = Math.floor( (now - startTime) / 1000 );
     $scope.seconds = secondsElapsed % 60;
     $scope.minutes = Math.floor(secondsElapsed / 60);
+    if (!$scope.minutes && !$scope.seconds > 1) {
+      if ($scope.seconds > 2) {
+        $scope.showTypeHint = true;
+      } else if ($scope.seconds >= 10) {
+        $scope.showTypeHint = false;
+      }
+    }
   };
 
   ////////////////////////
@@ -28,6 +37,7 @@ angular.module('rehjeks.solve', [])
   $scope.challengeData = {};
   $scope.seconds = 0;
   $scope.minutes = 0;
+  $scope.showTypeHint = false;
 
 
 
@@ -111,7 +121,10 @@ angular.module('rehjeks.solve', [])
   $scope.getRandom = function() {
     console.log('SolveController calling getRandom');
     Server.getRandom($scope)
-    .then((testString) => $scope.highlightedText = $sce.trustAsHtml(testString));
+    .then((testString) => {
+      $scope.highlightedText = $sce.trustAsHtml(testString);
+      $scope.$broadcast('focusOnMe');
+    });
     $scope.success = false;
     $scope.failure = false;
     $scope.attempt = '//gi';
@@ -129,7 +142,12 @@ angular.module('rehjeks.solve', [])
     $scope.challengeData = Server.currentChallenge.data;
     $scope.highlightedText = $sce.trustAsHtml(Server.currentChallenge.data.text);
     $scope.attempt = '//gi';
-    $scope.attempt = "//gi";
+
+    // Timeout to wait until the page has fully loaded first.
+    $timeout(function() {
+      $scope.$broadcast('focusOnMe');
+    }, 0);
+
   } else {
     $scope.getRandom();
   }
@@ -149,6 +167,16 @@ angular.module('rehjeks.solve', [])
   };
 
 
+})
+// Custom Directive to trigger focus on the regex prompt in the correct cursor position
+// Just broadcast a "focusOnMe" event in the scope to trigger this action.
+.directive('focusOnMe', function() {
+  return function (scope, element) {
+    scope.$on('focusOnMe', function() {
+      element[0].focus();
+      element[0].setSelectionRange(1,1);
+    });
+  };
 });
 
 var solutionsMatch = function(arr1, arr2) {
