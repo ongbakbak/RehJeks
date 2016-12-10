@@ -11,6 +11,17 @@ angular.module('rehjeks', [
   'ngAnimate',
   'ui.router'
 ])
+
+.controller('appController', function($scope, $location){
+  $scope.$on('$stateChangeStart', function(event, newUrl){
+    console.log("route is changin");
+    if(newUrl.requireAuth && document.cookie === ""){
+      alert('Must Login to view stats!');
+      $location.path('/solve');
+    }
+  })
+})
+
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
   $urlRouterProvider.otherwise('/solve');
@@ -38,7 +49,8 @@ angular.module('rehjeks', [
   .state('solve.useroptions', {
     templateUrl: 'useroptions/useroptions.html',
     controller: 'UserOptionsController',
-    parent: 'solve'
+    parent: 'solve',
+    requireAuth: true
   })
 
 
@@ -66,7 +78,8 @@ angular.module('rehjeks', [
   .state('challenges.useroptions', {
     templateUrl: 'useroptions/useroptions.html',
     controller: 'UserOptionsController',
-    parent: 'challenges'
+    parent: 'challenges',
+    requireAuth: true
   })
 
   .state('submit', {
@@ -90,11 +103,13 @@ angular.module('rehjeks', [
   .state('submit.useroptions', {
     templateUrl: 'useroptions/useroptions.html',
     controller: 'UserOptionsController',
-    parent: 'submit'
+    parent: 'submit',
+    requireAuth: true
   })
 
   .state('profile', {
     url: '/profile',
+    requireAuth: true,
     views: {
       "nav": {
         templateUrl: 'nav/nav.html',
@@ -102,7 +117,7 @@ angular.module('rehjeks', [
       },
       "body": {
         templateUrl: 'userprofile/userprofile.html',
-        controller: 'UserprofileController'
+        controller: 'UserprofileController',
       }
     }
   })
