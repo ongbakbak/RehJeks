@@ -17,10 +17,10 @@ var challengeArray = [
   {
     'title': 'Hex Color',
     'prompt': 'write a regular expression that matches a hex color',
-    'text': ' #rgf #abc #dks366 #f00 #BADA55 #C0FFEE #674d',
+    'text': ' #rgf #abc #dks366 #f00 #BADA55 #C0FFEE #674',
     'difficulty': 'medium',
-    'expected': ['#abc', '#f00', '#BADA55', '#C0FFEE'],
-    'answer': '/^#([a-f\d]{3}){1,2}$/i',
+    'expected': ['#abc', '#f00', '#BADA55', '#C0FFEE', '#674'],
+    'answer': '/#([a-f\d]{3}){1,2}/i',
     'cheats': ['']
   },
   {
@@ -44,10 +44,10 @@ var challengeArray = [
   {
     'title': 'Intersection',
     'prompt': 'A 6+ letter password with at least: one number, one letter and a symbol',
-    'text': 'apple6 orange9! 123 123456 89apple',
+    'text': '^orange9!',
     'difficulty': 'easy',
-    'expected': ['orange9!'],
-    'answer': '/^(?=.*\d)(?=.*[a-z])(?=.*[W_]).{6,}$/i',
+    'expected': ['^orange9!'],
+    'answer': '/(?=.*\d)(?=.*[a-z])(?=.*[\W_]).{6,}/i',
     'cheats': ['']
   },
   {
