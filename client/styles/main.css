@@ -313,7 +313,7 @@ h1 .cute{
   border-radius: 10px;
   background-color: #333;
   padding: 20px 10px;
-  /*width: auto;*/
+  /*width: 200px;*/
   /*height: auto;*/
   margin: 0 15px;
 }
@@ -321,6 +321,7 @@ h1 .cute{
 #challenges-list {
   box-shadow: 0px 0px 5px rgba(0,0,0,.25);
   background-color: #FFFFF8;
+  margin-bottom: 50px;
   /*display: inline-block;*/
   /*width: 400px;*/
 }
@@ -332,7 +333,7 @@ h1 .cute{
   border: solid black 1px;
   border-radius: 10px;
   background-color: #333;
-  padding: 20px 10px;
+  padding: 20px 30px;
   width: auto;
   height: auto;
   margin: 0 15px;
