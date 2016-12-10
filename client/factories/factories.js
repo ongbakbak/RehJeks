@@ -8,7 +8,7 @@
 window.GlobalUser = {};
 window.GlobalUser.username = '';
 window.GlobalUser.userId = '';
-window.GlobalUser.solvedChallenges = ['X12X', 'Y14Y'];
+window.GlobalUser.solvedChallenges = [];
 
 var exampleChallengeList = [
   {
@@ -101,9 +101,10 @@ angular.module('rehjeks.factories', [
 
     var difficulty = $scope.difficulty;
     var username = $cookies.get('username');
+    var solvedChallenges = window.GlobalUser.solvedChallenges;
     // var solvedChallenges = window.GlobalUser.solvedChallenges;
 
-    var params = {username, difficulty};
+    var params = username ? {username, difficulty} : {difficulty, solvedChallenges};
     console.log('params req is ', params);
 
     return $http({

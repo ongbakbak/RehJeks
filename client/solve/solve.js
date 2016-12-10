@@ -82,6 +82,10 @@ angular.module('rehjeks.solve', [
         // Submit solution to server
         $scope.timeToSolve = new Date() - challStartTime;
 
+        //add challengeId to Global User's completed challenges array
+        window.GlobalUser.solvedChallenges.push($scope.challengeData.id);
+        console.log($scope.challengeData);
+
 
         // Trigger success fanfare box, cancel failure fanfare box
         $scope.success = true;
