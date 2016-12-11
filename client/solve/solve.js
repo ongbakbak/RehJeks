@@ -8,7 +8,6 @@ angular.module('rehjeks.solve', [
   // & functions
   ////////////////////////
 
-  var validation = /\/((?![*+?])(?:[^\r\n\[/\\]|\\.|\[(?:[^\r\n\]\\]|\\.)*\])+)\/((?:g(?:im?|mi?)?|i(?:gm?|mg?)?|m(?:gi?|ig?)?)?)/;
   var regexBody = /[^\/].*(?=\/[gim]{0,3}$)/;
   var regexFlags = /[gim]{0,3}$/;
   var challStartTime = new Date();
@@ -38,6 +37,7 @@ angular.module('rehjeks.solve', [
   $scope.seconds = 0;
   $scope.minutes = 0;
   $scope.showTypeHint = false;
+  $scope.correctAttempt;
 
 
 
@@ -48,15 +48,14 @@ angular.module('rehjeks.solve', [
 
 
   $scope.checkGex = function() {
-
-    var valid = validation.test($scope.attempt);
+    valid = makeRegex();
     if (valid) {
       $scope.highlight();
     }
-    $scope.regexValid = valid;
+    $scope.regexValid = true;
 
 
-    console.log('Valid Regix = ', $scope.RegexValid);
+    console.log('Valid Regix = ', $scope.regexValid);
     console.log('body is ', $scope.attempt.match(regexBody));
     console.log('flags are ', $scope.attempt.match(regexFlags));
 
@@ -65,7 +64,6 @@ angular.module('rehjeks.solve', [
   $scope.checkSolution = function() {
     // Only check solution if user has input valid regex
     if ($scope.regexValid) {
-      // Disaggregate user's input into regex components
 
       var attemptRegex = makeRegex();
 
@@ -79,22 +77,11 @@ angular.module('rehjeks.solve', [
       console.log('answers match ', correctSolution);
 
       if (correctSolution) {
-        // Submit solution to server
-        $scope.timeToSolve = new Date() - challStartTime;
-
-        //add challengeId to Global User's completed challenges array
-        window.GlobalUser.solvedChallenges.push($scope.challengeData.id);
-        console.log($scope.challengeData);
-
-
-        // Trigger success fanfare box, cancel failure fanfare box
-        $scope.success = true;
-        $scope.failure = false;
+        return true;
       } else {
-
-        // Trigger failure fanfare box and store the current matches on the scope
-        $scope.failure = true;
+        // Put the actual matches on the scope to regurgitate to the user in the failure fanfare box
         $scope.attemptMatch = userAnswers;
+        return false;
       }
 
     }
@@ -110,14 +97,28 @@ angular.module('rehjeks.solve', [
       '<span class="highlighted-text">$&</span>');
 
     $scope.highlightedText = $sce.trustAsHtml(highlightedText);
+
+    if ($scope.checkSolution()) {
+      $scope.timeToSolve = new Date() - challStartTime;
+      $scope.success = true;
+      $scope.failure = false;
+    } else {
+      $scope.failure = false;
+    };
+
   };
 
-  $scope.next = function() {
-    Server.submitUserSolution($scope.attempt, $scope.challengeData.id, $scope.timeToSolve);
-    console.log('______Called submitUserSolution factory');
-    $scope.success = false;
-    $scope.failure = false;
-    $scope.getRandom();
+  $scope.submit = function() {
+    if ($scope.success) {
+      Server.submitUserSolution($scope.correctAttempt, $scope.challengeData.id, $scope.timeToSolve);
+      console.log('______Called submitUserSolution factory');
+      window.GlobalUser.solvedChallenges.push($scope.challengeData.id);
+      $scope.success = false;
+      $scope.failure = false;
+      $scope.getRandom();
+    } else {
+      $scope.failure = true;
+    }
   };
 
 
