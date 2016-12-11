@@ -183,6 +183,7 @@ nav a:focus {
 nav {
   background-color: #888;
   box-shadow: 0px 5px 5px rgba(0,0,0,.2);
+  z-index: 10;
 }
 
 .fade {
@@ -252,7 +253,6 @@ nav {
 }
 
 .user-options {
-  transition: .5s;
 }
 
 .user-options li {
@@ -263,6 +263,14 @@ nav {
   color: #FFF;
   margin-right: 20px;
   text-align: right;
+}
+
+.user-options li:first-of-type {
+  padding-top: 15px;
+}
+
+.user-options li:last-of-type {
+  padding-bottom: 15px;
 }
 
 .user-options a {
@@ -312,10 +320,11 @@ nav {
 .login-box {
   position: absolute;
   right: 0px;
-  background-color: #888;
+  background-color: #BBB;
   opacity: 1;
   z-index: 5;
   border-radius: 0px 0px 0px 5px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,.3);
 }
 
 .login-form {
