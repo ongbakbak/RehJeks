@@ -135,10 +135,10 @@ angular.module('rehjeks.solve', [
     Server.getRandom($scope)
     .then((testString) => {
       $scope.highlightedText = $sce.trustAsHtml(testString);
+      $scope.success = false;
+      $scope.failure = false;
       $scope.$broadcast('focusOnMe');
     });
-    $scope.success = false;
-    $scope.failure = false;
     $scope.attempt = '//gi';
     challStartTime = new Date();
 
