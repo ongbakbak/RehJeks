@@ -1,7 +1,7 @@
 angular.module('rehjeks.solve', [
   'ngAnimate'
 ])
-.controller('SolveController', function($scope, $interval, Server, $sce, $timeout) {
+.controller('SolveController', function($scope, $interval, Server, $sce, $timeout, $cookies) {
 
   ////////////////////////
   // Internal variables
@@ -19,13 +19,21 @@ angular.module('rehjeks.solve', [
     $scope.seconds = secondsElapsed % 60;
     $scope.minutes = Math.floor(secondsElapsed / 60);
     if (!$scope.minutes) {
-      if ($scope.seconds === 1) {
-        $scope.showTypeHint = true;
-      } else if ($scope.seconds >= 10) {
-        $scope.showTypeHint = false;
-      }
+      $scope.showHint = decideToShowTypingHint();
     }
   };
+
+  var decideToShowTypingHint = function() {
+    if (window.GlobalUser.solvedChallenges.length > 1
+      || $cookies.get('username')
+      || $scope.attempt !== '//gi'
+      || $scope.seconds >= 10) {
+      return false;
+    }
+    else if ($scope.seconds >= 2) {
+      return true;
+    }
+  }
 
   ////////////////////////
   // $scope variables

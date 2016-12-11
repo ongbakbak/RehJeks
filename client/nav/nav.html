@@ -5,8 +5,8 @@
         <li><a ui-sref="submit">Submit</a></li>
         <li id="title"><a>RehJeks</a></li>
         <li ng-click="showDropdown = !showDropdown" class="login-button">
-          <a ng-show="!loggedIn" ui-sref=".login">Login</a>
-          <a ng-show="loggedIn" ui-sref=".useroptions">{{username}}</a>
+          <a ng-if="notLoggedIn" ui-sref=".login">Login</a>
+          <a ng-if="loggedIn" ui-sref=".useroptions">{{username}}</a>
         </li>
     </ul>
 </nav>

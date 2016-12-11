@@ -12,8 +12,10 @@ angular.module('rehjeks.nav', [
   $scope.username = $cookies.get('username');
 
   $scope.$watch(function(){return $cookies.get('username'); }, function(newValue) {
-    $scope.loggedIn = !!$cookies.get('username');
-    $scope.username = $cookies.get('username');
+    var username = $cookies.get('username');
+    $scope.loggedIn = !!username;
+    $scope.notLoggedIn = !username;
+    $scope.username = username;
     $scope.showDropdown = false;
   });
 
