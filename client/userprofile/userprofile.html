@@ -2,6 +2,12 @@
   <h1>{{ username }}'s Stats</h1>
   <hr>
   <h2>Solved Problems</h2>
+  <div class='container challenge-blurb'>
+    <h4>Problem Breakdown</h4>
+      <p> Easy: {{user.difficulties.easy}}</p>
+      <p> Medium: {{user.difficulties.medium}}</p>
+      <p> Hard: {{user.difficulties.hard}}</p>
+  </div>
   <div class='solutions view'>
   	<!-- <button ng-click='show()'>Show Challenges</button> -->
   	<div class='container challenge-blurb' ng-class='{"showing-solution": !show}' ng-click='show=!show; this.addClass("showing-solution");' ng-repeat='challenge in user.challenges'>
