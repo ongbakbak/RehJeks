@@ -18,7 +18,7 @@ button:hover {
 }
 
 #title a:hover {
-  background-color: #888;
+  color: white;
 }
 
 .solve-row {
@@ -161,7 +161,7 @@ nav ul li {
 
 nav a {
   display: inline-block;
-  color: #f2f2f2;
+  color: red;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -171,19 +171,18 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #555;
   text-decoration: none;
-  color: #FFF;
+  color: #aaa;
 }
 
 nav a:visited {
   text-decoration: none;
-  color: #FFF;
+  color: #eee;
 }
 
 nav a:focus {
   text-decoration: none;
-  color: #FFF;
+  color: red;
 }
 
 nav {
