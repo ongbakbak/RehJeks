@@ -41,9 +41,8 @@
       <div class="container solve-form">
         <form name="solveForm" ng-submit='submit()'>
           <input id="regex-attempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" focus-on-me>
-          <!-- <button ng-click="next()" ng-if="success" class="fade fade-slow submit-button">Submit</button> -->
         </form>
-        <div ng-if="showTypeHint && !(success || failure)" class="fade">
+        <div ng-if="showTypeHint && (attempt === '//gi')" class="fade">
           (Start Typing)
         </div>
       </div>
