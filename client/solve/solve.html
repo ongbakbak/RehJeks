@@ -31,7 +31,6 @@
         <p class="challenge-description">{{challengeData.prompt}}</p>
         <br>
         <p class="challenge-expected-label">Test String:</p>
-
         <p class="challenge-text" ng-bind-html="highlightedText"></p>
         <br>
         <h4 class="challenge-expected-label">Expected Matches:</h4>
@@ -42,8 +41,8 @@
         <form name="solveForm" ng-submit='submit()'>
           <input id="regex-attempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" focus-on-me>
         </form>
-        <div ng-if="showTypeHint && (attempt === '//gi')" class="fade">
-          (Start Typing)
+        <div ng-if="showHint" class="fade">
+          (Just Start Typing)
         </div>
       </div>
       <br>
