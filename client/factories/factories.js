@@ -207,13 +207,13 @@ angular.module('rehjeks.factories', [
     let {submitData:{title, prompt, text, difficulty, expected, answer, cheats}} = $scope;
 
     $scope.submitData.expected = function(){
-      var regexAnswer = $scope.submitData.answer;
-      var textString = $scope.submitData.text;
-      var textArray = textString.split(" ");
+      let regexAnswer = $scope.submitData.answer;
+      let textString = $scope.submitData.text;
+      let textArray = textString.split(" ");
       return textArray.filter ( function (text) {
         return text.match(regexAnswer) !== null;
       });
-    };
+    }();
 
     let submitData = {
       username: $cookies.get('username'),
@@ -221,7 +221,7 @@ angular.module('rehjeks.factories', [
       prompt: prompt,
       text: text,
       difficulty: difficulty,
-      expected: expected(),
+      expected: $scope.submitData.expected,
       answer: answer,
       cheats: cheats
     };

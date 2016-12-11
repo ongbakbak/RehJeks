@@ -3,7 +3,7 @@
   <hr>
   <div class=" container" id="submitSpace">
     <div class="container col col-md-8 challengePrompt">
-      <form class="form-horizontal" name="submitForm" ng-submit='submit()'>
+      <form ng-model="formSubmit" class="form-horizontal" name="submitForm" ng-submit='submit()'>
         <div class = "control-group">
           <label class="control-label">Title</label>
           <input class='textInput' id="title" type="text" ng-model="submitData.title" placeholder="title" required>
@@ -20,7 +20,7 @@
 
         <div class = "control-group">
           <label class="control-label">Text</label>
-          <textarea class='textInput' id="text" type="text" ng-model="submitData.text" placeholder="test string" required>
+          <textarea class='textInput' id="text" type="text" ng-model="submitData.text" ng-change='onUpdate()' placeholder="test string" required>
           ></textarea>
           <br>
           <br>
@@ -47,7 +47,7 @@
 
         <div class = "control-group">
           <label class="control-label">Answer</label>
-          <input class='textInput' id="answer" type="text" ng-model="submitData.answer" placeholder="solution answer" required>
+          <input class='textInput' id="answer" type="text" ng-model="submitData.answer" ng-change='onUpdate()' placeholder="solution answer" required>
           <br>
           <br>
         </div>
@@ -58,6 +58,10 @@
           <br>
         </div>
 
+        <!-- <button ng-if="submitData.answer" ng-click="submitExpectedController.toggle = true">Expected Matches</button> -->
+        <div ng-if="submitData.answer">
+            Expected match {{submitData.expected}}
+        </div>
         <button type="submit" class="btn submitButton">Submit New Challenge</button>
       </form>
     </div>
