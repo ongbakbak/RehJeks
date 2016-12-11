@@ -85,6 +85,7 @@ angular.module('rehjeks.solve', [
       console.log('answers match ', correctSolution);
 
       if (correctSolution) {
+        $scope.correctAttempt = $scope.attempt;
         return true;
       } else {
         // Put the actual matches on the scope to regurgitate to the user in the failure fanfare box

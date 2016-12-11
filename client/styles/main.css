@@ -1,5 +1,5 @@
 body {
-  background-color: #EEE;
+  background-color: #F8F8F8;
 }
 
 input {
@@ -96,14 +96,16 @@ button:hover {
 }
 
 .challenge-blurb {
-  margin: 25px;
+  /*margin: 25px;*/
 /*  transition: 0.5s;*/
   border-radius: 5px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .challenge-blurb:hover {
-  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
-  background-color: #f9f9f9;
+  box-shadow: 0px 0px 5px rgba(0,0,0,.1);
+  background-color: #FFFFFC;
 }
 
 .challenge-blurb:active {
@@ -154,7 +156,7 @@ button:hover {
 
 nav {
   background-color: #777;
-  box-shadow: 0px 5px 5px rgba(0,0,0,.2);
+  box-shadow: 0px 5px 5px rgba(0,0,0,.27);
   z-index: 10;
 }
 
@@ -285,6 +287,7 @@ nav a:focus {
   color: #666;
   margin-right: 30px;
   text-align: right;
+  margin: 15px;
 }
 
 .user-options a {
@@ -294,7 +297,7 @@ nav a:focus {
 
 .user-options a:hover {
   text-decoration: none;
-  color: #555
+  color: #444
 }
 
 .user-options li:first-of-type {
@@ -320,6 +323,7 @@ nav a:focus {
 #solve,
 #challenges {
   padding: 0 30px;
+  text-align: center;
   /*width: auto;*/
 }
 
@@ -381,8 +385,14 @@ nav a:focus {
   background-color: #FFFFF8;
   margin-bottom: 50px;
   border-radius: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
   /*display: inline-block;*/
   /*width: 400px;*/
+}
+
+hr {
+  margin: 0px 15px 0px 15px;
 }
 
 #solve-nav {
