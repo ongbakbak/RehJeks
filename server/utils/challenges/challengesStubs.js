@@ -78,7 +78,7 @@ var challengeArray = [
   {
     'id': '7',
     'title': 'Subtraction',
-    'prompt': 'Any number that\'s not divisible by 50',
+    'prompt': 'Any number that\'s divisible by 50',
     'text': '50 40 100 150 201 500',
     'difficulty': 'medium',
     'expected': ['50', '100', '150', '500'],
