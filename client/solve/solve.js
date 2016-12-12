@@ -85,6 +85,7 @@ angular.module('rehjeks.solve', [
       console.log('answers match ', correctSolution);
 
       if (correctSolution) {
+        $scope.correctAttempt = $scope.attempt;
         return true;
       } else {
         // Put the actual matches on the scope to regurgitate to the user in the failure fanfare box
@@ -135,10 +136,10 @@ angular.module('rehjeks.solve', [
     Server.getRandom($scope)
     .then((testString) => {
       $scope.highlightedText = $sce.trustAsHtml(testString);
+      $scope.success = false;
+      $scope.failure = false;
       $scope.$broadcast('focusOnMe');
     });
-    $scope.success = false;
-    $scope.failure = false;
     $scope.attempt = '//gi';
     challStartTime = new Date();
 
