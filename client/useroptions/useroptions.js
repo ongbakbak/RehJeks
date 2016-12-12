@@ -6,14 +6,12 @@ angular.module('rehjeks.useroptions', [
   $scope.user = {};
   $scope.loggedin = true;
   $scope.user.challenges = [];
-  $scope.user.numberOfChallenges = $scope.user.challenges.length;
   $scope.singularOrPlural = 'challenges';
+  $scope.points = window.GlobalUser.points;
 
   $scope.logout = function() {
     $cookies.remove('username');
-    window.GlobalUser.username = '';
     $scope.loggedin = false;
-
   }
 
   $scope.redirect = function() {
@@ -21,9 +19,13 @@ angular.module('rehjeks.useroptions', [
   }
 
   Server.getUserChallenges($scope, $cookies.get('username'))
-  .then(results => $scope.user.numberOfChallenges = $scope.user.challenges.length)
-  .then(function(results){
-    if($scope.user.challenges.length === 1){$scope.singularOrPlural = 'challenge'};
+  .then(results => {
+    var pointValues = {"easy": 1, "medium": 2, "hard": 3};
+    window.GlobalUser.points = $scope.user.challenges.map(challenge => {
+      return pointValues[challenge.challenge.difficulty];
+    })
+    .reduce((a,b) => a + b);
+    $scope.points = window.GlobalUser.points;
   });
 
 });
