@@ -1,5 +1,5 @@
 angular.module('rehjeks.submit', [])
-  .controller('SubmitController', function ($scope, $http, Server, RegexParser) {
+  .controller('SubmitController', function ($scope, $http, Server, RegexParser, $sanitize) {
 
     let submitData = {};
     //saving blank form as originForm
@@ -10,13 +10,22 @@ angular.module('rehjeks.submit', [])
       $scope.submitForm.$setPristine();
     };
 
+    var checkIfSanitary = function() {
+      return $scope.submitData.text === $sanitize($scope.submitData.text);
+    };
 
     $scope.submit = function() {
-      Server.submitNewChallenge($scope)
-      .then(resp => {
-        $scope.submitted = true;
-        $scope.resetForm();
-      });
+      if (checkIfSanitary()) {
+        Server.submitNewChallenge($scope)
+        .then(resp => {
+          $scope.unsanitary = false;
+          $scope.submitted = true;
+          $scope.resetForm();
+        });
+      } else {
+        $scope.unsanitary = true;
+        $scope.submitData.text = $sanitize($scope.submitData.text);
+      }
     };
 
     $scope.onUpdate = function() {
@@ -30,5 +39,6 @@ angular.module('rehjeks.submit', [])
         return textString.match(regexAnswer);
       }
     };
+
   }
 });

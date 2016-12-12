@@ -45,7 +45,8 @@ var exampleChallengeList = [
 //var serverUrl = 'http://localhost:8000'; //Update me with Process.Env.Port?
 
 angular.module('rehjeks.factories', [
-  'ngCookies'
+  'ngCookies',
+  'ngSanitize'
 ])
 .factory('Auth', function($http, $location, $window) {
 
@@ -90,7 +91,7 @@ angular.module('rehjeks.factories', [
 
 
 })
-.factory('Server', function($http, $location, $cookies) {
+.factory('Server', function($http, $location, $cookies, $sanitize) {
 
   var serverURL = $location.protocol() + '://' + location.host;
   //shared acces for Challenges and Solve Controller
@@ -206,14 +207,7 @@ angular.module('rehjeks.factories', [
 
     let {submitData:{title, prompt, text, difficulty, expected, answer, cheats}} = $scope;
 
-    $scope.submitData.expected = function(){
-      let regexAnswer = $scope.submitData.answer;
-      let textString = $scope.submitData.text;
-      let textArray = textString.split(" ");
-      return textArray.filter ( function (text) {
-        return text.match(regexAnswer) !== null;
-      });
-    }();
+    text = $sanitize(text);
 
     let submitData = {
       username: $cookies.get('username'),
