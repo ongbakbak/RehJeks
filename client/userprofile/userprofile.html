@@ -1,8 +1,8 @@
 <div id='profile'>
   <h1 class="stats-title">{{ username }}'s Stats</h1>
   <hr>
+  <div class='stats-breakdown'>
   <h2>Solved Problems</h2>
-  <div class=''>
     <h4>Problem Breakdown</h4>
       <p> Easy: {{user.difficulties.easy}}</p>
       <p> Medium: {{user.difficulties.medium}}</p>
@@ -11,7 +11,7 @@
   <div class='solutions-view'>
   	<!-- <button ng-click='show()'>Show Challenges</button> -->
   	<div class='challenge-blurb' ng-class='{"showing-solution": !show}' ng-click='show=!show' ng-repeat='challenge in user.challenges'>
-      <div class="container row">
+      <div class="row">
         <div class="col col-md-4 col-xs-4 col-lg-4">
           <h3 class="challenge-blurb-title">{{challenge.challenge.title}}</h3>
           <br>

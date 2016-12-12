@@ -162,12 +162,14 @@ button:hover {
   text-align: 30%;
   color: #BBB;
   margin-bottom: 5px;
+  white-space: pre-line;
 }
 
 .challenge-blurb-solution {
   color: green;
   font-size: 1.5em;
   text-align: center;
+  white-space: pre-line;
 }
 
 .challenge-blurb-solution-title {
@@ -394,6 +396,10 @@ nav a:focus {
 
 .stats-title {
   margin-left: 20px;
+}
+
+.stats-breakdown {
+  margin-left: 25px;
 }
 
 #login {
