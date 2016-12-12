@@ -75,7 +75,7 @@ button:hover {
 
 #regex-attempt {
   font-size: 36px;
-  width: 50%;
+  width: 100%;
   margin: 20px 0 20px 20px;
   color: green;
   border-style: none;
