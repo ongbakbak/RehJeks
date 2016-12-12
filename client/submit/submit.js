@@ -12,8 +12,11 @@ angular.module('rehjeks.submit', [])
 
 
     $scope.submit = function() {
-      Server.submitNewChallenge($scope);
-      $scope.resetForm();
+      Server.submitNewChallenge($scope)
+      .then(resp => {
+        $scope.submitted = true;
+        $scope.resetForm();
+      });
     };
 
     $scope.onUpdate = function() {
