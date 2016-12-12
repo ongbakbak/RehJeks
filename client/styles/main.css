@@ -396,6 +396,10 @@ nav a:focus {
   margin-left: 20px;
 }
 
+.stats-breakdown {
+  margin-left: 25px;
+}
+
 #login {
   width: 400px;
 }

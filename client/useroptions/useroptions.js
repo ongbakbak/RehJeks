@@ -9,14 +9,14 @@ angular.module('rehjeks.useroptions', [
   $scope.user.numberOfChallenges = $scope.user.challenges.length;
   $scope.singularOrPlural = 'challenges';
 
-  $scope.logout = function(){
+  $scope.logout = function() {
     $cookies.remove('username');
     window.GlobalUser.username = '';
     $scope.loggedin = false;
 
   }
 
-  $scope.redirect = function(){
+  $scope.redirect = function() {
   	$location.path('/profile');
   }
 
