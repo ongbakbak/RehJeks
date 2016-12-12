@@ -14,7 +14,6 @@ angular.module('rehjeks', [
 
 .controller('appController', function($scope, $location){
   $scope.$on('$stateChangeStart', function(event, newUrl){
-    console.log("route is changin");
     if(newUrl.requireAuth && document.cookie === ""){
       alert('Must Login to view stats!');
       $location.path('/solve');

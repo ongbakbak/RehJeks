@@ -60,7 +60,6 @@ angular.module('rehjeks.factories', [
     })
     .then(
       function(successRes) { //first param = successCallback
-        console.log(successRes.data.username);
         window.GlobalUser.username = successRes.data.username;
         window.GlobalUser.userId = successRes.data.userid;
         document.cookie = `username=${successRes.data.username}; userId=${successRes.data.userid};`;
@@ -69,7 +68,6 @@ angular.module('rehjeks.factories', [
       },
       function(errorRes) { //second param = errorCallback
         console.log(errorRes);
-
       }
     );
   };
@@ -80,7 +78,7 @@ angular.module('rehjeks.factories', [
       method: 'GET',
       url: serverUrl + '/logout'
     })
-    .then(result => console.log('logged out response from serverside'));
+    .then(result => console.log('logged out response from back-end'));
 
   };
 
@@ -105,7 +103,6 @@ angular.module('rehjeks.factories', [
     // var solvedChallenges = window.GlobalUser.solvedChallenges;
 
     var params = username ? {username, difficulty} : {difficulty, solvedChallenges};
-    console.log('params req is ', params);
 
     return $http({
       method: 'GET',
@@ -115,7 +112,6 @@ angular.module('rehjeks.factories', [
     })
     .then(
       function(returnedChallenge) { //first param = successCallback
-        console.log('getRandom Returned this form server: ', returnedChallenge);
 
         //pass challenge to proper scope to display
         $scope.challengeData = returnedChallenge.data;
@@ -136,8 +132,6 @@ angular.module('rehjeks.factories', [
 
   var getAllChallenges = function($scope, difficulty, quantity) {
 
-    console.log('trying to get all Challenges from __', $location.path());
-
     $http({
       method: 'GET',
       url: serverURL + '/challenges',
@@ -145,14 +139,7 @@ angular.module('rehjeks.factories', [
     })
     .then(
       function(returnedData) { //first param = successCallback
-        console.log('getRandom Returned this form server: ', returnedData);
-
-        //$scope.challengeList = returnedData.data;
-        //  OR
-        //$scope.challengeList = returnedData;
-        console.log(returnedData);
         $scope.challengeList = returnedData.data;
-
       })
     .catch(
       function(errorRes) { //second param = errorCallback

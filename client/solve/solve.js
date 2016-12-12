@@ -72,11 +72,8 @@ angular.module('rehjeks.solve', [
       // Create matches for user's input
       var userAnswers = $scope.challengeData.text.match(attemptRegex);
 
-      console.log('__you got: ', userAnswers);
-
       // Compare user's answers to challenge answers
       var correctSolution = solutionsMatch(userAnswers, $scope.challengeData.expected);
-      console.log('answers match ', correctSolution);
 
       if (correctSolution) {
         $scope.correctAttempt = $scope.attempt;
@@ -160,7 +157,6 @@ angular.module('rehjeks.solve', [
   // Start Timer
   var solutionClock = $interval(function() {
     updateTimer(challStartTime);
-    // console.log('$scope.seconds is ', $scope.seconds);``
   }, 1000);
 
 

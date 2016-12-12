@@ -33,13 +33,11 @@ angular.module('rehjeks.profile', [
     };
 
     $scope.showTime = function(timeStr) {
-      console.log(timeStr);
       return new Date(Number(timeStr)).toUTCString().slice(20,25);
     }
 
     $scope.getUserChallenges()
     .then(function(challenges) {
-      console.log($scope.user.challenges);
       $scope.user.challenges.forEach(function(challenge){
         if(challenge.challenge.difficulty === 'easy'){
           $scope.user.difficulties.easy++;
