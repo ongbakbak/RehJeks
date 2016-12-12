@@ -1,15 +1,14 @@
 angular.module('rehjeks.solve', [
   'ngAnimate'
 ])
-.controller('SolveController', function($scope, $interval, Server, $sce, $timeout, $cookies) {
+.controller('SolveController', function($scope, $interval, Server, $sce, $timeout, $cookies, RegexParser) {
 
   ////////////////////////
   // Internal variables
   // & functions
   ////////////////////////
 
-  var regexBody = /[^\/].*(?=\/[gim]{0,3}$)/;
-  var regexFlags = /[gim]{0,3}$/;
+
   var challStartTime = new Date();
 
 
@@ -55,17 +54,12 @@ angular.module('rehjeks.solve', [
   ////////////////////////
 
 
-  $scope.checkGex = function() {
-    valid = makeRegex();
+  $scope.checkRegex = function() {
+    valid = RegexParser($scope.attempt);
     if (valid) {
       $scope.highlight();
     }
     $scope.regexValid = true;
-
-
-    console.log('Valid Regix = ', $scope.regexValid);
-    console.log('body is ', $scope.attempt.match(regexBody));
-    console.log('flags are ', $scope.attempt.match(regexFlags));
 
   };
 
@@ -73,16 +67,13 @@ angular.module('rehjeks.solve', [
     // Only check solution if user has input valid regex
     if ($scope.regexValid) {
 
-      var attemptRegex = makeRegex();
+      var attemptRegex = RegexParser($scope.attempt);
 
       // Create matches for user's input
       var userAnswers = $scope.challengeData.text.match(attemptRegex);
 
-      console.log('__you got: ', userAnswers);
-
       // Compare user's answers to challenge answers
       var correctSolution = solutionsMatch(userAnswers, $scope.challengeData.expected);
-      console.log('answers match ', correctSolution);
 
       if (correctSolution) {
         $scope.correctAttempt = $scope.attempt;
@@ -100,7 +91,7 @@ angular.module('rehjeks.solve', [
 
   $scope.highlight = function() {
 
-    let currentRegex = makeRegex();
+    let currentRegex = RegexParser($scope.attempt);
 
     let highlightedText = $scope.challengeData.text.replace(currentRegex,
       '<span class="highlighted-text">$&</span>');
@@ -166,16 +157,8 @@ angular.module('rehjeks.solve', [
   // Start Timer
   var solutionClock = $interval(function() {
     updateTimer(challStartTime);
-    // console.log('$scope.seconds is ', $scope.seconds);``
   }, 1000);
 
-  var makeRegex = function() {
-    var attemptBody = $scope.attempt.match(regexBody);
-    var attemptFlags = $scope.attempt.match(regexFlags);
-
-    // Create new regex object
-    return new RegExp(attemptBody, attemptFlags);
-  };
 
 
 })

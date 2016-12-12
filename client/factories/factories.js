@@ -45,7 +45,8 @@ var exampleChallengeList = [
 //var serverUrl = 'http://localhost:8000'; //Update me with Process.Env.Port?
 
 angular.module('rehjeks.factories', [
-  'ngCookies'
+  'ngCookies',
+  'ngSanitize'
 ])
 .factory('Auth', function($http, $location, $window) {
 
@@ -59,7 +60,6 @@ angular.module('rehjeks.factories', [
     })
     .then(
       function(successRes) { //first param = successCallback
-        console.log(successRes.data.username);
         window.GlobalUser.username = successRes.data.username;
         window.GlobalUser.userId = successRes.data.userid;
         document.cookie = `username=${successRes.data.username}; userId=${successRes.data.userid};`;
@@ -68,7 +68,6 @@ angular.module('rehjeks.factories', [
       },
       function(errorRes) { //second param = errorCallback
         console.log(errorRes);
-
       }
     );
   };
@@ -79,7 +78,7 @@ angular.module('rehjeks.factories', [
       method: 'GET',
       url: serverUrl + '/logout'
     })
-    .then(result => console.log('logged out response from serverside'));
+    .then(result => console.log('logged out response from back-end'));
 
   };
 
@@ -90,7 +89,7 @@ angular.module('rehjeks.factories', [
 
 
 })
-.factory('Server', function($http, $location, $cookies) {
+.factory('Server', function($http, $location, $cookies, $sanitize) {
 
   var serverURL = $location.protocol() + '://' + location.host;
   //shared acces for Challenges and Solve Controller
@@ -104,7 +103,6 @@ angular.module('rehjeks.factories', [
     // var solvedChallenges = window.GlobalUser.solvedChallenges;
 
     var params = username ? {username, difficulty} : {difficulty, solvedChallenges};
-    console.log('params req is ', params);
 
     return $http({
       method: 'GET',
@@ -114,7 +112,6 @@ angular.module('rehjeks.factories', [
     })
     .then(
       function(returnedChallenge) { //first param = successCallback
-        console.log('getRandom Returned this form server: ', returnedChallenge);
 
         //pass challenge to proper scope to display
         $scope.challengeData = returnedChallenge.data;
@@ -133,25 +130,16 @@ angular.module('rehjeks.factories', [
   };
 
 
-  var getAllChallenges = function($scope, difficulty) {
-
-    console.log('trying to get all Challenges from __', $location.path());
+  var getAllChallenges = function($scope, difficulty, quantity) {
 
     $http({
       method: 'GET',
       url: serverURL + '/challenges',
-      params: {difficulty}
+      params: {difficulty, quantity}
     })
     .then(
       function(returnedData) { //first param = successCallback
-        console.log('getRandom Returned this form server: ', returnedData);
-
-        //$scope.challengeList = returnedData.data;
-        //  OR
-        //$scope.challengeList = returnedData;
-        console.log(returnedData);
         $scope.challengeList = returnedData.data;
-
       })
     .catch(
       function(errorRes) { //second param = errorCallback
@@ -206,14 +194,7 @@ angular.module('rehjeks.factories', [
 
     let {submitData:{title, prompt, text, difficulty, expected, answer, cheats}} = $scope;
 
-    $scope.submitData.expected = function(){
-      let regexAnswer = $scope.submitData.answer;
-      let textString = $scope.submitData.text;
-      let textArray = textString.split(" ");
-      return textArray.filter ( function (text) {
-        return text.match(regexAnswer) !== null;
-      });
-    }();
+    text = $sanitize(text);
 
     let submitData = {
       username: $cookies.get('username'),
@@ -221,7 +202,7 @@ angular.module('rehjeks.factories', [
       prompt: prompt,
       text: text,
       difficulty: difficulty,
-      expected: $scope.submitData.expected,
+      expected: expected(),
       answer: answer,
       cheats: cheats
     };
@@ -247,4 +228,19 @@ angular.module('rehjeks.factories', [
     submitNewChallenge: submitNewChallenge
   };
 
+})
+.factory('RegexParser', function() {
+
+  var regexBody = /[^\/].*(?=\/[gim]{0,3}$)/;
+  var regexFlags = /[gim]{0,3}$/;
+
+  var makeRegex = function(regexStr) {
+    var attemptBody = regexStr.match(regexBody);
+    var attemptFlags = regexStr.match(regexFlags);
+
+    // Create new regex object
+    return new RegExp(attemptBody, attemptFlags);
+  };
+
+  return makeRegex;
 });

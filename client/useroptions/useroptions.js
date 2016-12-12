@@ -6,15 +6,14 @@ angular.module('rehjeks.useroptions', [
   $scope.user = {};
   $scope.loggedin = true;
   $scope.user.challenges = [];
-  $scope.user.numberOfChallenges = $scope.user.challenges.length; 
+  $scope.user.numberOfChallenges = $scope.user.challenges.length;
   $scope.singularOrPlural = 'challenges';
 
   $scope.logout = function(){
-    console.log("logging out");
     $cookies.remove('username');
     window.GlobalUser.username = '';
     $scope.loggedin = false;
-    
+
   }
 
   $scope.redirect = function(){

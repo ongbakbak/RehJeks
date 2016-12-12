@@ -7,8 +7,6 @@ module.exports.getChallenges = function(req, res) {
   // Returns a list of challenges, if a username or a userId is provided it will be a tuple of the challenges that
   // the user has solved, and their respective solutions--otherwise, it will be an array of any challenges given the params.
 
-  console.log('challenge controller says req.query is ', req.query);
-
   let {query: {quantity = 10, difficulty, order, username, userId}} = req;
   if (username || userId) {
     let userSolutions;
@@ -16,14 +14,14 @@ module.exports.getChallenges = function(req, res) {
     .then(user => Solution.find({userId: user.id}))
     .then(solutions => userSolutions = solutions)
     .then(solutions => solutions.map(solution => `{"id": "${solution.challengeId}"}`))
-    .then(challengeIds => `{"$or": [${challengeIds.join(', ')}]}`)
+    .then(challengeIds => challengeIds.length ? `{"$or": [${challengeIds.join(', ')}]}` : '{"id": "0"}')
     .then(challengeQuery => Challenge.find(JSON.parse(challengeQuery)).limit(+quantity))
     .then(challenges => challenges.map(chal => {
       var solution = userSolutions.filter(sol => sol.challengeId === chal.id)[0];
       return {challenge: chal, solution: solution};
     }))
     .then(solvedChallenges => res.send(solvedChallenges))
-    .then(a=>console.log(userSolutions));
+    .catch(err=>console.log(err));
   } else {
     Challenge.find(difficulty ? {difficulty: difficulty} : undefined)
     .limit(+quantity) // Note: quantity comes in from params as a string, Mongoose needs it as a number
@@ -53,9 +51,6 @@ module.exports.getSingleChallenge = function(req, res) {
   };
 
   let {query: {username, userId, difficulty, solvedChallenges, challengeId}} = req;
-
-
-  console.log('query', req.query);
 
 
   // if specific challenge requested by Id, serve it
@@ -165,9 +160,11 @@ module.exports.submitNewChallenge = function(req, res) {
   // Saves a challenge. Can work off of username or userId for the author.
   // If no username or userId given, records "anonymous".
 
-  let {body: {username, userId}} = req;
+  let {body: {username, userId}, body: challenge} = req;
 
-  newChallenge = new Challenge(req.body);
+  let newChallenge = new Challenge(challenge);
+
+  // Find the userID of the user at username, then store the challenge with that userID
   User.findOne(username ? {username: username} : userId ? {id: userId} : undefined)
   .then((user) => {
     if (user) {
@@ -183,7 +180,7 @@ module.exports.submitNewChallenge = function(req, res) {
   })
   .catch(function(err) {
     console.log('error while submitting a new challenge:', err);
-    res.statusCode(500).send(err);
+    res.send(err);
   });
 
 };

@@ -1,5 +1,5 @@
 angular.module('rehjeks.submit', [])
-  .controller('SubmitController', function ($scope, $http, Server) {
+  .controller('SubmitController', function ($scope, $http, Server, RegexParser, $sanitize) {
 
     let submitData = {};
     //saving blank form as originForm
@@ -10,35 +10,35 @@ angular.module('rehjeks.submit', [])
       $scope.submitForm.$setPristine();
     };
 
-
-    let validation = /\/((?![*+?])(?:[^\r\n\[/\\]|\\.|\[(?:[^\r\n\]\\]|\\.)*\])+)\/((?:g(?:im?|mi?)?|i(?:gm?|mg?)?|m(?:gi?|ig?)?)?)/;
-    let regexBody = /[^\/].*(?=\/[gim]{0,3}$)/;
-    let regexFlags = /[gim]{0,3}$/;
-
+    var checkIfSanitary = function() {
+      return $scope.submitData.text === $sanitize($scope.submitData.text);
+    };
 
     $scope.submit = function() {
-      Server.submitNewChallenge($scope);
-      $scope.resetForm();
+      if (checkIfSanitary()) {
+        Server.submitNewChallenge($scope)
+        .then(resp => {
+          $scope.unsanitary = false;
+          $scope.submitted = true;
+          $scope.resetForm();
+        });
+      } else {
+        $scope.unsanitary = true;
+        $scope.submitData.text = $sanitize($scope.submitData.text);
+      }
     };
 
     $scope.onUpdate = function() {
       if (!!$scope.submitData.answer && !!$scope.submitData.text) {
-        let makeRegex = function () {
-          let answerBody = $scope.submitData.answer.match(regexBody);
-          let answerFlags = $scope.submitData.answer.match(regexFlags);
-          return new RegExp(answerBody, answerFlags);
-        };
 
-        let regexAnswer = makeRegex();
 
-        $scope.submitData.expected = function(){
-          let textString = $scope.submitData.text;
-          let textArray = textString.split(" ");
-          return textArray.filter ( function (text) {
-            console.log('matched data ', text.match(regexAnswer));
-            return text.match(regexAnswer) !== null;
-          });
-        }().join(" ");
+      let regexAnswer = RegexParser($scope.submitData.answer);
+
+      $scope.submitData.expected = function(){
+        let textString = $scope.submitData.text;
+        return textString.match(regexAnswer);
       }
     };
-  });
+
+  }
+});
