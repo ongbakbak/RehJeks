@@ -33,9 +33,8 @@
     <p class="challenge-expected">{{challengeData.expected}}</p>
 
     <div class="solve-form">
-
       <form name="solveForm" ng-submit='submit()'>
-        <input id="regex-attempt" type="text" ng-model='attempt' ng-change="checkRegex()" placeholder="/regexHERE/gi" focus-on-me>
+        <input id="regex-attempt" type="text" ng-model='attempt' ng-change="checkRegex()" focus-on-me>
       </form>
     </div>
 
@@ -51,6 +50,15 @@
     </div>
     <div ng-if="false" class="red-box fade fade-fast">
       Invalid RegEx!
+    </div>
+  </div>
+  <div ng-if="success && otherSolutions.length" class="fade fade-slow">
+    <h2 class="challenge-blurb-title">Others' Solutions:</h2>
+    <div ng-repeat="solution in otherSolutions">
+      <hr>
+      <p class="challenge-blurb-solution">{{solution.solution}}</p>
+      <p class="challenge-blurb-difficulty">Time to solve: {{showTime(solution.timeToSolve)}}</p>
+      <p class="challenge-blurb-difficulty">({{formatTime(solution.createdAt)}})</p>
     </div>
   </div>
 
