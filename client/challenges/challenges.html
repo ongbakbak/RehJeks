@@ -1,6 +1,6 @@
 <div class="challenge-options" id="challenges-nav">
 
-  <label id="difficulty">Difficulty:
+  <label>Difficulty:
     <br>
     <select name="difficulty" id="difficulty" ng-model="difficulty" ng-change="getAllChallenges()">
       <option value="">all</option>
@@ -9,6 +9,17 @@
       <option value="hard">hard</option>
     </select>
   </label>
+  <hr>
+  <label>Per page:
+    <br>
+    <select name="quantity" id="quantity" ng-model="quantity" ng-change="getAllChallenges()">
+      <option value="5">5</option>
+      <option value="">10</option>
+      <option value="20">20</option>
+      <option value="9999">all</option>
+    </select>
+  </label>
+
 </div>
 <div id='challenges'>
   <div class="row challenge-container">

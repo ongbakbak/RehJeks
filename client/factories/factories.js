@@ -133,14 +133,14 @@ angular.module('rehjeks.factories', [
   };
 
 
-  var getAllChallenges = function($scope, difficulty) {
+  var getAllChallenges = function($scope, difficulty, quantity) {
 
     console.log('trying to get all Challenges from __', $location.path());
 
     $http({
       method: 'GET',
       url: serverURL + '/challenges',
-      params: {difficulty}
+      params: {difficulty, quantity}
     })
     .then(
       function(returnedData) { //first param = successCallback
