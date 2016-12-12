@@ -46,7 +46,14 @@ module.exports.getSingleChallenge = function(req, res) {
 
   let numTries = 0;
 
+  let outOfChallenges = {
+    title: 'You have solved all challenges at this difficulty!',
+    prompt: 'Try moving up to something a little harder.',
+    expected: ['really', 'go', 'try', 'something', 'harder']
+  };
+
   let {query: {username, userId, difficulty, solvedChallenges, challengeId}} = req;
+
 
   console.log('query', req.query);
 
@@ -68,7 +75,12 @@ module.exports.getSingleChallenge = function(req, res) {
     if (solvedChallenges) {
       return new Promise(function(resolve, reject) {
         if (solvedChallenges.indexOf(challenge.id) !== -1) {
-          resolve(true);
+          if (numTries < 10) {
+            numTries++;
+            resolve(true);
+          } else {
+            resolve(outOfChallenges);
+          }
         } else {
           resolve(challenge);
         }
@@ -80,10 +92,7 @@ module.exports.getSingleChallenge = function(req, res) {
     .then(function(solution) {
       if (solution) {
         if (numTries >= 10) {
-          return {
-            title: 'You have solved all challenges at this difficulty!',
-            prompt: 'Try moving up to something a little harder.'
-          }
+          return outOfChallenges;
         } else {
           numTries++;
           return true;

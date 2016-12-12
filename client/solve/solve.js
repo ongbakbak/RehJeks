@@ -120,7 +120,6 @@ angular.module('rehjeks.solve', [
   $scope.submit = function() {
     if ($scope.success) {
       Server.submitUserSolution($scope.correctAttempt, $scope.challengeData.id, $scope.timeToSolve);
-      console.log('______Called submitUserSolution factory');
       window.GlobalUser.solvedChallenges.push($scope.challengeData.id);
       $scope.success = false;
       $scope.failure = false;
@@ -132,7 +131,6 @@ angular.module('rehjeks.solve', [
 
 
   $scope.getRandom = function() {
-    console.log('SolveController calling getRandom');
     Server.getRandom($scope)
     .then((testString) => {
       $scope.highlightedText = $sce.trustAsHtml(testString);
@@ -141,8 +139,8 @@ angular.module('rehjeks.solve', [
       $scope.$broadcast('focusOnMe');
     });
     $scope.attempt = '//gi';
+    $scope.attemptMatch = undefined;
     challStartTime = new Date();
-
   };
 
 
