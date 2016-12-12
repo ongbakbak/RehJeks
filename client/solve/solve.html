@@ -32,21 +32,21 @@
     <p class="challenge-expected">{{challengeData.expected}}</p>
   </div>
 
-  <div class="container solve-form">
+  <div class="solve-form">
     <form name="solveForm" ng-submit='submit()'>
       <input id="regex-attempt" type="text" ng-model='attempt' ng-change="checkGex()" placeholder="/regexHERE/gi" focus-on-me>
     </form>
-    <div ng-if="showHint" class="fade">
-      (Just Start Typing)
-    </div>
   </div>
   <br>
   <br>
-  <div ng-if="success" class="container green-box fade fade-slow">
+  <div ng-if="success" class="green-box fade fade-slow">
     Great Job! Press Enter to submit and get a new challenge
   </div>
-  <div ng-if="failure" class="container red-box fade fade-fast">
+  <div ng-if="failure" class="red-box fade fade-fast">
     Tests failed! Expected {{ challengeData.expected }}, your RegEx matched {{ attemptMatch || "nothing :(" }}.
+  </div>
+  <div ng-if="showHint" class="show-type-hint fade">
+    (Just Start Typing)
   </div>
   <div ng-if="false" class="red-box fade fade-fast">
     Invalid RegEx!
