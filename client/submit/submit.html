@@ -60,7 +60,7 @@
 
         <!-- <button ng-if="submitData.answer" ng-click="submitExpectedController.toggle = true">Expected Matches</button> -->
         <div ng-if="submitData.answer">
-            Expected match {{submitData.expected}}
+            Expected match {{submitData.expected()}}
         </div>
         <button type="submit" class="btn submitButton">Submit New Challenge</button>
       </form>

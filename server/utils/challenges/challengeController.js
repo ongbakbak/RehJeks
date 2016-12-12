@@ -166,7 +166,7 @@ module.exports.submitNewChallenge = function(req, res) {
   // If no username or userId given, records "anonymous".
 
   let {body: {username, userId}} = req;
-
+  console.log("expected", req.body.expected);
   newChallenge = new Challenge(req.body);
   User.findOne(username ? {username: username} : userId ? {id: userId} : undefined)
   .then((user) => {

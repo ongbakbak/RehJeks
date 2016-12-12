@@ -221,7 +221,7 @@ angular.module('rehjeks.factories', [
       prompt: prompt,
       text: text,
       difficulty: difficulty,
-      expected: $scope.submitData.expected,
+      expected: expected(),
       answer: answer,
       cheats: cheats
     };
@@ -247,4 +247,19 @@ angular.module('rehjeks.factories', [
     submitNewChallenge: submitNewChallenge
   };
 
+})
+.factory('RegexParser', function() {
+
+  var regexBody = /[^\/].*(?=\/[gim]{0,3}$)/;
+  var regexFlags = /[gim]{0,3}$/;
+
+  var makeRegex = function(regexStr) {
+    var attemptBody = regexStr.match(regexBody);
+    var attemptFlags = regexStr.match(regexFlags);
+
+    // Create new regex object
+    return new RegExp(attemptBody, attemptFlags);
+  };
+
+  return makeRegex;
 });
