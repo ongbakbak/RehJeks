@@ -6,8 +6,6 @@
 
 
 window.GlobalUser = {};
-window.GlobalUser.username = '';
-window.GlobalUser.userId = '';
 window.GlobalUser.solvedChallenges = [];
 
 var exampleChallengeList = [
@@ -60,8 +58,6 @@ angular.module('rehjeks.factories', [
     })
     .then(
       function(successRes) { //first param = successCallback
-        window.GlobalUser.username = successRes.data.username;
-        window.GlobalUser.userId = successRes.data.userid;
         document.cookie = `username=${successRes.data.username}; userId=${successRes.data.userid};`;
         $scope.loggedin = true;
         return true;

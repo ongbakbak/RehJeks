@@ -7,7 +7,7 @@ angular.module('rehjeks.useroptions', [
   $scope.loggedin = true;
   $scope.user.challenges = [];
   $scope.singularOrPlural = 'challenges';
-  $scope.points = window.GlobalUser.points;
+  $scope.points = window.GlobalUser.points || 0;
 
   $scope.logout = function() {
     $cookies.remove('username');

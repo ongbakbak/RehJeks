@@ -1,6 +1,6 @@
-
 <div class="row" id='solve'>
-  <div class="col col-xs-3 col-s-3 col-md-3 col-lg-3 solve-nav">
+
+  <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 solve-nav">
     <br>
     <label id="difficulty">Difficulty:
       <br>
@@ -20,7 +20,8 @@
       {{ minutes + ":" + (seconds < 10 ? "0" + seconds : seconds) }}
     </div>
   </div>
-  <div class="col col-xs-9 col-s-9 col-md-9 col-lg-9 challenge-prompt">
+
+  <div class="col col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 challenge-prompt">
     <h3 class="challenge-prompt-title">{{challengeData.title}}</h3>
     <br>
     <p class="challenge-description">{{challengeData.prompt}}</p>
@@ -32,11 +33,12 @@
     <p class="challenge-expected">{{challengeData.expected}}</p>
 
     <div class="solve-form">
+
       <form name="solveForm" ng-submit='submit()'>
         <input id="regex-attempt" type="text" ng-model='attempt' ng-change="checkRegex()" placeholder="/regexHERE/gi" focus-on-me>
       </form>
     </div>
-    <br>
+
     <br>
     <div ng-if="success" class="green-box fade fade-slow">
       Great Job! Press Enter to submit and get a new challenge
@@ -51,4 +53,5 @@
       Invalid RegEx!
     </div>
   </div>
+
 </div>

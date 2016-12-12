@@ -6,6 +6,7 @@ angular.module('rehjeks.login', [])
     $scope.signin = false;
     $scope.actionTitle = 'Login';
     $scope.loggedin = document.cookie !== "undefined" && document.cookie !== "";
+    $scope.loginFailed = false;
 
 
     $scope.login = function () {
@@ -15,7 +16,7 @@ angular.module('rehjeks.login', [])
     $scope.submit = function() {
       if ($scope.showLogin) {
         Auth.authorize($scope.user, '/login', $scope)
-        .then((resp)=>$scope.$parent.showDropdown=false);
+        .then((resp) => resp.data = "Unauthorized" ? $scope.loginFailed = true : undefined);
       } else if ($scope.showSignup) {
 
         Auth.authorize($scope.user, '/signup', $scope);

@@ -16,6 +16,8 @@
   <div ng-show='loggedin'>Successfully Logged In!!!
   <button class='logout' ng-click='logout()'>Logout</button>
   </div>
-  <p ng-show="showLogin">Don't have an account? <span class="switch" ng-click="seeSignup()">Signup</span> </p>
+  <div ng-show='loginFailed && !showSignup' class='red-box'>Login Failed--No account? <span class="switch" ng-click="seeSignup()">Sign up!</span>
+  </div>
+  <p ng-show="showLogin && !loginFailed">Don't have an account? <span class="switch" ng-click="seeSignup()">Signup</span> </p>
   <p ng-show="showSignup">Already have an account? <span class="switch" ng-click="seeLogin()">Login</span> </p>
 </div>
