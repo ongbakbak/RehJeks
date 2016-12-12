@@ -2,7 +2,12 @@ angular.module('rehjeks.profile', [
   'ngCookies'
 ])
 
-  .controller('UserprofileController', function($scope, Server, $cookies) {
+  .controller('UserprofileController', function($scope, Server, $cookies, $location) {
+
+    // Send us away if we aren't logged in
+    if (!$cookies.get('username')) {
+      $location.path('/solve');
+    }
     $scope.user = {};
     $scope.user.difficulties = {};
     $scope.user.challenges = [];
@@ -12,6 +17,12 @@ angular.module('rehjeks.profile', [
     $scope.username = $cookies.get('username');
     $scope.user.show = false;
 
+    // Send us away if we log out while on the page
+    $scope.$watch(function() {return $cookies.get('username'); }, function(newValue) {
+      if (!newValue) {
+        $location.path('/solve');
+      }
+    })
 
     $scope.getUserChallenges = function() {
     	return Server.getUserChallenges($scope, $cookies.get('username'));
