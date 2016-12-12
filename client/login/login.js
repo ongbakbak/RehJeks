@@ -16,10 +16,11 @@ angular.module('rehjeks.login', [])
     $scope.submit = function() {
       if ($scope.showLogin) {
         Auth.authorize($scope.user, '/login', $scope)
-        .then((resp) => resp.data = "Unauthorized" ? $scope.loginFailed = true : undefined);
+        .then((resp) => resp.data === "Unauthorized" ? $scope.loginFailed = true : undefined);
       } else if ($scope.showSignup) {
 
-        Auth.authorize($scope.user, '/signup', $scope);
+        Auth.authorize($scope.user, '/signup', $scope)
+        .then((resp) => resp.data.slice(0,5) === "Error" ? $scope.loginFailed = true: undefined);
       }
       var form = document.getElementsByName('loginForm')[0];
       form.reset();
@@ -28,12 +29,14 @@ angular.module('rehjeks.login', [])
     $scope.seeLogin = function() {
       $scope.showLogin = true;
       $scope.showSignup = false;
+      $scope.loginFailed = false;
       $scope.actionTitle = 'Login';
     };
 
     $scope.seeSignup = function() {
       $scope.showLogin = false;
       $scope.showSignup = true;
+      $scope.loginFailed = false;
       $scope.actionTitle = 'Signup';
     };
 

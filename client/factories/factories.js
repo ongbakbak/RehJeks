@@ -63,7 +63,7 @@ angular.module('rehjeks.factories', [
         return true;
       },
       function(errorRes) { //second param = errorCallback
-        console.log(errorRes);
+        return errorRes;
       }
     );
   };

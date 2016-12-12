@@ -397,6 +397,10 @@ nav a:focus {
   width: 400px;
 }
 
+#login p {
+  margin-left: 10px;
+}
+
 #time-left {
   color: #B55;
   font-size: 28px;
