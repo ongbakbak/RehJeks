@@ -1,6 +1,7 @@
 
 var mongoose = require('mongoose');
 var Challenge = require('./challengeModel');
+var Solution = require('./../solutions/solutionModel')
 
 
 var localDb = 'mongodb://127.0.0.1:27017/rehjeks';
@@ -138,6 +139,7 @@ var challengeArray = [
 
 
 Challenge.remove({}, function(err, data) { return; });
+Solution.remove({}, function(err, data) {return; });
 
 Challenge.collection.insertMany(challengeArray, function(err, row) {
   if (err) {
