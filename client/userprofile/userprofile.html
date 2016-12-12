@@ -2,7 +2,7 @@
   <h1 class="stats-title">{{ username }}'s Stats</h1>
   <hr>
   <div class='stats-breakdown'>
-  <h2>Solved Problems</h2>
+  <h2> {{user.points + user.points===1?'point':'total points'}}.</h2>
     <h4>Problem Breakdown</h4>
       <p> Easy: {{user.difficulties.easy}}</p>
       <p> Medium: {{user.difficulties.medium}}</p>
@@ -32,6 +32,7 @@
           </div>
           <div class='col col-xs-6 col-md-6 col-lg-6'>
             <br>
+            <h4 class="challenge-blurb-time">Solved: {{challenge.solution.createdAt}}</h4>
             <h4 class="challenge-blurb-time">Time to solve: {{showTime(challenge.solution.timeToSolve)}}</h4>
      			</div>
         </div>

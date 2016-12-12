@@ -26,16 +26,15 @@ button:hover {
 }
 
 .challenge-prompt {
-  box-shadow: 0px 0px 5px rgba(0,0,0,.25);
   padding: 10px 20px;
   font-size: 24px;
   border-radius: 5px;
+  background: #FFFFF8;
   /*background: #DDD;  for browsers that do not support gradients */
 /*  background: -webkit-linear-gradient(left top, #eee, #fff);
   background: -o-linear-gradient(bottom right, #eee, #fff);
   background: -moz-linear-gradient(bottom right, #eee, #fff);
   background: linear-gradient(to bottom right, #EEE, #FFF); */
-  background-color: #FFFFF8;
 
 }
 
@@ -75,7 +74,7 @@ button:hover {
 
 #regex-attempt {
   font-size: 36px;
-  width: 100%;
+  width: 50%;
   margin: 20px 0 20px 20px;
   color: green;
   border-style: none;
@@ -200,6 +199,7 @@ button:hover {
 }
 
 nav {
+  position: relative;
   background-color: #777;
   box-shadow: 0px 5px 5px rgba(0,0,0,.27);
   z-index: 9999;
@@ -361,12 +361,11 @@ nav a:focus {
 }
 
 #solve {
-  max-width: 1200px;
   margin: auto;
-  margin-top: 30px;
-  z-index: -11;
-  width: 50%;
-  background-color: #FFFFF8;
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  background-color: #DDD;
   box-shadow: 0px 0px 5px rgba(0,0,0,.25);
 }
 
@@ -412,6 +411,7 @@ nav a:focus {
   background-color: #444;
   padding-top: 5px;
   border-radius: 5px;
+  cursor: default;
 }
 
 .login-box {
@@ -419,9 +419,9 @@ nav a:focus {
   right: 0px;
   background-color: #DDD;
   opacity: 1;
-  z-index: 5;
+  z-index: 9999;
   border-radius: 0px 0px 0px 5px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,.3);
+  box-shadow: 0px 5px 10px rgba(0,0,0,.3);
 }
 
 .login-form {
@@ -468,17 +468,10 @@ hr {
   margin: 0px 15px 0px 15px;
 }
 
-#solve-nav {
-  position: absolute;
-  top: 55px;
+.solve-nav {
   text-align: center;
-  box-shadow: 0px 0px 5px rgba(0,0,0,.35);
-  border-radius: 5px;
-  background-color: #DDD;
-  padding: 20px 30px;
   width: auto;
-  height: auto;
-  margin: 0px;
+  height: 200%;
   z-index: 1;
 }
 
